@@ -1,0 +1,12 @@
+﻿  main.cpp
+C:\Users\tuanb\source\repos\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\tuanb\source\repos\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Platform.cpp
+  Portal.cpp
+  Generating Code...
+  PA9_Game.vcxproj -> C:\Users\tuanb\source\repos\CPT_S122\PA9_Game\x64\Debug\PA9_Game.exe
