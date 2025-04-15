@@ -29,6 +29,8 @@ using std::ofstream;
 using std::vector;
 using std::stack;
 
+#include <SFML/Graphics.hpp>
+
 class Portal : public sf::CircleShape
 {
 private:

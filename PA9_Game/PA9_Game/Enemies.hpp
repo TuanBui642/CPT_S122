@@ -29,7 +29,6 @@ using std::ofstream;
 using std::vector;
 using std::stack;
 
-
 #include <SFML/Graphics.hpp>
 
 class Enemy : public sf::Sprite {
