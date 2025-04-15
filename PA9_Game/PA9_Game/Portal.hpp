@@ -29,17 +29,23 @@ using std::ofstream;
 using std::vector;
 using std::stack;
 
-class Portal {
-
-public:
-
-
+class Portal : public sf::CircleShape
+{
 private:
 
 
-protected:
+public:
+	//constructor 
+	Portal(float const& size, const sf::Vector2f& pos) :
+		sf::CircleShape(size)
+	{
+		this->setPosition({ pos });
+		this->setFillColor(sf::Color::Blue);
+		this->setOutlineColor(sf::Color::Magenta);
+		this->setPointCount(6);
+		this->setOrigin(this->getGeometricCenter());
+	}
 
 
 };
-
 #endif

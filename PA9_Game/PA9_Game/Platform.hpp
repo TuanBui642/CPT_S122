@@ -29,17 +29,18 @@ using std::ofstream;
 using std::vector;
 using std::stack;
 
-class Platform {
-
-public:
-
-
+class Platform : public sf::RectangleShape
+{
 private:
 
-
-protected:
-
-
+public:
+	//constructor 
+	Platform(const sf::Vector2f& size, const sf::Vector2f& pos) :
+		sf::RectangleShape(size)
+	{
+		this->setFillColor(sf::Color::Green);
+		this->setPosition(pos);
+	}
 
 };
 
