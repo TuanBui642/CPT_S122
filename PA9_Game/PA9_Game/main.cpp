@@ -10,6 +10,7 @@
 
 #include "Portal.hpp"
 #include "Platform.hpp"
+#include "Enemies.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
@@ -20,6 +21,9 @@ int main(void) {
     unsigned int height = 360;
     sf::RenderWindow window(sf::VideoMode({ width, height }), "Game!");
  
+
+    Enemy Test(sf::Texture);
+
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent()) 
