@@ -28,6 +28,7 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 using std::stack;
+using std::fmod;
 
 #include <SFML/Graphics.hpp>
 

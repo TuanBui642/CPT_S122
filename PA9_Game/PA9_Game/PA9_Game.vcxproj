@@ -136,14 +136,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Enemies.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Portal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemies.hpp" />
+    <ClInclude Include="Functions.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Portal.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Settings.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
