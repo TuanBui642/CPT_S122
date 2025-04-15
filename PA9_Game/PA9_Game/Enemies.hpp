@@ -34,20 +34,23 @@ using std::stack;
 class Enemy : public sf::Sprite {
 
 public:
-	Enemy(const sf::Texture& CharTexture, const int NewHealth, const int NewDamageDealt, bool NewAliveOrDead) : sf::Sprite(CharTexture){//Constructor
+	Enemy(const sf::Texture& CharTexture, const int NewHealth, const int NewDamageDealt, bool NewAliveOrDead, float NewSpeed) : sf::Sprite(CharTexture){//Constructor
 
 		this->Health = NewHealth;
 		this->DamageDealt = NewDamageDealt;
 		this->AliveORDead = NewAliveOrDead;
+		this->MovementSpeed = NewSpeed;
 
 		this->setTexture(CharTexture);
 	}; 
 
+	//Getters
 	int GetHealth();
 	int GetDamageDealt();
 	bool GetAliveOrDead();
 	float GetMovementSpeed();
 
+	//Setters
 	void SetHealth(int NewNum);
 	void SetDamageDealt(int NewNum);
 	void SetAliveORDead(bool NewBool);
