@@ -8,125 +8,30 @@
 *		Brandon Weirth
 */
 
-#include "Portal.hpp"
-#include "Platform.hpp"
-#include "Enemies.hpp"
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/System.hpp>
-
-void PollEvents(sf::RenderWindow& window, bool& isJumping) {
-	while (const std::optional event = window.pollEvent()) {
-		if (event->is<sf::Event::Closed>()) {
-			window.close();
-		}
-		else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-			if (keyPressed->scancode == sf::Keyboard::Scancode::Escape) {
-				window.close();
-			}
-		}
-		else if (event->is<sf::Event::KeyReleased>()) {
-			isJumping = false;
-		}
-	}
-}
+#include "Game.hpp"
 
 int main(void) {
 
-	unsigned int width = 1280;
-	unsigned int height = 720;
-
-	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode({ width,height }), "Tutorials");
-	window->setFramerateLimit(60);
-
-	// Platform
-	Platform platform(sf::Vector2f(width, 20.0f), { 0, 200 });
+	//// Platform
+	//Platform platform(sf::Vector2f(width, 20.0f), { 0, 200 });
 
 
-	// Character
-	sf::RectangleShape person({ 30.0f, 30.0f });
-	person.setPosition({ 320.0f, 200 - 30 });
+	//// Character
+	//sf::RectangleShape person({ 30.0f, 30.0f });
+	//person.setPosition({ 320.0f, 200.0f - 30.0f });
 
-	// Door/Portal
-	// Portal 1
-	Portal portal1(32.0, { 50, 200 - 35 });
+	//// Door/Portal
+	//// Portal 1
+	//Portal portal1(32.0f, { 50.0f, 200.0f - 35.0f });
 
-	// Portal 2
-	Portal portal2(32.0, { 600, 200 - 35 });
+	//// Portal 2
+	//Portal portal2(32.0f, { 600, 200 - 35 });
 
+	//sf::CircleShape test(30.0f);
 
-	// Game physics
-	bool isJumping = false;
-	bool justTeleported = false;
-	float velocityY = 0.0f;
-	const float gravity = 0.5f;
-	const float jumpStrength = -10.0f;
+	Game thisGame;
 
-	while (window->isOpen()) {
-		PollEvents(*window, isJumping);
-
-		// Controls
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-		{
-			person.move({ 5, 0 });
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-		{
-			person.move({ -5, 0 });
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && !isJumping)
-		{
-			velocityY = jumpStrength;
-			isJumping = true;
-		}
-
-		// Apply gravity
-		velocityY += gravity;
-		person.move({ 0, velocityY });
-
-		//Collision with platform
-		sf::FloatRect platformBounds = platform.getGlobalBounds();
-		if (person.getGlobalBounds().findIntersection(platformBounds)) {
-			person.setPosition({ person.getPosition().x, platform.getPosition().y - 30 });
-			velocityY = 0;
-			isJumping = false;
-		}
-
-		// Teleport logic
-		if (!justTeleported) {
-			if (person.getGlobalBounds().findIntersection(portal1.getGlobalBounds())) {
-				person.setPosition({ portal2.getPosition().x, portal2.getPosition().y });
-				justTeleported = true;
-			}
-			else if (person.getGlobalBounds().findIntersection(portal2.getGlobalBounds())) {
-				person.setPosition({ portal1.getPosition().x, portal1.getPosition().y });
-				justTeleported = true;
-			}
-		}
-		else {
-			// Reset teleport flag when character is not interacting portal
-			if (!person.getGlobalBounds().findIntersection(portal1.getGlobalBounds()) &&
-				!person.getGlobalBounds().findIntersection(portal2.getGlobalBounds())) {
-				justTeleported = false;
-			}
-		}
-
-		// Rotate portals
-		portal1.rotate(sf::degrees(1));
-		portal2.rotate(sf::degrees(1));
-
-		// Rendering
-		window->clear();
-
-		// Draw Shape
-		window->draw(platform);
-		window->draw(portal1);
-		window->draw(portal2);
-		window->draw(person);
-
-		//Display Window
-		window->display();
-	}
+	thisGame.run();
 
 	return 0;
 }
