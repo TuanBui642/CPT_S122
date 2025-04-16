@@ -13,15 +13,14 @@
 int main(void) {
 
 	int MenuOption = 0;
+	cout << "Welcome To Our Game!" << endl;
+	while (MenuOption != 4) { //Current Issue, if we use a while Loop, any and all input done by the player while running the game will transmit to the terminal when their done
 
-	//while (MenuOption != 4) { //Current Issue, if we use a while Loop, any and all input done by the player while running the game will transmit to the terminal when their done
-
-		system("cls");
-		cout << "Welcome To Our Game!\nMenu:\n\t1:Play Game\n\t2:Game Information/Instructions\n\t3:Settings\n\t4:Exit" << endl;
+		cout << "Menu:\n\t1:Play Game\n\t2:Game Information / Instructions\n\t3:Settings\n\t4:Exit" << endl;
 		cin >> MenuOption;
+		cin.clear();
 
-		if (MenuOption == 1) {
-
+		if (MenuOption == 1){
 			RunGame();
 		}
 		else if (MenuOption == 2) {
@@ -37,11 +36,12 @@ int main(void) {
 			system("cls");
 			cout << "Exited Game" << endl;
 			cout << "Thanks For Playing!" << endl;
+			return 0;
 		}
 
-	
 		
-	//}
+		
+	}
 
 
 

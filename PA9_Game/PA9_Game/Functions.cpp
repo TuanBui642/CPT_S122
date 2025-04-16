@@ -36,7 +36,7 @@ void RunGame() {
 	unsigned int width = 1280;
 	unsigned int height = 720;
 
-	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode({ width,height }), "Tutorials");
+	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode({ width,height }), "Game Window!");
 	window->setFramerateLimit(60);
 
 	// Platform
@@ -131,12 +131,13 @@ void RunGame() {
 		//int seconds = TimePassed.asSeconds();
 		//cout << "Time Passed (Sec):" << seconds << endl;
 
-		system("cls");
+		//system("cls");
 
 		//Display Window
 		window->display();
 	}
 
+	cin.ignore();
 }
 
 void GameInformation() {
