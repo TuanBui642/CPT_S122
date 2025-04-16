@@ -6,6 +6,10 @@
 *		Ashton Palma
 *		Tyler Simmons
 *		Brandon Weirth
+* 
+*	Outside Contributers
+*		Connin Molo
+*			ANY AND ALL CREDIT OF SPRITE DESIGN GOES TO CONNIN MOLO
 */
 
 #include "Functions.hpp"
@@ -39,7 +43,7 @@ void RunGame() {
 	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode({ width,height }), "Game Window!");
 	window->setFramerateLimit(60);
 
-	// Platform
+	// Platform									
 	Platform platform(sf::Vector2f(width, 20.0f), { 0, 200 });
 
 	//Seconds Usage

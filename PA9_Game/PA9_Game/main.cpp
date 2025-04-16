@@ -6,6 +6,10 @@
 *		Ashton Palma
 *		Tyler Simmons
 *		Brandon Weirth
+* 
+*	Outside Contributers
+*		Connin Molo
+*			ANY AND ALL CREDIT OF SPRITE DESIGN GOES TO CONNIN MOLO
 */
 
 #include "Functions.hpp"
