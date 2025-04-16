@@ -30,6 +30,10 @@ using std::vector;
 using std::stack;
 using std::fmod;
 
+#include "Portal.hpp"
+#include "Platform.hpp"
+#include "Enemies.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
