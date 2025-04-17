@@ -12,7 +12,6 @@
 *			ANY AND ALL CREDIT OF SPRITE DESIGN GOES TO CONNIN MOLO
 */
 
-#include "Functions.hpp"
 #include "Game.hpp"
 
 int main(void) {

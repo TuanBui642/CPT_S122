@@ -12,48 +12,32 @@
 
 #include "Enemies.hpp"
 
-int Enemy::GetHealth() {
+Enemy::Enemy(float x_pos, float y_pos, sf::Texture* texture)
+{
+    //initialize stuff
+    this->initVariables();
+    this->initComponents();
 
-	return this->Health;
+    //set stuff
+    this->createSprite(texture);
+    this->setPosition(x_pos, y_pos);
 }
 
-int Enemy::GetDamageDealt() {
+Enemy::~Enemy()
+{
 
-	return this->DamageDealt;
 }
 
-bool Enemy::GetAliveOrDead() {
-
-	return this->AliveORDead;
+void Enemy::initVariables()
+{
 }
 
-float Enemy::GetMovementSpeed() {
+void Enemy::initComponents()
+{
 
-	return this->MovementSpeed;
 }
 
-void Enemy::SetHealth(int NewNum) {
-
-	this->Health = NewNum;
-}
-
-void Enemy::SetDamageDealt(int NewNum) {
-
-	this->DamageDealt = NewNum;
-}
-
-void Enemy::SetAliveORDead(bool NewBool) {
-
-	this->AliveORDead = NewBool;
-}
-
-void Enemy::SetMovementSpeed(float NewSpeed) {
-
-	this->MovementSpeed = NewSpeed;
-}
+void Enemy::initAnimations() {
 
 
-Enemy::~Enemy() {//Destructor
-
-	cout << "Destructor: Enemy" << endl;
 }

@@ -31,40 +31,21 @@ using std::stack;
 using std::fmod;
 
 #include <SFML/Graphics.hpp>
+#include "Entity.hpp"
 
-class Enemy : public sf::Sprite {
+class Enemy : public Entity {
 
 public:
-	Enemy(const sf::Texture& CharTexture, const int NewHealth, const int NewDamageDealt, bool NewAliveOrDead, float NewSpeed) : sf::Sprite(CharTexture){//Constructor
+	Enemy(float x, float y, sf::Texture* CharTexture);
 
-		this->Health = NewHealth;
-		this->DamageDealt = NewDamageDealt;
-		this->AliveORDead = NewAliveOrDead;
-		this->MovementSpeed = NewSpeed;
 
-		this->setTexture(CharTexture);
-	}; 
 
-	//Getters
-	int GetHealth();
-	int GetDamageDealt();
-	bool GetAliveOrDead();
-	float GetMovementSpeed();
-
-	//Setters
-	void SetHealth(int NewNum);
-	void SetDamageDealt(int NewNum);
-	void SetAliveORDead(bool NewBool);
-	void SetMovementSpeed(float NewSpeed);
-
-	~Enemy(); //Destructor
+	virtual ~Enemy(); //Destructor
 	
 private:
-	int Health;
-	int DamageDealt;
-	bool AliveORDead; //False = Dead, True = Alive
-	float MovementSpeed;
-
+	void initVariables();
+	void initAnimations();
+	void initComponents();
 
 protected:
 

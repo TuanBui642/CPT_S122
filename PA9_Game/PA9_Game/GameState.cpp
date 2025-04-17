@@ -65,7 +65,7 @@ void GameState::initKeyBindings()
 void GameState::initTextures()
 {
     sf::Texture temp;
-    temp.loadFromFile("");//File Input for Sprite Texture
+    temp.loadFromFile("Sprites/test.png");//File Input for Sprite Texture
 
     mTextures["PLAYER_IDLE"] = temp;
 }

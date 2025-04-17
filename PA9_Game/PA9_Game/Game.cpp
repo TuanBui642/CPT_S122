@@ -20,15 +20,30 @@ Game::Game()
     this->initStates();
 }
 
-Game::~Game()
+void Game::initWindow()
 {
-    delete mWindow;
+    unsigned int width = 1280;
+    unsigned int height = 720;
 
-    while (!mStates.empty()) {
-        delete mStates.top();	//remove data
-        mStates.pop();			//remove pointer
-    }
+    mWindow = new sf::RenderWindow(sf::VideoMode({ width, height }), "Untitled 2D Platformer");
+
+    mWindow->setFramerateLimit(60);	//set frame rate cap to 60 fps
 }
+
+void Game::initKeys()
+{
+    /*mSupportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
+    mSupportedKeys.emplace("A", sf::Keyboard::Key::A);
+    mSupportedKeys.emplace("D", sf::Keyboard::Key::D);*/
+    //mSupportedKeys.emplace(" ", sf::Keyboard::Key::Space);
+}
+
+void Game::initStates()
+{
+    mStates.push(new GameState(mWindow));
+}
+
+
 
 void Game::endApp()
 {
@@ -98,25 +113,12 @@ void Game::drawMenu()
     //need to put stuff here later
 }
 
-void Game::initWindow()
+Game::~Game()
 {
-    unsigned int width = 1280;
-    unsigned int height = 720;
+    delete mWindow;
 
-    mWindow = new sf::RenderWindow(sf::VideoMode({ width, height }), "Untitled 2D Platformer");
-
-    mWindow->setFramerateLimit(60);	//set frame rate cap to 60 fps
-}
-
-void Game::initKeys()
-{
-    /*mSupportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
-    mSupportedKeys.emplace("A", sf::Keyboard::Key::A);
-    mSupportedKeys.emplace("D", sf::Keyboard::Key::D);*/
-    //mSupportedKeys.emplace(" ", sf::Keyboard::Key::Space);
-}
-
-void Game::initStates()
-{
-    mStates.push(new GameState(mWindow));
+    while (!mStates.empty()) {
+        delete mStates.top();	//remove data
+        mStates.pop();			//remove pointer
+    }
 }

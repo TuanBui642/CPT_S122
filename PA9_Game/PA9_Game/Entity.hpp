@@ -41,7 +41,7 @@ protected:
     sf::Texture* mpTexture;
     sf::Sprite* mpSprite;
 
-    float mVelocity;
+    float mVelocity; 
 
 private:
     void initVariables();
