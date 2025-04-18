@@ -7,29 +7,32 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+
 class Entity {
 
-	public:
-		//core constructor
-		Entity();
-		//destructor
-		virtual ~Entity();
+public:
+	//core constructor
+	Entity();
+	//destructor
+	virtual ~Entity();
 
-		//setters
-		virtual void setPosition(const float x_pos, const float y_pos);
-		//member functions
-		void createSprite(sf::Texture* texture);
+	//setters
+	virtual void setPosition(const float x_pos, const float y_pos);
+	//member functions
+	void createSprite(sf::Texture* texture);
 
-		virtual void move(const float deltaTime, const float dir_x, const float dir_y);
-		virtual void update(const float& deltaTime);
-		virtual void render(sf::RenderTarget* target);
+	virtual void move(const float deltaTime, const float dir_x, const float dir_y);
+	virtual void update(const float& deltaTime);
+	virtual void render(sf::RenderTarget* target);
 
-	protected:
-		sf::Texture* mpTexture;
-		sf::Sprite* mpSprite;
-		
-		float mVelocity;
 
-	private:
-		void initVariables();
+protected:
+	sf::Texture* mpTexture;
+	sf::Sprite* mpSprite;
+
+	float mVelocity;
+
+private:
+	void initVariables();
 };
+

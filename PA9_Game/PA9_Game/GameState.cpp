@@ -6,6 +6,9 @@ GameState::GameState(sf::RenderWindow* window) : State(window)
 	this->initKeyBindings();
 	this->initTextures();
 	this->initPlayers();
+
+	//Ashton work
+	this->initWorld();
 }
 
 GameState::~GameState()
@@ -61,4 +64,14 @@ void GameState::initTextures()
 void GameState::initPlayers()
 {
 	mPlayer = new Player(0.0f, 0.0f, &mTextures["PLAYER_IDLE"]);
+}
+
+void GameState::initWorld()
+{
+	//Generate first level of the game 
+	worldLayout.generateBlock(sf::Vector2f(0, 180), sf::Vector2f(550, 270), sf::Vector2f(20, 20));
+	worldLayout.generateBlock(sf::Vector2f(1350, 180), sf::Vector2f(1500, 270), sf::Vector2f(20, 20));
+	worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20));
+	worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20));
+	worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20));
 }
