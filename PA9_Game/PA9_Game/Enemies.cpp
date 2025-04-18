@@ -12,32 +12,39 @@
 
 #include "Enemies.hpp"
 
-Enemy::Enemy(float x_pos, float y_pos, sf::Texture* texture)
-{
-    //initialize stuff
-    this->initVariables();
-    this->initComponents();
-
-    //set stuff
-    this->createSprite(texture);
-    this->setPosition(x_pos, y_pos);
-}
-
-Enemy::~Enemy()
-{
+Enemy::~Enemy(){
 
 }
 
-void Enemy::initVariables()
-{
+void Enemy::initVariables(){
+
 }
 
-void Enemy::initComponents()
-{
+void Enemy::initComponents(){
 
 }
 
 void Enemy::initAnimations() {
 
 
+}
+
+int Enemy::GetHealth() {
+
+    return this->Health;
+}
+
+int Enemy::GetDamageDelt() {
+
+    return this->DamageDealt;
+}
+
+void Enemy::SetHealth(int NewInt) {
+
+    this->Health = NewInt;
+}
+
+void Enemy::SetDamage(int Newint) {
+
+    this->DamageDealt = Newint;
 }

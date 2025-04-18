@@ -15,7 +15,7 @@
 
 class Player : public Entity {
 public:
-    Player(float x_pos, float y_pos, sf::Texture* texture);
+    Player(float x_pos, float y_pos, sf::Texture& texture);
     virtual ~Player();
 
 private:

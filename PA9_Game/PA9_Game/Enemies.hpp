@@ -33,12 +33,12 @@ using std::fmod;
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
 
-class Enemy : public Entity {
-
+class Enemy{
 public:
-	Enemy(float x, float y, sf::Texture* CharTexture);
+	Enemy(float x, float y, sf::Texture* CharTexture) {
 
 
+	}
 
 	virtual ~Enemy(); //Destructor
 	
@@ -47,8 +47,16 @@ private:
 	void initAnimations();
 	void initComponents();
 
-protected:
+	virtual int GetHealth();
+	virtual int GetDamageDelt();
 
+	virtual void SetHealth(int NewInt);
+	virtual void SetDamage(int Newint);
+
+
+protected:
+	int Health;
+	int DamageDealt;
 
 };
 

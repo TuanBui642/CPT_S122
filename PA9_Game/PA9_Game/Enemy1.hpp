@@ -6,12 +6,12 @@
 *		Ashton Palma
 *		Tyler Simmons
 *		Brandon Weirth
-* 
-*	File Programmer: Ashton Palma
+*
+*	File Programmer: Tuan Bui
 */
 
-#ifndef PORTALS
-#define PORTALS
+#ifndef ENEMY1
+#define ENENY1
 
 #include <iostream>
 #include <string>
@@ -28,25 +28,20 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 using std::stack;
-using sf::CircleShape;
+using std::fmod;
 
 #include <SFML/Graphics.hpp>
+#include "Enemies.hpp"
 
-class Portal : public sf::CircleShape
-{
+class Enemy1 : public Enemy {
+
+public:
+
+
 private:
 
 
-public:
-	//constructor 
-	Portal(float const& size, const sf::Vector2f& pos) : CircleShape(size) {
-		this->setPosition({ pos });
-		this->setFillColor(sf::Color::Blue);
-		this->setOutlineColor(sf::Color::Magenta);
-		this->setPointCount(6);
-		this->setOrigin(this->getGeometricCenter());
-	}
-
 
 };
+
 #endif
