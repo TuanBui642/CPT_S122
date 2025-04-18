@@ -27,6 +27,10 @@ void GameState::updateInput(const float& deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		mPlayer->move(deltaTime, 5.0f, 0.0f);
 	}
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {	//jump
+		mPlayer->move(deltaTime, 0.0f, -2.5f);					//up is negative
+	}
 }
 
 void GameState::update(const float& deltaTime)
@@ -60,5 +64,5 @@ void GameState::initTextures()
 
 void GameState::initPlayers()
 {
-	mPlayer = new Player(0.0f, 0.0f, &mTextures["PLAYER_IDLE"]);
+	mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
 }

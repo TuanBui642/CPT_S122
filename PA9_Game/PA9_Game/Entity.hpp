@@ -1,34 +1,30 @@
 #pragma once
-#include <vector>
-#include <stack>
-#include <map>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
+
+#include "MovementComponent.hpp"
 
 class Entity {
 
 	public:
 		//core constructor
-		Entity();
+		Entity(sf::Sprite sprite, sf::Texture texture);
 		//destructor
 		virtual ~Entity();
 
 		//setters
 		virtual void setPosition(const float x_pos, const float y_pos);
 		//member functions
-		void createSprite(sf::Texture* texture);
+		void setTexture(sf::Texture& texture);
+		void createMovementComponent(const float maxVelocity,
+			const float acceleration, const float deceleration);
 
 		virtual void move(const float deltaTime, const float dir_x, const float dir_y);
 		virtual void update(const float& deltaTime);
 		virtual void render(sf::RenderTarget* target);
 
 	protected:
-		sf::Texture* mpTexture;
-		sf::Sprite* mpSprite;
+		sf::Sprite mSprite;
 		
-		float mVelocity;
+		MovementComponent* mpMovementComponent;
 
 	private:
 		void initVariables();
