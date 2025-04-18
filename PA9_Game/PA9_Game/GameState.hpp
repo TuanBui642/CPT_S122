@@ -16,6 +16,7 @@
 using std::cout;
 using std::endl;
 #include "State.hpp"	//this is a derived class of State
+#include "Enemy1.hpp"
 
 class GameState : public State {
 public:
@@ -29,9 +30,11 @@ public:
 
 private:
     Player* mPlayer;
+    Enemy1* FirstEnemy;
 
     //member functions
     void initKeyBindings();
     void initTextures();
     void initPlayers();
+    void initEnemy1();
 };

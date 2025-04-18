@@ -33,11 +33,15 @@ using std::fmod;
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
 
-class Enemy{
+class Enemy : public Entity{
 public:
-	Enemy(float x, float y, sf::Texture* CharTexture) {
 
+	Enemy(float x, float y, sf::Texture& CharTexture) : Entity(mpSprite, CharTexture){
 
+		this->setPosition(x, y);
+		
+		this->Health = 0;
+		this->DamageDealt = 0;
 	}
 
 	virtual ~Enemy(); //Destructor

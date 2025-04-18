@@ -22,6 +22,7 @@ void Enemy::initVariables(){
 
 void Enemy::initComponents(){
 
+
 }
 
 void Enemy::initAnimations() {

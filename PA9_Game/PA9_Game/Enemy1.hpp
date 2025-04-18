@@ -36,10 +36,19 @@ using std::fmod;
 class Enemy1 : public Enemy {
 
 public:
+	Enemy1(float x, float y, sf::Texture& CharTexture);
 
+	//Setters and Getters
+	bool getStatus();
+	void setStatus(bool NewStatus);
+
+	virtual ~Enemy1();
 
 private:
+	bool Status; //False = Dead, True = Alive
 
+	void initVariables();
+	void initComponents();
 
 
 };

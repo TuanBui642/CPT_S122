@@ -31,6 +31,7 @@ Player::~Player()
 
 void Player::initVariables()
 {
+
 }
 
 void Player::initComponents()

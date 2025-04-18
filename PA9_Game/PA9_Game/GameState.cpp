@@ -18,6 +18,7 @@ GameState::GameState(sf::RenderWindow* window) : State(window)
     this->initKeyBindings();
     this->initTextures();
     this->initPlayers();
+    this->initEnemy1();
 }
 
 GameState::~GameState()
@@ -44,6 +45,7 @@ void GameState::updateInput(const float& deltaTime)
 
         mPlayer->move(deltaTime, 0.0f, -2.5f);  //Up is Negative
     }
+
 }
 
 void GameState::update(const float& deltaTime)
@@ -67,15 +69,27 @@ void GameState::initKeyBindings()
     //mKeyBindings.emplace("JUMP", this->mSupportedKeys->at(" "));
 }
 
+//Initalizes Textures for Respected Sprites/Classes
 void GameState::initTextures()
 {
     sf::Texture temp;
-    temp.loadFromFile("Sprites/test.png");//File Input for Sprite Texture
+    temp.loadFromFile("Sprites/protag_.png");//File Input for Sprite Texture
 
     mTextures["PLAYER_IDLE"] = temp;
+
+    sf::Texture temp2;
+    temp2.loadFromFile("Sprites/flipper.png"); //File Input for Enemy (Flipper) to be imported to game
+
+    mTextures["First Enemy Idle"] = temp2;
 }
 
+//Initalizes Importing Classes into window
 void GameState::initPlayers()
 {
     mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
+}
+
+void GameState::initEnemy1() {
+
+    FirstEnemy = new Enemy1(100.0f, 100.0f, mTextures["First Enemy Idle"]);
 }

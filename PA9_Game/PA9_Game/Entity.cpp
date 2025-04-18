@@ -37,8 +37,7 @@ void Entity::setTexture(sf::Texture& texture)
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration,
 	const float deceleration)
 {
-	mpMovementComponent = new MovementComponent(mpSprite, maxVelocity, acceleration,
-		deceleration);
+	mpMovementComponent = new MovementComponent(mpSprite, maxVelocity, acceleration,deceleration);
 }
 
 void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
