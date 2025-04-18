@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Portal.hpp"
 #include "Platform.hpp"
-#include "Enemies.hpp"
+#include "Enemy.hpp"
 #include "GameState.hpp"
 #include "State.hpp"
 using std::cout;

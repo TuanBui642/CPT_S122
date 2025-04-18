@@ -16,9 +16,11 @@ class GameState : public State {
 
 	private:
 		Player* mPlayer;
+		Enemy* mEnemy;
 
 		//member functions
 		void initKeyBindings();
 		void initTextures();
 		void initPlayers();
+		void initEnemies();
 };

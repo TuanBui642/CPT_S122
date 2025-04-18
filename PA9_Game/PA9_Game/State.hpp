@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.hpp"
+#include "Enemy.hpp"
 //#include "Game.hpp"
 
 //abstract class

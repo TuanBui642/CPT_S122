@@ -6,11 +6,13 @@ GameState::GameState(sf::RenderWindow* window) : State(window)
 	this->initKeyBindings();
 	this->initTextures();
 	this->initPlayers();
+	this->initEnemies();
 }
 
 GameState::~GameState()
 {
 	delete mPlayer;
+	delete mEnemy;
 }
 
 void GameState::updateInput(const float& deltaTime)
@@ -37,6 +39,7 @@ void GameState::update(const float& deltaTime)
 {
 	this->updateInput(deltaTime);
 	mPlayer->update(deltaTime);
+	mEnemy->update(deltaTime);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -45,6 +48,7 @@ void GameState::render(sf::RenderTarget* target)
 		target = mStateWindow;
 	}
 	mPlayer->render(mStateWindow);
+	mEnemy->render(mStateWindow);
 }
 
 void GameState::initKeyBindings()
@@ -57,12 +61,21 @@ void GameState::initKeyBindings()
 void GameState::initTextures()
 {
 	sf::Texture temp;
+	sf::Texture tempEnemy;
+
 	temp.loadFromFile("Resources/Images/Sprites/Player/test.png");
+	tempEnemy.loadFromFile("Resources/Images/Sprites/Enemies/test.png");
 
 	mTextures["PLAYER_IDLE"] = temp;
+	mTextures["ENEMY_TEST"] = tempEnemy;
 }
 
 void GameState::initPlayers()
 {
 	mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
+}
+
+void GameState::initEnemies()
+{
+	mEnemy = new Enemy(0.0f, 500.0f, mTextures["ENEMY_TEST"]);
 }
