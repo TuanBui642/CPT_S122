@@ -137,11 +137,13 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
-    <ClCompile Include="Enemies.cpp" />
-    <ClCompile Include="Enemy1.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="gameTile.cpp" />
+    <ClCompile Include="gameWorld.cpp" />
+    <ClCompile Include="Hazard.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -150,11 +152,12 @@
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="AnimationComponent.hpp" />
-    <ClInclude Include="Enemies.hpp" />
-    <ClInclude Include="Enemy1.hpp" />
+    <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="gameTile.hpp" />
+    <ClInclude Include="gameWorld.hpp" />
     <ClInclude Include="MovementComponent.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />

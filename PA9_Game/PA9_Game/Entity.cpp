@@ -14,6 +14,7 @@
 
 #include "Entity.hpp"
 
+
 Entity::Entity(sf::Sprite sprite, sf::Texture texture) : mpSprite(texture)
 {
 	this->initVariables();

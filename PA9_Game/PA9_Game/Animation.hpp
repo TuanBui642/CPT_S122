@@ -8,22 +8,23 @@
 
 class Animation {
 public:
-    Animation(sf::Texture& textureSheet, int start_x, int start_y,
-        int end_x, int end_y, int width, int height, float speed);
+    Animation(sf::Sprite& sprite, sf::Texture& textureSheet, int startFrameX, int startFrameY,
+        int frames_x, int frames_y, int width, int height, float animationTimer);
     virtual ~Animation();
 
     //member functions
-    void play();
-    void pause();
     void reset();
-    void update(const float& deltaTime);
+    void play(const float& deltaTime);
 
 private:
     std::map<std::string, Animation> mAnimations;
     sf::Texture& mTextureSheet;
-    float mSpeed;
+    float mAnimationTimer;
+    float mTimer;
     sf::IntRect mStartRect;
+    sf::IntRect mCurrentRect;
     sf::IntRect mEndRect;
     int mWidth;
     int mHeight;
+    sf::Sprite& mSprite;
 };

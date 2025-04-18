@@ -14,6 +14,7 @@
 
 #include "Player.hpp"
 //#include "Game.hpp"
+#include "gameWorld.hpp"
 
 //abstract class
 class State {

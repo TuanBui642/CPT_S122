@@ -13,17 +13,19 @@
 #pragma once
 #include "GameState.hpp"
 
-GameState::GameState(sf::RenderWindow* window) : State(window)
+GameState::GameState(sf::RenderWindow* window) : State(window), worldLayout(window->getSize().x, window->getSize().y)
 {
     this->initKeyBindings();
     this->initTextures();
     this->initPlayers();
-    this->initEnemy1();
+    this->initEnemies();
+     this->initWorld();
 }
 
 GameState::~GameState()
 {
     delete mPlayer;
+    delete mEnemy1;
 }
 
 void GameState::updateInput(const float& deltaTime)
@@ -60,6 +62,11 @@ void GameState::render(sf::RenderTarget* target)
         target = mStateWindow;
     }
     mPlayer->render(mStateWindow);
+    mEnemy1->render(mStateWindow);
+
+    //Ashton work
+    auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
+    worldLayout.draw(*window); 
 }
 
 void GameState::initKeyBindings()
@@ -77,10 +84,10 @@ void GameState::initTextures()
 
     mTextures["PLAYER_IDLE"] = temp;
 
-    sf::Texture temp2;
-    temp2.loadFromFile("Sprites/flipper.png"); //File Input for Enemy (Flipper) to be imported to game
+    sf::Texture tempEnemy1;
+    tempEnemy1.loadFromFile("Sprites/flipper.png"); //File Input for Enemy (Flipper) to be imported to game
 
-    mTextures["First Enemy Idle"] = temp2;
+    mTextures["First Enemy Idle"] = tempEnemy1;
 }
 
 //Initalizes Importing Classes into window
@@ -89,7 +96,19 @@ void GameState::initPlayers()
     mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
 }
 
-void GameState::initEnemy1() {
+void GameState::initEnemies() {
 
-    FirstEnemy = new Enemy1(100.0f, 100.0f, mTextures["First Enemy Idle"]);
+                    //Sets Position (0,-500), Set Texture 
+    mEnemy1 = new Enemy(0.0f, 500.0f, mTextures["First Enemy Idle"]); 
+}
+
+void GameState::initWorld()
+{
+    //Generate first level of the game 
+    worldLayout.generateBlock(sf::Vector2f(0, 180), sf::Vector2f(550, 270), sf::Vector2f(20, 20));
+    worldLayout.generateBlock(sf::Vector2f(1350, 180), sf::Vector2f(1500, 270), sf::Vector2f(20, 20));
+    worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20));
+    worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20));
+    worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20));
+
 }

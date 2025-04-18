@@ -17,6 +17,7 @@
 class Entity{
 
 public:
+   // Entity();
     //core constructor
     Entity(sf::Sprite sprite, sf::Texture texture);
     //destructor

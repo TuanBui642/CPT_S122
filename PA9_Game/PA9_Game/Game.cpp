@@ -43,8 +43,6 @@ void Game::initStates()
     mStates.push(new GameState(mWindow));
 }
 
-
-
 void Game::endApp()
 {
     cout << "Ending game." << endl;

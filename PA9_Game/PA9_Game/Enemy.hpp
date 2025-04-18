@@ -10,14 +10,17 @@
 *	File Programmer: Tuan Bui
 */
 
-#ifndef ENEMY1
-#define ENENY1
+#ifndef ENEMYTYPE1
+#define ENEMYTYPE1
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <stack>
+
+#include <SFML/Graphics.hpp>
+#include "Entity.hpp"
 
 using std::cout;
 using std::endl;
@@ -28,29 +31,17 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 using std::stack;
-using std::fmod;
 
-#include <SFML/Graphics.hpp>
-#include "Enemies.hpp"
-
-class Enemy1 : public Enemy {
+class Enemy : public Entity {
 
 public:
-	Enemy1(float x, float y, sf::Texture& CharTexture);
-
-	//Setters and Getters
-	bool getStatus();
-	void setStatus(bool NewStatus);
-
-	virtual ~Enemy1();
-
+    Enemy(float x_pos, float y_pos, sf::Texture& texture);
+    virtual ~Enemy();
 private:
-	bool Status; //False = Dead, True = Alive
-
-	void initVariables();
-	void initComponents();
-
-
+    void initVariables();
+    void initComponents();
 };
+
+
 
 #endif
