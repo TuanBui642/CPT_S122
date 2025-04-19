@@ -10,7 +10,9 @@
 *	File Programmer: Ashton Palma
 */
 
-#pragma once
+#ifndef GAMETILE
+#define GAMETILE
+
 #include "Entity.hpp"
 #include "gameWorld.hpp"
 #include <string>
@@ -53,3 +55,5 @@ public:
 	bool collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn); 
 
 };
+
+#endif

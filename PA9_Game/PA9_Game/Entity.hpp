@@ -10,7 +10,8 @@
 *	File Programmer: Tyler Simmons
 */
 
-#pragma once
+#ifndef MOVEMENTCOMPONENT
+#define MOVEMENTCOMPONENT
 
 #include "MovementComponent.hpp"
 
@@ -41,3 +42,5 @@ protected:
 private:
     void initVariables();
 };
+
+#endif

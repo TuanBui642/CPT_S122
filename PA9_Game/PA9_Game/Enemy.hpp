@@ -10,8 +10,8 @@
 *	File Programmer: Tuan Bui
 */
 
-#ifndef ENEMYTYPE1
-#define ENEMYTYPE1
+#ifndef ENEMY
+#define ENEMY
 
 #include <iostream>
 #include <string>
@@ -35,11 +35,31 @@ using std::stack;
 class Enemy : public Entity {
 
 public:
+    //Constructor
     Enemy(float x_pos, float y_pos, sf::Texture& texture);
-    virtual ~Enemy();
+    virtual ~Enemy(); //Destructor
+
+    //Getters
+    int GetHealth();
+    int GetDamageDelt();
+    bool GetStatus();
+
+    //Setters
+    void SetHealth(int NewInt);
+    void SetDamageDelt(int NewInt);
+    void SetStatus(bool NewBool);
+
+    //Member Functions Below
+
+
 private:
     void initVariables();
     void initComponents();
+
+    int health;
+    int DamageDelt;
+    bool Status; // True = Alive, False = Dead
+
 };
 
 

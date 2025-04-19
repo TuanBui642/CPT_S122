@@ -1,4 +1,17 @@
-#pragma once
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
+#ifndef ANIMATIONCOMPONENT
+#define ANIMATIONCOMPONENT
 
 #include "Animation.hpp"
 
@@ -16,3 +29,5 @@ private:
     sf::Texture& mTextureSheet;
 
 };
+
+#endif

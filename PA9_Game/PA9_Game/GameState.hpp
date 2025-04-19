@@ -10,7 +10,8 @@
 *	File Programmer: Tyler Simmons
 */
 
-#pragma once
+#ifndef GAMESTATE
+#define GAMESTATE
 
 #include <iostream>
 using std::cout;
@@ -30,6 +31,7 @@ public:
     void render(sf::RenderTarget* target = nullptr);
 
 private:
+    //Initalization for Game (Possible Entities Present in Game)
     Player* mPlayer;
     Enemy* mEnemy1;
     Enemy* mEnemy2;
@@ -45,3 +47,5 @@ private:
     void initEnemies();
    void initWorld();
 };
+
+#endif

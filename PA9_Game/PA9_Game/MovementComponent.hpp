@@ -1,4 +1,17 @@
-#pragma once
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
+#ifndef MOVEMENTCOMPONENTHPP
+#define MOVEMENTCOMPONENTHPP
 
 #include <vector>
 #include <stack>
@@ -28,3 +41,5 @@ private:
     float mAcceleration;
     float mDeceleration;
 };
+
+#endif

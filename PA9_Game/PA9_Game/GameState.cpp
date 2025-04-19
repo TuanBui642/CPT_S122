@@ -19,13 +19,16 @@ GameState::GameState(sf::RenderWindow* window) : State(window), worldLayout(wind
     this->initTextures();
     this->initPlayers();
     this->initEnemies();
-     this->initWorld();
+    this->initWorld();
 }
 
 GameState::~GameState()
 {
     delete mPlayer;
     delete mEnemy1;
+    delete mEnemy2;
+    delete mEnemy3;
+    delete mEnemy4;
 }
 
 void GameState::updateInput(const float& deltaTime)
@@ -48,12 +51,19 @@ void GameState::updateInput(const float& deltaTime)
         mPlayer->move(deltaTime, 0.0f, -2.5f);  //Up is Negative
     }
 
+    //cout << "DeltaTime:" << deltaTime << endl;
+
+     mEnemy1->move(deltaTime, 0.0f, -2.5f);
+    
+  
+
 }
 
 void GameState::update(const float& deltaTime)
 {
     this->updateInput(deltaTime);
     mPlayer->update(deltaTime);
+    mEnemy1->update(deltaTime);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -63,6 +73,9 @@ void GameState::render(sf::RenderTarget* target)
     }
     mPlayer->render(mStateWindow);
     mEnemy1->render(mStateWindow);
+    mEnemy2->render(mStateWindow);
+    mEnemy3->render(mStateWindow);
+    mEnemy4->render(mStateWindow);
 
     //Ashton work
     auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
@@ -84,10 +97,28 @@ void GameState::initTextures()
 
     mTextures["PLAYER_IDLE"] = temp;
 
+
+    //File Input for Enemy Instances to be imported to game
     sf::Texture tempEnemy1;
-    tempEnemy1.loadFromFile("Sprites/flipper.png"); //File Input for Enemy (Flipper) to be imported to game
+    tempEnemy1.loadFromFile("Sprites/flipper.png"); 
 
     mTextures["First Enemy Idle"] = tempEnemy1;
+
+    sf::Texture tempEnemy2;
+    tempEnemy2.loadFromFile("Sprites/saw_enemy.png");
+
+    mTextures["Second Enemy Idle"] = tempEnemy2;
+
+    sf::Texture tempEnemy3;
+    tempEnemy3.loadFromFile("Sprites/timer_enemy.png");
+
+    mTextures["Third Enemy Idle"] = tempEnemy3;
+
+    sf::Texture tempEnemy4;
+    tempEnemy4.loadFromFile("Sprites/toaster_move.png");
+
+    mTextures["Fourth Enemy Idle"] = tempEnemy4;
+
 }
 
 //Initalizes Importing Classes into window
@@ -100,6 +131,13 @@ void GameState::initEnemies() {
 
                     //Sets Position (0,-500), Set Texture 
     mEnemy1 = new Enemy(0.0f, 500.0f, mTextures["First Enemy Idle"]); 
+
+    mEnemy2 = new Enemy(0.0f, 550.0f, mTextures["Second Enemy Idle"]);
+
+    mEnemy3 = new Enemy(0.0f, 600.0f, mTextures["Third Enemy Idle"]);
+
+    mEnemy4 = new Enemy(0.0f, 650.0f, mTextures["Fourth Enemy Idle"]);
+
 }
 
 void GameState::initWorld()

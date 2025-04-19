@@ -10,11 +10,13 @@
 *	File Programmer: Tyler Simmons
 */
 
-#pragma once
+#ifndef STATE
+#define STATE
 
 #include "Player.hpp"
-//#include "Game.hpp"
 #include "gameWorld.hpp"
+
+#include <map>
 
 //abstract class
 class State {
@@ -44,3 +46,5 @@ protected:
     //member functions
     virtual void initKeyBindings() = 0;
 };
+
+#endif

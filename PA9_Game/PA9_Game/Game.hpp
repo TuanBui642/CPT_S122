@@ -10,7 +10,9 @@
 *	File Programmer: Tyler Simmons
 */
 
-#pragma once
+#ifndef GAME
+#define GAME
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
@@ -54,3 +56,5 @@ private:
     void initKeys();
     void initStates();
 };
+
+#endif
