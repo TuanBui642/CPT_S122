@@ -37,23 +37,18 @@ gameWorld::~gameWorld()
 //	}
 //}
 
-void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize)
+void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture)
 {
-	sf::Texture texture;
-	if (!texture.loadFromFile("Sprites/stoneBlock.png"))
-	{
-		//std::cerr << "Failed to load platform texture!" << std::endl; 
-		return;
-	}
-
-	sf::Sprite sprite(texture);
 
 	for (float i = posStr.y; i <= posEnd.y; i += tileSize.y)
 	{
 		for (float k = posStr.x; k <= posEnd.x; k += tileSize.x)
 		{
 			sf::Vector2f newPos = { k, i };
-			tiles.push_back(new gameTile("Block", tileSize, newPos, sprite, texture));
+			sf::Sprite sprite(texture);
+
+			tiles.push_back(new gameTile("Block", tileSize, { k, i }, sprite, texture));
+
 		}
 	}
 }

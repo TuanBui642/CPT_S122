@@ -27,16 +27,15 @@ private:
 	int windowHeight;
 
 public:
-	gameWorld(const int width, const int height); 
-	~gameWorld(); 
-	
+	gameWorld(const int width, const int height);
+	~gameWorld();
 
-	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
 
-	void checkCollisions(sf::RectangleShape& person, 
-		float& velocityY, bool& isJumping);	
-	
-	void draw(sf::RenderWindow & window); 
+	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
+
+	void checkCollisions(sf::RectangleShape& person, float& velocityY, bool& isJumping);
+
+	void draw(sf::RenderWindow& window);
 
 
 };

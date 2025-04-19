@@ -24,11 +24,14 @@ private:
 
 public:
 	//constructor
-	gameTile(std::string ObjectName, const sf::Vector2f& size, const sf::Vector2f& pos, sf::Sprite& sprite, sf::Texture& texture) : Entity(sprite, texture), objectType(ObjectName)
+	gameTile(std::string ObjectName, const sf::Vector2f& size, const sf::Vector2f& pos, sf::Sprite& sprite, sf::Texture& texture)
+		: Entity(sprite, texture)
 	{
 		object.setSize(size);
 		object.setPosition(pos);
-		object.setFillColor(sf::Color::White);
+		//object.setFillColor(sf::Color::White);
+		object.setTexture(&texture);
+
 	}
 
 	//destructor
@@ -37,7 +40,7 @@ public:
 	//setter
 	void setPosition(float x, float y) override
 	{
-		object.setPosition({x, y});
+		object.setPosition({ x, y });
 	}
 
 	//getters
@@ -52,7 +55,7 @@ public:
 		target->draw(object);
 	}
 
-	bool collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn); 
+	bool collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn);
 
 };
 

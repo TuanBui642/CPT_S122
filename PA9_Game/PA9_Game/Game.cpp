@@ -22,8 +22,8 @@ Game::Game()
 
 void Game::initWindow()
 {
-    unsigned int width = 1280;
-    unsigned int height = 720;
+    unsigned int width = 1500;
+    unsigned int height = 1000;
 
     mWindow = new sf::RenderWindow(sf::VideoMode({ width, height }), "Untitled 2D Platformer");
 

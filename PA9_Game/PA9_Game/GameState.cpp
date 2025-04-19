@@ -249,18 +249,27 @@ void GameState::initTextures()
 
     mTextures["Fourth Enemy Idle"] = tempEnemy4;
 
+    //Ashton work (Tile Texture)
+    sf::Texture tempBlock;
+    tempBlock.loadFromFile("Sprites/stoneBlock.png");
+
+    mTextures["Block_Idle"] = tempBlock;
+
+    sf::Sprite;
+
+
 }
 
 //Initalizes Importing Classes into window
 void GameState::initPlayers()
 {
-    mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_SHEET"]);
+    mPlayer = new Player(0.0f, 130.0f, mTextures["PLAYER_SHEET"]);
 }
 
 void GameState::initEnemies() {
 
                     //Sets Position (0,-500), Set Texture 
-    mEnemy1 = new Enemy(150.0f, 500.0f, mTextures["First Enemy Idle"]); 
+    mEnemy1 = new Enemy(0.0f, 0.0f, mTextures["First Enemy Idle"]); 
     mEnemy1->SetLeftBound(145.0f);
     mEnemy1->SetRightBound(200.0f);
     mEnemy1->SetRight(true);
@@ -288,11 +297,33 @@ void GameState::initEnemies() {
 
 void GameState::initWorld()
 {
-    //Generate first level of the game 
-    worldLayout.generateBlock(sf::Vector2f(0, 180), sf::Vector2f(550, 270), sf::Vector2f(20, 20));
-    worldLayout.generateBlock(sf::Vector2f(1350, 180), sf::Vector2f(1500, 270), sf::Vector2f(20, 20));
-    worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20));
-    worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20));
-    worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20));
+    //level 1 floor
+   //parameter (strtPt, endPt, size)
+
+    worldLayout.generateBlock(sf::Vector2f(0, 180), sf::Vector2f(550, 270), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1350, 180), sf::Vector2f(1500, 270), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+
+    //level1 platform
+    worldLayout.generateBlock(sf::Vector2f(750, 180), sf::Vector2f(860, 190), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1040, 180), sf::Vector2f(1170, 190), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    //deathzone
+    //traps.generateBlock(sf::Vector2f(550, 250), sf::Vector2f(1350, 270), sf::Vector2f(5, 5));
+
+    //level2 platform
+    worldLayout.generateBlock(sf::Vector2f(1400, 500), sf::Vector2f(1500, 640), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1300, 525), sf::Vector2f(1400, 640), sf::Vector2f(22.5, 22.5), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(1150, 550), sf::Vector2f(1300, 640), sf::Vector2f(22, 22), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(500, 565), sf::Vector2f(1150, 640), sf::Vector2f(23.5, 23.5), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(400, 550), sf::Vector2f(500, 640), sf::Vector2f(22, 22), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(300, 525), sf::Vector2f(400, 645), sf::Vector2f(19.5, 19.5), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(200, 490), sf::Vector2f(300, 645), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(0, 270), sf::Vector2f(300, 330), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(300, 270), sf::Vector2f(430, 300), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(0, 330), sf::Vector2f(90, 380), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(0, 380), sf::Vector2f(40, 870), sf::Vector2f(15, 15), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(180, 525), sf::Vector2f(200, 630), sf::Vector2f(10, 10), mTextures["Block_Idle"]);
 
 }

@@ -53,6 +53,8 @@ private:
     void initTextures();
     void initPlayers();
     void initEnemies();
+  
+    //Ashton Work: initiate world's object and collision between player & object
     void initWorld();
 
 };
