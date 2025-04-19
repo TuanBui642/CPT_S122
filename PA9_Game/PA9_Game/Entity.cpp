@@ -9,6 +9,7 @@ Entity::Entity(sf::Sprite sprite, sf::Texture texture) : mSprite(texture)
 Entity::~Entity()
 {
 	delete mpMovementComponent;
+	delete mpAnimationComponent;
 }
 
 void Entity::setPosition(const float x_pos, const float y_pos)
@@ -28,6 +29,11 @@ void Entity::createMovementComponent(const float maxVelocity, const float accele
 		deceleration);
 }
 
+void Entity::createAnimationComponent(sf::Texture& textureSheet)
+{
+	mpAnimationComponent = new AnimationComponent(mSprite, textureSheet);
+}
+
 void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
 {
 	if (mpMovementComponent != nullptr) {
@@ -37,9 +43,7 @@ void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
 
 void Entity::update(const float& deltaTime)
 {
-	if (mpMovementComponent != nullptr) {
-		mpMovementComponent->update(deltaTime);
-	}
+	
 }
 
 void Entity::render(sf::RenderTarget* target)

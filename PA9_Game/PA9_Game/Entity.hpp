@@ -1,12 +1,13 @@
 #pragma once
 
 #include "MovementComponent.hpp"
+#include "AnimationComponent.hpp"
 
 class Entity {
 
 	public:
 		//core constructor
-		Entity(sf::Sprite sprite, sf::Texture texture);
+		Entity(sf::Sprite sprite, sf::Texture textureSheet);
 		//destructor
 		virtual ~Entity();
 
@@ -16,6 +17,7 @@ class Entity {
 		void setTexture(sf::Texture& texture);
 		void createMovementComponent(const float maxVelocity,
 			const float acceleration, const float deceleration);
+		void createAnimationComponent(sf::Texture& textureSheet);
 
 		virtual void move(const float deltaTime, const float dir_x, const float dir_y);
 		virtual void update(const float& deltaTime);
@@ -25,6 +27,7 @@ class Entity {
 		sf::Sprite mSprite;
 		
 		MovementComponent* mpMovementComponent;
+		AnimationComponent* mpAnimationComponent;
 
 	private:
 		void initVariables();

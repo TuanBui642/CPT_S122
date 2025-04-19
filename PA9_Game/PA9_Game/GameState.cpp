@@ -3,6 +3,8 @@
 
 GameState::GameState(sf::RenderWindow* window) : State(window)
 {
+	mJumpUsed = false;
+
 	this->initKeyBindings();
 	this->initTextures();
 	this->initPlayers();
@@ -17,21 +19,29 @@ GameState::~GameState()
 
 void GameState::updateInput(const float& deltaTime)
 {
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 		this->endState();
 	}
 
 	//update player input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-		mPlayer->move(deltaTime, -5.0f, 0.0f);
+		mPlayer->move(deltaTime, -10.0f, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-		mPlayer->move(deltaTime, 5.0f, 0.0f);
+		mPlayer->move(deltaTime, 10.0f, 0.0f);
 	}
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {	//jump
-		mPlayer->move(deltaTime, 0.0f, -2.5f);					//up is negative
+	if (!mJumpUsed) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {	//jump
+			mPlayer->move(deltaTime, 0.0f, -75.0f);			//up is negative
+			mJumpUsed = this->checkJump();					//check if apex of jump has happened
+		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+		mPlayer->move(deltaTime, 0.0f, 0.0f);
 	}
 }
 
@@ -51,6 +61,11 @@ void GameState::render(sf::RenderTarget* target)
 	mEnemy->render(mStateWindow);
 }
 
+bool GameState::checkJump()
+{
+	return this->mPlayer->getJumpUsed();
+}
+
 void GameState::initKeyBindings()
 {
 	//mKeyBindings.emplace("MOVE_LEFT", this->mSupportedKeys->at("A"));
@@ -60,19 +75,23 @@ void GameState::initKeyBindings()
 
 void GameState::initTextures()
 {
-	sf::Texture temp;
+	//sf::Texture temp;
 	sf::Texture tempEnemy;
 
-	temp.loadFromFile("Resources/Images/Sprites/Player/test.png");
+	//temp.loadFromFile("Resources/Images/Sprites/Player/test.png");
+
+	if (!mTextures["PLAYER_SHEET"].loadFromFile("Resources/Images/Sprites/Player/WarriorMan-Sheet.png")) {
+		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
+	}
 	tempEnemy.loadFromFile("Resources/Images/Sprites/Enemies/test.png");
 
-	mTextures["PLAYER_IDLE"] = temp;
+	//mTextures["PLAYER_IDLE"] = temp;
 	mTextures["ENEMY_TEST"] = tempEnemy;
 }
 
 void GameState::initPlayers()
 {
-	mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
+	mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_SHEET"]);
 }
 
 void GameState::initEnemies()
