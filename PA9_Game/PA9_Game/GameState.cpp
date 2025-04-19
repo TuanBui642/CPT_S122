@@ -52,10 +52,124 @@ void GameState::updateInput(const float& deltaTime)
     }
 
     //cout << "DeltaTime:" << deltaTime << endl;
-
-     mEnemy1->move(deltaTime, 0.0f, -2.5f);
-    
   
+    
+    //Move Enemies Back And Forth
+    //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
+    if (mEnemy1->GetStatus() != false) {
+
+        if (mEnemy1->GetLeftMoveStat() == true) {
+
+            mEnemy1->move(deltaTime, -5.0f, 0.0f);
+            mEnemy1->UpdatePosition(-5.0f, 0.0f);
+        }
+        else if (mEnemy1->GetRightMoveStat() == true) {
+
+            mEnemy1->move(deltaTime, 5.0f, 0.0f);
+            mEnemy1->UpdatePosition(5.0f, 0.0f);
+        }
+
+        if (mEnemy1->GetCurXPos() >= mEnemy1->GetRightBound()) {
+
+            mEnemy1->SetRight(false);
+            mEnemy1->SetLeft(true);
+            
+        }
+
+        if (mEnemy1->GetCurXPos() <= mEnemy1->GetLeftBound()) {
+
+            mEnemy1->SetLeft(false);
+            mEnemy1->SetRight(true);
+
+        }
+    }
+
+    /*
+    if (mEnemy2->GetStatus() != false) {
+
+        if (mEnemy2->GetLeftMoveStat() == true) {
+
+            mEnemy2->move(deltaTime, -5.0f, 0.0f);
+            mEnemy2->UpdatePosition(-5.0f, 0.0f);
+        }
+        else if (mEnemy2->GetRightMoveStat() == true) {
+
+            mEnemy2->move(deltaTime, 5.0f, 0.0f);
+            mEnemy2->UpdatePosition(5.0f, 0.0f);
+        }
+
+        if (mEnemy2->GetCurXPos() >= mEnemy2->GetRightBound()) {
+
+            mEnemy2->SetRight(false);
+            mEnemy2->SetLeft(true);
+
+        }
+
+        if (mEnemy2->GetCurXPos() <= mEnemy2->GetLeftBound()) {
+
+            mEnemy2->SetLeft(false);
+            mEnemy2->SetRight(true);
+
+        }
+    }
+
+    if (mEnemy3->GetStatus() != false) {
+
+        if (mEnemy3->GetLeftMoveStat() == true) {
+
+            mEnemy3->move(deltaTime, -5.0f, 0.0f);
+            mEnemy3->UpdatePosition(-5.0f, 0.0f);
+        }
+        else if (mEnemy3->GetRightMoveStat() == true) {
+
+            mEnemy3->move(deltaTime, 5.0f, 0.0f);
+            mEnemy3->UpdatePosition(5.0f, 0.0f);
+        }
+
+        if (mEnemy3->GetCurXPos() >= mEnemy3->GetRightBound()) {
+
+            mEnemy3->SetRight(false);
+            mEnemy3->SetLeft(true);
+
+        }
+
+        if (mEnemy3->GetCurXPos() <= mEnemy3->GetLeftBound()) {
+
+            mEnemy3->SetLeft(false);
+            mEnemy3->SetRight(true);
+
+        }
+    }
+
+    if (mEnemy4->GetStatus() != false) {
+
+        if (mEnemy4->GetLeftMoveStat() == true) {
+
+            mEnemy4->move(deltaTime, -5.0f, 0.0f);
+            mEnemy4->UpdatePosition(-5.0f, 0.0f);
+        }
+        else if (mEnemy4->GetRightMoveStat() == true) {
+
+            mEnemy4->move(deltaTime, 5.0f, 0.0f);
+            mEnemy4->UpdatePosition(5.0f, 0.0f);
+        }
+
+        if (mEnemy4->GetCurXPos() >= mEnemy4->GetRightBound()) {
+
+            mEnemy4->SetRight(false);
+            mEnemy4->SetLeft(true);
+
+        }
+
+        if (mEnemy4->GetCurXPos() <= mEnemy4->GetLeftBound()) {
+
+            mEnemy4->SetLeft(false);
+            mEnemy4->SetRight(true);
+
+        }
+    }
+    */
+
 
 }
 
@@ -130,13 +244,29 @@ void GameState::initPlayers()
 void GameState::initEnemies() {
 
                     //Sets Position (0,-500), Set Texture 
-    mEnemy1 = new Enemy(0.0f, 500.0f, mTextures["First Enemy Idle"]); 
+    mEnemy1 = new Enemy(150.0f, 500.0f, mTextures["First Enemy Idle"]); 
+    mEnemy1->SetLeftBound(145.0f);
+    mEnemy1->SetRightBound(200.0f);
+    mEnemy1->SetRight(true);
 
+
+    //Move Enemies Back And Forth
+   //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
     mEnemy2 = new Enemy(0.0f, 550.0f, mTextures["Second Enemy Idle"]);
+    //mEnemy2->SetLeftBound(145.0f);
+    //mEnemy2->SetRightBound(200.0f);
+    //mEnemy2->SetRight(true);
+
 
     mEnemy3 = new Enemy(0.0f, 600.0f, mTextures["Third Enemy Idle"]);
+    //mEnemy3->SetLeftBound(145.0f);
+    //mEnemy3->SetRightBound(200.0f);
+    //mEnemy3->SetRight(true);
 
     mEnemy4 = new Enemy(0.0f, 650.0f, mTextures["Fourth Enemy Idle"]);
+    //mEnemy4->SetLeftBound(145.0f);
+    //mEnemy4->SetRightBound(200.0f);
+    //mEnemy4->SetRight(true);
 
 }
 

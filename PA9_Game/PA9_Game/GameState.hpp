@@ -19,7 +19,6 @@ using std::endl;
 #include "State.hpp"	//this is a derived class of State
 #include "Enemy.hpp"
 
-
 class GameState : public State {
 public:
     GameState(sf::RenderWindow* window);
@@ -29,6 +28,7 @@ public:
     void updateInput(const float& deltaTime);
     void update(const float& deltaTime);
     void render(sf::RenderTarget* target = nullptr);
+
 
 private:
     //Initalization for Game (Possible Entities Present in Game)
@@ -40,12 +40,18 @@ private:
 
     gameWorld worldLayout; 
 
+    //Time (real world seconds) usage
+    sf::Clock OngoingTime;
+    sf::Time Time;
+
+
     //member functions
     void initKeyBindings();
     void initTextures();
     void initPlayers();
     void initEnemies();
-   void initWorld();
+    void initWorld();
+
 };
 
 #endif

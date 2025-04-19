@@ -43,22 +43,47 @@ public:
     int GetHealth();
     int GetDamageDelt();
     bool GetStatus();
+    bool GetRightMoveStat();
+    bool GetLeftMoveStat();
+    float GetRightBound();
+    float GetLeftBound();
+    float GetCurXPos();
+    float GetCurYPos();
 
     //Setters
     void SetHealth(int NewInt);
     void SetDamageDelt(int NewInt);
     void SetStatus(bool NewBool);
+    void SetRight(bool NewRight);
+    void SetLeft(bool NewLeft);
+    void SetRightBound(float NewBound);
+    void SetLeftBound(float NewBound);
+    void SetCurXPos(float NewFloat);
+    void SetCurYPos(float NewFloat);
 
     //Member Functions Below
-
+    void UpdatePosition(float x, float y);
 
 private:
+    //Functions to initalize private data members rather than calling this->(set respective)
     void initVariables();
     void initComponents();
 
     int health;
     int DamageDelt;
     bool Status; // True = Alive, False = Dead
+
+    //False = No their not moving in that direction, True = Yes they are moving in that direction
+    bool MovingRight;
+    bool MovingLeft;
+
+    //Would be both representative of x position as it would be like a line 1---------2, where 1 represents left bound, 2 represents right bound
+    float RightBound;
+    float LeftBound;
+
+    //Representative of the Enemies position at window
+    float CurrXPos;
+    float CurrYPos;
 
 };
 
