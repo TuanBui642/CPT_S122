@@ -41,6 +41,11 @@ void Entity::createMovementComponent(const float maxVelocity, const float accele
 	mpMovementComponent = new MovementComponent(mpSprite, maxVelocity, acceleration,deceleration);
 }
 
+void Entity::createAnimationComponent(sf::Texture& textureSheet)
+{
+	mpAnimationComponent = new AnimationComponent(mpSprite, textureSheet);
+}
+
 void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
 {
 	if (mpMovementComponent != nullptr) {

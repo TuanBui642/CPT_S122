@@ -97,7 +97,6 @@ void Game::render()
 
 void Game::run()
 {
-
     while (mWindow->isOpen()) {
 
         this->updateDeltaTime();

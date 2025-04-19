@@ -10,14 +10,30 @@
 *	File Programmer: Tyler Simmons
 */
 
-#pragma once
+#ifndef PLAYER
+#define PLAYER
+
+
 #include "Entity.hpp"
 
 class Player : public Entity {
 public:
-    Player(float x_pos, float y_pos, sf::Texture& texture);
-    virtual ~Player();
+	Player(float x_pos, float y_pos, sf::Texture& textureSheet);
+	virtual ~Player();
+
+	//getters and setters
+	bool getJumpUsed() const;
+	//member functions
+	virtual void update(const float& deltaTime);
+
+
 private:
-    void initVariables();
-    void initComponents();
+	bool mJumpUsed;
+	bool mIsFalling;
+
+	//member functions
+	void initVariables();
+	void initComponents();
 };
+
+#endif

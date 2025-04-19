@@ -33,6 +33,8 @@ public:
 private:
     //Initalization for Game (Possible Entities Present in Game)
     Player* mPlayer;
+    bool mJumpUsed;
+
     Enemy* mEnemy1;
     Enemy* mEnemy2;
     Enemy* mEnemy3;
@@ -46,6 +48,7 @@ private:
 
 
     //member functions
+    bool checkJump();
     void initKeyBindings();
     void initTextures();
     void initPlayers();

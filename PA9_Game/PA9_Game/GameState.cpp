@@ -46,6 +46,13 @@ void GameState::updateInput(const float& deltaTime)
         mPlayer->move(deltaTime, 5.0f, 0.0f);
     }
 
+    if (!mJumpUsed) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {	//jump
+            mPlayer->move(deltaTime, 0.0f, -75.0f);			//up is negative
+            mJumpUsed = this->checkJump();					//check if apex of jump has happened
+        }
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) { //Jump
 
         mPlayer->move(deltaTime, 0.0f, -2.5f);  //Up is Negative
@@ -196,6 +203,11 @@ void GameState::render(sf::RenderTarget* target)
     worldLayout.draw(*window); 
 }
 
+bool GameState::checkJump()
+{
+    return this->mPlayer->getJumpUsed();
+}
+
 void GameState::initKeyBindings()
 {
     //mKeyBindings.emplace("MOVE_LEFT", this->mSupportedKeys->at("A"));
@@ -206,10 +218,14 @@ void GameState::initKeyBindings()
 //Initalizes Textures for Respected Sprites/Classes
 void GameState::initTextures()
 {
-    sf::Texture temp;
-    temp.loadFromFile("Sprites/protag_.png");//File Input for Sprite Texture
+//    sf::Texture temp;
+//    temp.loadFromFile("Sprites/WarriorMan-Sheet.png");//File Input for Sprite Texture
+//
+//    mTextures["PLAYER_IDLE"] = temp;
 
-    mTextures["PLAYER_IDLE"] = temp;
+    if (!mTextures["PLAYER_SHEET"].loadFromFile("Sprites/WarriorMan-Sheet.png")) {
+        throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
+    }
 
 
     //File Input for Enemy Instances to be imported to game
@@ -238,7 +254,7 @@ void GameState::initTextures()
 //Initalizes Importing Classes into window
 void GameState::initPlayers()
 {
-    mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_IDLE"]);
+    mPlayer = new Player(200.0f, 200.0f, mTextures["PLAYER_SHEET"]);
 }
 
 void GameState::initEnemies() {
