@@ -10,51 +10,112 @@
 *	File Programmer: Tyler Simmons
 */
 
-#ifndef GAME
-#define GAME
+#pragma once
+#include "Game.hpp"
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/System.hpp>
-#include <iostream>
-#include "Portal.hpp"
-#include "Platform.hpp"
-#include "Enemy.hpp"
-#include "GameState.hpp"
-#include "State.hpp"
-using std::cout;
-using std::endl;
+Game::Game()
+{
+    this->initWindow();
+    this->initKeys();
+    this->initStates();
+}
 
-class Game {
-public:
-    Game();
-    virtual ~Game();
+Game::~Game()
+{
+    delete mWindow;
 
-    //member functions
+    while (!mStates.empty()) {
+        delete mStates.top();	//remove data
+        mStates.pop();			//remove pointer
+    }
+}
 
-    void endApp();
-    void update();
-    void updateSFMLEvents();
-    void updateDeltaTime();
+void Game::initWindow()
+{
+    unsigned int width = 1500;
+    unsigned int height = 1000;
 
-    void render();
+    mWindow = new sf::RenderWindow(sf::VideoMode({ width, height }), "Untitled 2D Platformer");
 
-    void run();
+    mWindow->setFramerateLimit(60);	//set frame rate cap to 60 fps
+}
 
-    void drawMenu();
+void Game::initKeys()
+{
+    /*mSupportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
+    mSupportedKeys.emplace("A", sf::Keyboard::Key::A);
+    mSupportedKeys.emplace("D", sf::Keyboard::Key::D);*/
+    //mSupportedKeys.emplace(" ", sf::Keyboard::Key::Space);
+}
 
-private:
-    sf::RenderWindow* mWindow;
-    float mDeltaTime;
-    sf::Clock mDTClock;
-    std::stack<State*> mStates;	//stack of states, keeps track of different types of states game gets in
-    //std::map<std::string, int> mSupportedKeys;	//an array-like structure of supported keys
+void Game::initStates()
+{
+    mStates.push(new GameState(mWindow));
+}
 
-    //private member functions
-    //initialization
-    void initWindow();
-    void initKeys();
-    void initStates();
-};
+void Game::endApp()
+{
+    cout << "Ending game." << endl;
+}
 
-#endif
+void Game::update()
+{
+    this->updateSFMLEvents();
+
+    if (!mStates.empty()) {
+        mStates.top()->update(mDeltaTime);
+
+        if (mStates.top()->getQuit()) {
+            mStates.top()->endState();
+            delete mStates.top();
+            mStates.pop();
+        }
+    }
+
+    //End game
+    else {
+        this->endApp();
+        mWindow->close();
+    }
+}
+
+void Game::updateSFMLEvents()
+{
+    while (const std::optional event = mWindow->pollEvent())
+    {
+        if (event->is<sf::Event::Closed>())
+            mWindow->close();
+    }
+}
+
+void Game::updateDeltaTime()
+{
+    mDeltaTime = mDTClock.restart().asSeconds();
+}
+
+void Game::render()
+{
+    mWindow->clear();
+
+    //render objects
+    if (!mStates.empty()) {
+        mStates.top()->render(mWindow);
+    }
+
+    mWindow->display();
+}
+
+void Game::run()
+{
+    while (mWindow->isOpen()) {
+
+        this->updateDeltaTime();
+        this->update();
+        this->render();
+    }
+}
+
+void Game::drawMenu()
+{
+    //need to put stuff here later
+}
