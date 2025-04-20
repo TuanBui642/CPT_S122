@@ -10,11 +10,12 @@
 *	File Programmer: Tyler Simmons
 */
 
-#ifndef MOVEMENTCOMPONENT
-#define MOVEMENTCOMPONENT
+#ifndef ENTITY
+#define ENTITY
 
 #include "MovementComponent.hpp"
 #include "AnimationComponent.hpp"
+#include "HitboxComponent.hpp"
 
 class Entity{
 
@@ -31,15 +32,18 @@ public:
     void setTexture(sf::Texture& texture);
     void createMovementComponent(const float maxVelocity,
         const float acceleration, const float deceleration);
+    void createHitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY,
+        float width, float height);
     void createAnimationComponent(sf::Texture& textureSheet);
 
     virtual void move(const float deltaTime, const float dir_x, const float dir_y);
     virtual void update(const float& deltaTime);
-    virtual void render(sf::RenderTarget* target);
+    virtual void render(sf::RenderTarget& target);
 
 protected:
     sf::Sprite mpSprite;
 
+    HitboxComponent* mpHitboxComponent;
     MovementComponent* mpMovementComponent;
     AnimationComponent* mpAnimationComponent;
 

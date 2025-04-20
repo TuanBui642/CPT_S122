@@ -20,6 +20,16 @@ Game::Game()
     this->initStates();
 }
 
+Game::~Game()
+{
+    delete mWindow;
+
+    while (!mStates.empty()) {
+        delete mStates.top();	//remove data
+        mStates.pop();			//remove pointer
+    }
+}
+
 void Game::initWindow()
 {
     unsigned int width = 1500;
@@ -108,14 +118,4 @@ void Game::run()
 void Game::drawMenu()
 {
     //need to put stuff here later
-}
-
-Game::~Game()
-{
-    delete mWindow;
-
-    while (!mStates.empty()) {
-        delete mStates.top();	//remove data
-        mStates.pop();			//remove pointer
-    }
 }

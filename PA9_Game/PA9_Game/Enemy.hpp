@@ -37,6 +37,7 @@ class Enemy : public Entity {
 public:
     //Constructor
     Enemy(float x_pos, float y_pos, sf::Texture& texture);
+    Enemy();
     virtual ~Enemy(); //Destructor
 
     //Getters
@@ -49,6 +50,11 @@ public:
     float GetLeftBound();
     float GetCurXPos();
     float GetCurYPos();
+    sf::Texture GetCurTexture();
+    float GetUpperBound();
+    float GetLowerBound();
+    bool GetMovingUp();
+    bool GetMovingDown();
 
     //Setters
     void SetHealth(int NewInt);
@@ -60,9 +66,16 @@ public:
     void SetLeftBound(float NewBound);
     void SetCurXPos(float NewFloat);
     void SetCurYPos(float NewFloat);
+    void SetCharTexture(sf::Texture Texture);
+    void SetUpperBound(float NewUpper);
+    void SetLowerBound(float NewLower);
+    void SetMovingUp(bool NewBool);
+    void SetMovingDown(bool NewBool);
 
     //Member Functions Below
-    void UpdatePosition(float x, float y);
+    virtual void UpdatePosition(float x, float y);
+    virtual void Update(const float& deltaTime);
+    void MoveEnemy(const float x, const float y);
 
 private:
     //Functions to initalize private data members rather than calling this->(set respective)
@@ -81,9 +94,19 @@ private:
     float RightBound;
     float LeftBound;
 
+    //Representative of Y-axis, similar to Right/Left Bound but Vertical
+    float UpperBound;
+    float LowerBound;
+
     //Representative of the Enemies position at window
     float CurrXPos;
     float CurrYPos;
+
+    //False = No their not moving in that direction, True = Yes they are moving in that direction
+    bool MovingUp;
+    bool MovingDown;
+
+    sf::Texture CharTexture;
 
 };
 

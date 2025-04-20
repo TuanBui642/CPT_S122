@@ -68,6 +68,6 @@ void gameWorld::draw(sf::RenderWindow& window)
 {
 	for (int i = 0; i < tiles.size(); ++i)
 	{
-		tiles[i]->render(&window);
+		tiles[i]->render(window);
 	}
 }

@@ -22,6 +22,26 @@ Enemy::Enemy(float x_pos, float y_pos, sf::Texture& CharTexture) : Entity(mpSpri
 
 	this->SetCurXPos(x_pos);
 	this->SetCurYPos(y_pos);
+	//this->createAnimationComponent(CharTexture);
+	//												// 0, 0, 5, 3, 80, 64,12.0f);
+	//mpAnimationComponent->addAnimation("Moving Right", 0, 0, 1, 1, 80, 32, 32.0f);
+
+}
+
+void Enemy::Update(const float& deltaTime) {
+
+	//mpMovementComponent->update(deltaTime);
+
+	//if (mpMovementComponent->isMovingRight()) {
+	//	mpAnimationComponent->play("Moving Right", deltaTime);
+	//}
+
+}
+
+Enemy::Enemy() : Entity(mpSprite, CharTexture){
+
+
+
 
 }
 
@@ -70,6 +90,31 @@ float Enemy::GetCurYPos() {
 	return this->CurrYPos;
 }
 
+sf::Texture Enemy::GetCurTexture() {
+
+	return this->CharTexture;
+}
+
+float Enemy::GetUpperBound() {
+
+	return this->UpperBound;
+}
+
+float Enemy::GetLowerBound() {
+
+	return this->LowerBound;
+}
+
+bool Enemy::GetMovingUp() {
+
+	return this->MovingUp;
+}
+
+bool Enemy::GetMovingDown() {
+
+	return this->MovingDown;
+}
+
 void Enemy::SetHealth(int NewInt) {
 
 	this->health = NewInt;
@@ -115,6 +160,31 @@ void Enemy::SetCurYPos(float NewFloat) {
 	this->CurrYPos = NewFloat;
 }
 
+void Enemy::SetCharTexture(sf::Texture Texture) {
+
+	this->CharTexture = Texture;
+}
+
+void Enemy::SetUpperBound(float NewUpper) {
+
+	this->UpperBound = NewUpper;
+}
+
+void Enemy::SetLowerBound(float NewLower) {
+
+	this->LowerBound = NewLower;
+}
+
+void Enemy::SetMovingUp(bool NewBool) {
+
+	this->MovingUp = NewBool;
+}
+
+void Enemy::SetMovingDown(bool NewBool) {
+
+	this->MovingDown = NewBool;
+}
+
 void Enemy::UpdatePosition(float x, float y) {
 
 	float Curx = this->GetCurXPos();
@@ -123,6 +193,20 @@ void Enemy::UpdatePosition(float x, float y) {
 
 	this->SetCurXPos(Curx);
 
+	float Cury = this->GetCurYPos();
+
+	Cury += y;
+
+	this->SetCurYPos(Cury);
+
+}
+
+void Enemy::MoveEnemy(const float x, const float y) {
+
+	float CurrentXPos = this->GetCurXPos() + x;
+	float CurrentYPos = this->GetCurYPos() + y;
+
+	this->setPosition(CurrentXPos, CurrentYPos);
 }
 
 Enemy::~Enemy() {
@@ -140,6 +224,9 @@ void Enemy::initVariables() {
 
 	this->MovingRight = false;
 	this->MovingLeft = false;
+
+	this->MovingDown = false;
+	this->MovingUp = false;
 
 }
 

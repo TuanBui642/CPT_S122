@@ -21,10 +21,22 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+enum movementStates {
+	IDLE = 0,
+	MOVING,
+	WALK_RIGHT,
+	WALK_LEFT,
+	RUN_RIGHT,
+	RUN_LEFT,
+	JUMP_RIGHT,
+	JUMP_LEFT,
+	ATTACK_RIGHT,
+	ATTACK_LEFT
+};
+
 class MovementComponent {
 public:
-	MovementComponent(sf::Sprite& sprite, float maxVelocity, float acceleration,
-		float deceleration);
+	MovementComponent(sf::Sprite& sprite, float acceleration, float deceleration);
 	virtual ~MovementComponent();
 
 	//getters
@@ -32,12 +44,7 @@ public:
 	bool getJumpUsed() const;
 
 	//member functions
-	bool isIdle() const;
-	bool isMoving() const;
-	bool isMovingRight() const;
-	bool isMovingLeft() const;
-	bool isJumping();
-	bool isAttacking() const;
+	bool getState(const short unsigned state);
 	void move(const float dir_x, const float dir_y, const float deltaTime);
 	void update(const float& deltaTime);
 
@@ -49,6 +56,8 @@ private:
 	float mDeceleration;
 	float mGravity;
 	float mOnGround;
+	bool mFaceLeft,
+		mFaceRight;
 };
 
 #endif

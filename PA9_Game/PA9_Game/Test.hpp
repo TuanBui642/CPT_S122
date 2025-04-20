@@ -34,7 +34,7 @@ using std::stack;
 
 
 //Test Functions Declaration Below:
-
+void TestEnemyMovement();
 
 
 #endif

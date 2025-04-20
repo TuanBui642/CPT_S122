@@ -50,9 +50,9 @@ public:
 		return object.getGlobalBounds();
 	}
 
-	void render(sf::RenderTarget* target) override
+	void render(sf::RenderTarget& target) override
 	{
-		target->draw(object);
+		target.draw(object);
 	}
 
 	bool collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn);

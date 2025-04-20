@@ -30,6 +30,7 @@ private:
 	std::map<std::string, Animation*> mAnimations;
 	sf::Sprite& mSprite;
 	sf::Texture& mTextureSheet;
+	Animation* mpLastAnimation;
 };
 
 #endif

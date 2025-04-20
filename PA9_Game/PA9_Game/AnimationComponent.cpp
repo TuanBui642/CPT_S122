@@ -2,21 +2,32 @@
 #include "AnimationComponent.hpp"
 
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet)
-	: mSprite(sprite), mTextureSheet(textureSheet)
+	: mSprite(sprite), mTextureSheet(textureSheet), mpLastAnimation(nullptr)
 {
 
 }
 
 AnimationComponent::~AnimationComponent()
 {
-	for (auto& i : mAnimations)
-	{
+	for (auto& i : mAnimations) {
 		delete i.second;
 	}
 }
 
 void AnimationComponent::play(const std::string key, const float& deltaTime)
 {
+	//reset previous animation
+	if (mpLastAnimation != mAnimations[key]) {
+		if (mpLastAnimation == nullptr) {
+			mpLastAnimation = mAnimations[key];
+		}
+		else {
+			mpLastAnimation->reset();
+			mpLastAnimation = mAnimations[key];
+		}
+	}
+
+	//play animation
 	mAnimations[key]->play(deltaTime);
 }
 
