@@ -3,13 +3,15 @@
 using std::cout;
 using std::endl;
 
-MovementComponent::MovementComponent(sf::Sprite& sprite, float maxVelocity, 
-	float acceleration, float deceleration)
-	: mSprite(sprite), mMaxVelocity(maxVelocity), mAcceleration(acceleration),
+MovementComponent::MovementComponent(sf::Sprite& sprite, float acceleration, float deceleration)
+	: mSprite(sprite), mAcceleration(acceleration),
 	mDeceleration(deceleration)
 {
-	mOnGround = false;
+	mMaxVelocity = 100.0f; //assume low initial max velocity
+	mOnGround = true;	//assume player starts out on ground
 	mGravity = 0.0f;
+	mFaceRight = true;	//assume player starts out facing right
+	mFaceLeft = false;
 }
 
 MovementComponent::~MovementComponent()
@@ -26,70 +28,79 @@ bool MovementComponent::getJumpUsed() const
 	return !mOnGround;
 }
 
-bool MovementComponent::isIdle() const
+bool MovementComponent::getState(const short unsigned state)
 {
-	bool idle = false;
-
-	if (mVelocity.x == 0.0f && mVelocity.y == 0.0f) {
-		idle = true;
+	switch (state) {
+		case IDLE:
+			if (mVelocity.x == 0.0f && mVelocity.y == 0.0f) {
+				return true;
+			}
+			break;
+		case MOVING:
+			if (mVelocity.x != 0.0f || mVelocity.y != 0.0f) {
+				return true;
+			}
+			break;
+		case WALK_RIGHT:
+			if (mVelocity.x > 0.0f && mVelocity.y == 0.0f 
+				&& !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+				mMaxVelocity = 100.0f;
+				mFaceLeft = false;
+				mFaceRight = true;
+				 return true;
+			}
+			break;
+		case WALK_LEFT:
+			if (mVelocity.x < 0.0f && mVelocity.y == 0.0f 
+				&& !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+				mMaxVelocity = 100.0f;
+				mFaceRight = false;
+				mFaceLeft = true;
+				return true;
+			}
+			break;
+		case RUN_RIGHT:
+			if (mVelocity.x > 0.0f && mVelocity.y == 0.0f
+				&& sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+				mFaceLeft = false;
+				mFaceRight = true;
+				return true;
+			}
+			break;
+		case RUN_LEFT:
+			if (mVelocity.x < 0.0f && mVelocity.y == 0.0f
+				&& sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+				mFaceRight = false;
+				mFaceLeft = true;
+				return true;
+			}
+			break;
+		case JUMP_RIGHT:
+			if (mFaceRight == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+				mOnGround = false;
+				return true;
+			}
+			break;
+		case JUMP_LEFT:
+			if (mFaceLeft == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+				mOnGround = false;
+				return true;
+			}
+			break;
+		case ATTACK_RIGHT:
+			if (mFaceRight == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+				return true;
+			}
+			break;
+		case ATTACK_LEFT:
+			if (mFaceLeft == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+				return true;
+			}
+			break;
+		default:
+			break;
 	}
-
-	return idle;
-}
-
-bool MovementComponent::isMoving() const
-{
-	bool moving = false;
-
-	if (mVelocity.x != 0.0f || mVelocity.y != 0.0f) {
-		moving = true;
-	}
-
-	return true;
-}
-
-bool MovementComponent::isMovingRight() const
-{
-	bool movingRight = false;
-
-	if (mVelocity.x > 0.0f && mVelocity.y == 0.0f) {
-		movingRight = true;
-	}
-
-	return movingRight;
-}
-
-bool MovementComponent::isMovingLeft() const
-{
-	bool movingLeft = false;
-
-	if (mVelocity.x < 0.0f && mVelocity.y == 0.0f) {
-		movingLeft = true;
-
-	}
-
-	return movingLeft;
-}
-
-bool MovementComponent::isJumping()
-{
-	bool jumping = false;
-
-	if (mVelocity.y < 0.0f) {
-		jumping = true;
-	}
-
-	return jumping;
-}
-
-bool MovementComponent::isAttacking() const
-{
-	bool attack = false;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-		attack = true;
-	}
-
-	return attack;
+	return false;
 }
 
 void MovementComponent::move(const float dir_x, const float dir_y, const float deltaTime)
@@ -103,6 +114,14 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float d
 void MovementComponent::update(const float& deltaTime)
 {
 	//deceleration
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+		mMaxVelocity = 300.0f;
+	}
+
+	else {
+		mMaxVelocity = 100.0f;
+	}
 	//speed cap x
 	if (mVelocity.x > 0.0f) {
 		//acceleration
@@ -138,7 +157,7 @@ void MovementComponent::update(const float& deltaTime)
 		mGravity = 0.0f;
 	}
 
-	if (this->isJumping() && mVelocity.y < 0.0f) {
+	if (!mOnGround && mVelocity.y < 0.0f) {
 		mGravity = 100.0f;
 	}
 

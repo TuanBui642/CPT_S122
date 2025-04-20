@@ -75,6 +75,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="HitboxComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Portal.hpp">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.hpp">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxComponent.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

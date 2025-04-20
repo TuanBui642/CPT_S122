@@ -8,6 +8,7 @@ Entity::Entity(sf::Sprite sprite, sf::Texture texture) : mSprite(texture)
 
 Entity::~Entity()
 {
+	delete mpHitboxComponent;
 	delete mpMovementComponent;
 	delete mpAnimationComponent;
 }
@@ -22,10 +23,16 @@ void Entity::setTexture(sf::Texture& texture)
 	mSprite.setTexture(texture);
 }
 
+void Entity::createHitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY,
+	float width, float height)
+{
+	mpHitboxComponent = new HitboxComponent(sprite, offsetX, offsetY, width, height);
+}
+
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration,
 	const float deceleration)
 {
-	mpMovementComponent = new MovementComponent(mSprite, maxVelocity, acceleration,
+	mpMovementComponent = new MovementComponent(mSprite, acceleration,
 		deceleration);
 }
 
@@ -46,12 +53,19 @@ void Entity::update(const float& deltaTime)
 	
 }
 
-void Entity::render(sf::RenderTarget* target)
+void Entity::render(sf::RenderTarget& target)
 {
-	target->draw(mSprite);
+	target.draw(mSprite);
+
+
+	if (mpHitboxComponent) {
+		mpHitboxComponent->render(target);
+	}
 }
 
 void Entity::initVariables()
 {
+	mpHitboxComponent = nullptr;
 	mpMovementComponent = nullptr;
+	mpAnimationComponent = nullptr;
 }

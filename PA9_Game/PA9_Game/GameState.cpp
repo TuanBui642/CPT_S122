@@ -33,9 +33,10 @@ void GameState::updateInput(const float& deltaTime)
 		mPlayer->move(deltaTime, 10.0f, 0.0f);
 	}
 	
+
 	if (!mJumpUsed) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {	//jump
-			mPlayer->move(deltaTime, 0.0f, -75.0f);			//up is negative
+			mPlayer->move(deltaTime, 0.0f, -20.0f);			//up is negative
 			mJumpUsed = this->checkJump();					//check if apex of jump has happened
 		}
 	}
@@ -57,8 +58,8 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target) {
 		target = mStateWindow;
 	}
-	mPlayer->render(mStateWindow);
-	mEnemy->render(mStateWindow);
+	mPlayer->render(*target);
+	mEnemy->render(*target);
 }
 
 bool GameState::checkJump()
