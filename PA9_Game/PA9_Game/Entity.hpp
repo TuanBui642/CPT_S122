@@ -1,38 +1,54 @@
-#pragma once
-#include <vector>
-#include <stack>
-#include <map>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
 
+#ifndef ENTITY
+#define ENTITY
 
-class Entity {
+#include "MovementComponent.hpp"
+#include "AnimationComponent.hpp"
+#include "HitboxComponent.hpp"
+
+class Entity{
 
 public:
-	//core constructor
-	Entity();
-	//destructor
-	virtual ~Entity();
+   // Entity();
+    //core constructor
+    Entity(sf::Sprite sprite, sf::Texture texture);
+    //destructor
+    virtual ~Entity();
 
-	//setters
-	virtual void setPosition(const float x_pos, const float y_pos);
-	//member functions
-	void createSprite(sf::Texture* texture);
+    //setters
+    virtual void setPosition(const float x_pos, const float y_pos);
+    //member functions
+    void setTexture(sf::Texture& texture);
+    void createMovementComponent(const float maxVelocity,
+        const float acceleration, const float deceleration);
+    void createHitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY,
+        float width, float height);
+    void createAnimationComponent(sf::Texture& textureSheet);
 
-	virtual void move(const float deltaTime, const float dir_x, const float dir_y);
-	virtual void update(const float& deltaTime);
-	virtual void render(sf::RenderTarget* target);
-
+    virtual void move(const float deltaTime, const float dir_x, const float dir_y);
+    virtual void update(const float& deltaTime);
+    virtual void render(sf::RenderTarget& target);
 
 protected:
-	sf::Texture* mpTexture;
-	sf::Sprite* mpSprite;
+    sf::Sprite mpSprite;
 
-	float mVelocity;
+    HitboxComponent* mpHitboxComponent;
+    MovementComponent* mpMovementComponent;
+    AnimationComponent* mpAnimationComponent;
 
 private:
-	void initVariables();
+    void initVariables();
 };
 
+#endif
