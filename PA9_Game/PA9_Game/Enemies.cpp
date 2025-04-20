@@ -10,50 +10,227 @@
 *	File Programmer: Tuan Bui
 */
 
-#include "Enemies.hpp"
+#include "Enemy.hpp"
+
+Enemy::Enemy(float x_pos, float y_pos, sf::Texture& CharTexture) : Entity(mpSprite, CharTexture) {
+
+	this->setPosition(x_pos, y_pos);
+	this->setTexture(CharTexture);
+
+	this->initVariables();
+	this->initComponents();
+
+	this->SetCurXPos(x_pos);
+	this->SetCurYPos(y_pos);
+	//this->createAnimationComponent(CharTexture);
+	//												// 0, 0, 5, 3, 80, 64,12.0f);
+	//mpAnimationComponent->addAnimation("Moving Right", 0, 0, 1, 1, 80, 32, 32.0f);
+
+}
+
+void Enemy::Update(const float& deltaTime) {
+
+	//mpMovementComponent->update(deltaTime);
+
+	//if (mpMovementComponent->isMovingRight()) {
+	//	mpAnimationComponent->play("Moving Right", deltaTime);
+	//}
+
+}
+
+Enemy::Enemy() : Entity(mpSprite, CharTexture){
+
+
+
+
+}
 
 int Enemy::GetHealth() {
 
-	return this->Health;
+	return this->health;
 }
 
-int Enemy::GetDamageDealt() {
+int Enemy::GetDamageDelt() {
 
-	return this->DamageDealt;
+	return this->DamageDelt;
 }
 
-bool Enemy::GetAliveOrDead() {
+bool Enemy::GetStatus() {
 
-	return this->AliveORDead;
+	return this->Status;
 }
 
-float Enemy::GetMovementSpeed() {
+bool Enemy::GetRightMoveStat() {
 
-	return this->MovementSpeed;
+	return this->MovingRight;
 }
 
-void Enemy::SetHealth(int NewNum) {
+bool Enemy::GetLeftMoveStat() {
 
-	this->Health = NewNum;
+	return this->MovingLeft;
 }
 
-void Enemy::SetDamageDealt(int NewNum) {
+float Enemy::GetRightBound() {
 
-	this->DamageDealt = NewNum;
+	return this->RightBound;
 }
 
-void Enemy::SetAliveORDead(bool NewBool) {
+float Enemy::GetLeftBound() {
 
-	this->AliveORDead = NewBool;
+	return this->LeftBound;
 }
 
-void Enemy::SetMovementSpeed(float NewSpeed) {
+float Enemy::GetCurXPos() {
 
-	this->MovementSpeed = NewSpeed;
+	return this->CurrXPos;
 }
 
+float Enemy::GetCurYPos() {
 
-Enemy::~Enemy() {//Destructor
+	return this->CurrYPos;
+}
 
-	cout << "Destructor: Enemy" << endl;
+sf::Texture Enemy::GetCurTexture() {
+
+	return this->CharTexture;
+}
+
+float Enemy::GetUpperBound() {
+
+	return this->UpperBound;
+}
+
+float Enemy::GetLowerBound() {
+
+	return this->LowerBound;
+}
+
+bool Enemy::GetMovingUp() {
+
+	return this->MovingUp;
+}
+
+bool Enemy::GetMovingDown() {
+
+	return this->MovingDown;
+}
+
+void Enemy::SetHealth(int NewInt) {
+
+	this->health = NewInt;
+}
+
+void Enemy::SetDamageDelt(int NewInt) {
+
+	this->DamageDelt = NewInt;
+}
+
+void Enemy::SetStatus(bool NewBool) {
+
+	this->Status = NewBool;
+}
+
+void Enemy::SetRight(bool NewRight) {
+
+	this->MovingRight = NewRight;
+}
+
+void Enemy::SetLeft(bool NewLeft) {
+
+	this->MovingLeft = NewLeft;
+}
+
+void Enemy::SetRightBound(float NewBound) {
+
+	this->RightBound = NewBound;
+}
+
+void Enemy::SetLeftBound(float NewBound) {
+
+	this->LeftBound = NewBound;
+}
+
+void Enemy::SetCurXPos(float NewFloat) {
+
+	this->CurrXPos = NewFloat;
+}
+
+void Enemy::SetCurYPos(float NewFloat) {
+
+	this->CurrYPos = NewFloat;
+}
+
+void Enemy::SetCharTexture(sf::Texture Texture) {
+
+	this->CharTexture = Texture;
+}
+
+void Enemy::SetUpperBound(float NewUpper) {
+
+	this->UpperBound = NewUpper;
+}
+
+void Enemy::SetLowerBound(float NewLower) {
+
+	this->LowerBound = NewLower;
+}
+
+void Enemy::SetMovingUp(bool NewBool) {
+
+	this->MovingUp = NewBool;
+}
+
+void Enemy::SetMovingDown(bool NewBool) {
+
+	this->MovingDown = NewBool;
+}
+
+void Enemy::UpdatePosition(float x, float y) {
+
+	float Curx = this->GetCurXPos();
+
+	Curx += x;
+
+	this->SetCurXPos(Curx);
+
+	float Cury = this->GetCurYPos();
+
+	Cury += y;
+
+	this->SetCurYPos(Cury);
+
+}
+
+void Enemy::MoveEnemy(const float x, const float y) {
+
+	float CurrentXPos = this->GetCurXPos() + x;
+	float CurrentYPos = this->GetCurYPos() + y;
+
+	this->setPosition(CurrentXPos, CurrentYPos);
+}
+
+Enemy::~Enemy() {
+
+
+}
+
+void Enemy::initVariables() {
+
+	bool Stat = true;
+
+	this->SetHealth(100);
+	this->SetDamageDelt(25);
+	this->SetStatus(Stat);
+
+	this->MovingRight = false;
+	this->MovingLeft = false;
+
+	this->MovingDown = false;
+	this->MovingUp = false;
+
+}
+
+void Enemy::initComponents(){
+
+	this->createMovementComponent(100.0f, 20.0f, 20.0f);
 }
