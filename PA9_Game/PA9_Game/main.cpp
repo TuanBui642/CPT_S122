@@ -12,10 +12,17 @@
 *			ANY AND ALL CREDIT OF SPRITE DESIGN GOES TO CONNIN MOLO
 */
 
+#include "Test.hpp"
 #include "Game.hpp"
 
 int main(void) {
 
+	/*	Test Functions
+	
+		TestEnemyMovement();
+
+	*/
+	
 	Game thisGame;
 	thisGame.run();
 

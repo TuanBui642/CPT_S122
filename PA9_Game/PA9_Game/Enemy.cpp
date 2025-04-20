@@ -40,9 +40,11 @@ void Enemy::Update(const float& deltaTime) {
 
 Enemy::Enemy() : Entity(mpSprite, CharTexture){
 
-
-
-
+	this->setPosition(0.0f,0.0f);
+	this->SetCurXPos(0.0f);
+	this->SetCurYPos(0.0f);
+	this->initComponents();
+	this->initVariables();
 }
 
 int Enemy::GetHealth() {

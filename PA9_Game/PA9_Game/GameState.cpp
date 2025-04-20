@@ -31,6 +31,10 @@ GameState::~GameState()
     delete mEnemy2;
     delete mEnemy3;
     delete mEnemy4;
+
+    delete mEnemy5;
+    delete mEnemy6;
+    delete mEnemy7;
 }
 
 void GameState::updateInput(const float& deltaTime)
@@ -59,17 +63,20 @@ void GameState::updateInput(const float& deltaTime)
 
         mPlayer->move(deltaTime, 0.0f, 0.0f);  //Up is Negative
     }
-    
+
+
+    //Move Enemies Back And Forth
+    //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
     if (mEnemy4->GetStatus() != false) { //Toaster Sprite
 
         if (mEnemy4->GetLeftMoveStat() == true) {
 
-            mEnemy4->move(deltaTime, -5.0f, 0.0f);
+            mEnemy4->MoveEnemy(-5.0f, 0.0f);
             mEnemy4->UpdatePosition(-5.0f, 0.0f);
         }
         else if (mEnemy4->GetRightMoveStat() == true) {
 
-            mEnemy4->move(deltaTime, 5.0f, 0.0f);
+            mEnemy4->MoveEnemy( 5.0f, 0.0f);
             mEnemy4->UpdatePosition(5.0f, 0.0f);
         }
 
@@ -84,6 +91,34 @@ void GameState::updateInput(const float& deltaTime)
 
             mEnemy4->SetLeft(false);
             mEnemy4->SetRight(true);
+
+        }
+    }
+
+    if (mEnemy2->GetStatus() != false) {
+
+        if (mEnemy2->GetLeftMoveStat() == true) {
+
+            mEnemy2->MoveEnemy(-2.0f, 0.0f);
+            mEnemy2->UpdatePosition(-2.0f, 0.0f);
+        }
+        else if (mEnemy2->GetRightMoveStat() == true) {
+
+            mEnemy2->MoveEnemy(2.0f, 0.0f);
+            mEnemy2->UpdatePosition(2.0f, 0.0f);
+        }
+
+        if (mEnemy2->GetCurXPos() >= mEnemy2->GetRightBound()) {
+
+            mEnemy2->SetRight(false);
+            mEnemy2->SetLeft(true);
+
+        }
+
+        if (mEnemy2->GetCurXPos() <= mEnemy2->GetLeftBound()) {
+
+            mEnemy2->SetLeft(false);
+            mEnemy2->SetRight(true);
 
         }
     }
@@ -115,27 +150,25 @@ void GameState::updateInput(const float& deltaTime)
 
         }
     }
-    
-    //Move Enemies Back And Forth
-    //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
-   /* if (mEnemy1->GetStatus() != false) {
+
+    if (mEnemy1->GetStatus() != false) {
 
         if (mEnemy1->GetLeftMoveStat() == true) {
 
-            mEnemy1->move(deltaTime, -5.0f, 0.0f);
-            mEnemy1->UpdatePosition(-5.0f, 0.0f);
+            mEnemy1->MoveEnemy(-2.0f, 0.0f);
+            mEnemy1->UpdatePosition(-2.0f, 0.0f);
         }
         else if (mEnemy1->GetRightMoveStat() == true) {
 
-            mEnemy1->move(deltaTime, 5.0f, 0.0f);
-            mEnemy1->UpdatePosition(5.0f, 0.0f);
+            mEnemy1->MoveEnemy(2.0f, 0.0f);
+            mEnemy1->UpdatePosition(2.0f, 0.0f);
         }
 
         if (mEnemy1->GetCurXPos() >= mEnemy1->GetRightBound()) {
 
             mEnemy1->SetRight(false);
             mEnemy1->SetLeft(true);
-            
+
         }
 
         if (mEnemy1->GetCurXPos() <= mEnemy1->GetLeftBound()) {
@@ -144,38 +177,105 @@ void GameState::updateInput(const float& deltaTime)
             mEnemy1->SetRight(true);
 
         }
-    }*/
+    }
 
-    
-  /*  if (mEnemy2->GetStatus() != false) {
+    if (mEnemy7->GetStatus() != false) { //Toaster Sprite
 
-        if (mEnemy2->GetLeftMoveStat() == true) {
+        if (mEnemy7->GetLeftMoveStat() == true) {
 
-            mEnemy2->move(deltaTime, -5.0f, 0.0f);
-            mEnemy2->UpdatePosition(-5.0f, 0.0f);
+            mEnemy7->MoveEnemy(-5.0f, 0.0f);
+            mEnemy7->UpdatePosition(-5.0f, 0.0f);
         }
-        else if (mEnemy2->GetRightMoveStat() == true) {
+        else if (mEnemy7->GetRightMoveStat() == true) {
 
-            mEnemy2->move(deltaTime, 5.0f, 0.0f);
-            mEnemy2->UpdatePosition(5.0f, 0.0f);
-        }
-
-        if (mEnemy2->GetCurXPos() >= mEnemy2->GetRightBound()) {
-
-            mEnemy2->SetRight(false);
-            mEnemy2->SetLeft(true);
-
+            mEnemy7->MoveEnemy(5.0f, 0.0f);
+            mEnemy7->UpdatePosition(5.0f, 0.0f);
         }
 
-        if (mEnemy2->GetCurXPos() <= mEnemy2->GetLeftBound()) {
+        if (mEnemy7->GetCurXPos() >= mEnemy7->GetRightBound()) {
 
-            mEnemy2->SetLeft(false);
-            mEnemy2->SetRight(true);
+            mEnemy7->SetRight(false);
+            mEnemy7->SetLeft(true);
+
+            /*sf::Texture NewTexture;
+            NewTexture.loadFromFile("Sprites/timer_enemy_Left");
+
+            mEnemy7->setTexture(NewTexture);*/
 
         }
-    }*/
-   
-    
+
+        if (mEnemy7->GetCurXPos() <= mEnemy7->GetLeftBound()) {
+
+            mEnemy7->SetLeft(false);
+            mEnemy7->SetRight(true);
+
+            /*sf::Texture NewTexture;
+            NewTexture.loadFromFile("Sprites/timer_enemy_Right");
+
+            mEnemy7->setTexture(NewTexture);*/
+
+        }
+    }
+
+
+    if (mEnemy6->GetStatus() != false) { //Toaster Sprite
+
+        if (mEnemy6->GetMovingUp() == true) {
+
+            mEnemy6->MoveEnemy(0.0f, -2.5f);
+            mEnemy6->UpdatePosition(0.0f, -2.5f);
+        }
+        else if (mEnemy6->GetMovingDown() == true) {
+
+            mEnemy6->MoveEnemy(0.0f, 2.5f);
+            mEnemy6->UpdatePosition(0.0f, 2.5f);
+        }
+
+        if (mEnemy6->GetCurYPos() >= mEnemy6->GetLowerBound()) {
+
+            mEnemy6->SetMovingUp(true);
+            mEnemy6->SetMovingDown(false);
+
+        }
+
+        if (mEnemy6->GetCurYPos() <= mEnemy6->GetUpperBound()) {
+
+            mEnemy6->SetMovingUp(false);
+            mEnemy6->SetMovingDown(true);
+
+        }
+    }
+
+
+    if (mEnemy5->GetStatus() != false) { //Toaster Sprite
+
+        if (mEnemy5->GetMovingUp() == true) {
+
+            mEnemy5->MoveEnemy(0.0f, -2.5f);
+            mEnemy5->UpdatePosition(0.0f, -2.5f);
+        }
+        else if (mEnemy5->GetMovingDown() == true) {
+
+            mEnemy5->MoveEnemy(0.0f, 2.5f);
+            mEnemy5->UpdatePosition(0.0f, 2.5f);
+        }
+
+        if (mEnemy5->GetCurYPos() >= mEnemy5->GetLowerBound()) {
+
+            mEnemy5->SetMovingUp(true);
+            mEnemy5->SetMovingDown(false);
+
+        }
+
+        if (mEnemy5->GetCurYPos() <= mEnemy5->GetUpperBound()) {
+
+            mEnemy5->SetMovingUp(false);
+            mEnemy5->SetMovingDown(true);
+
+        }
+    }
+
+
 }
 
 void GameState::update(const float& deltaTime)
@@ -186,6 +286,10 @@ void GameState::update(const float& deltaTime)
     mEnemy2->update(deltaTime);
     mEnemy3->update(deltaTime);
     mEnemy4->update(deltaTime);
+
+    mEnemy5->update(deltaTime);
+    mEnemy6->update(deltaTime);
+    mEnemy7->update(deltaTime);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -198,6 +302,10 @@ void GameState::render(sf::RenderTarget* target)
     mEnemy2->render(*target);
     mEnemy3->render(*target);
     mEnemy4->render(*target);
+
+    mEnemy5->render(*target);
+    mEnemy6->render(*target);
+    mEnemy7->render(*target);
 
     //Ashton work
     auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
@@ -258,6 +366,22 @@ void GameState::initTextures()
 
     sf::Sprite;
 
+    sf::Texture tempEnemy5;
+    tempEnemy5.loadFromFile("Sprites/timer_enemy_idle.png");
+
+    mTextures["Fifth Enemy Idle"] = tempEnemy5;
+
+    sf::Texture tempEnemy6;
+    tempEnemy6.loadFromFile("Sprites/timer_enemy_idle.png");
+
+    mTextures["Sixth Enemy Idle"] = tempEnemy6;
+
+    sf::Texture tempEnemy7;
+    tempEnemy7.loadFromFile("Sprites/timer_enemy_idle.png");
+
+    mTextures["Seventh Enemy Idle"] = tempEnemy7;
+
+
 
 }
 
@@ -269,20 +393,12 @@ void GameState::initPlayers()
 
 void GameState::initEnemies() {
 
+    //Move Enemies Back And Forth
                     //Sets Position (0,-500), Set Texture 
     mEnemy4 = new Enemy(600.0f, 535.0f, mTextures["Fourth Enemy Idle"]);  //Toaster 
-    mEnemy4->SetLeftBound(150.0f);
-    mEnemy4->SetRightBound(2050.0f);
+    mEnemy4->SetLeftBound(500.0f);
+    mEnemy4->SetRightBound(1100.0f);
     mEnemy4->SetRight(true);
-
-
-    //Move Enemies Back And Forth
-   //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
-    mEnemy1 = new Enemy(0.0f, 550.0f, mTextures["First Enemy Idle"]); //Flipper
-    //mEnemy2->SetLeftBound(145.0f); 
-    //mEnemy2->SetRightBound(200.0f);
-    //mEnemy2->SetRight(true);
-
 
     mEnemy3 = new Enemy(650.0f, 200.0f, mTextures["Third Enemy Idle"]); //Timer
     mEnemy3->SetUpperBound(75.0f);
@@ -290,10 +406,29 @@ void GameState::initEnemies() {
     mEnemy3->SetMovingUp(true);
 
     mEnemy2 = new Enemy(500.0f, 120.0f, mTextures["Second Enemy Idle"]); //Saw
-    //mEnemy4->SetLeftBound(145.0f);
-    //mEnemy4->SetRightBound(200.0f);
-    //mEnemy4->SetRight(true);
+    mEnemy2->SetLeftBound(0.0f);
+    mEnemy2->SetRightBound(520.0f);
+    mEnemy2->SetLeft(true);
 
+    mEnemy1 = new Enemy(1400.0f, 150.0f, mTextures["First Enemy Idle"]); //Flipper
+    mEnemy1->SetLeftBound(1300.0f);
+    mEnemy1->SetRightBound(1500.0f);
+    mEnemy1->SetRight(true);
+
+    mEnemy6 = new Enemy(935.0f, 75.0f, mTextures["Sixth Enemy Idle"]); //Timer
+    mEnemy6->SetUpperBound(75.0f);
+    mEnemy6->SetLowerBound(250.0f);
+    mEnemy6->SetMovingDown(true);
+
+    mEnemy5 = new Enemy(1220.0f, 200.0f, mTextures["Fifth Enemy Idle"]); //Timer
+    mEnemy5->SetUpperBound(75.0f);
+    mEnemy5->SetLowerBound(250.0f);
+    mEnemy5->SetMovingUp(true);
+
+    mEnemy7 = new Enemy(650.0f, 450.0f, mTextures["Seventh Enemy Idle"]); //Timer
+    mEnemy7->SetLeftBound(100.0f);
+    mEnemy7->SetRightBound(1400.0f);
+    mEnemy7->SetLeft(true);
 }
 
 void GameState::initWorld()

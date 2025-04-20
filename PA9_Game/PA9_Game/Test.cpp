@@ -10,27 +10,29 @@
 */
 
 #include "Test.hpp"
+#include "Game.hpp"
 
 //Test Functions Below:
 
 void TestEnemyMovement() {
 
+    Enemy Test; //Default constructor sets it to (0.0,0.0) position
     
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "Test Enemy Movement");
-    
- 
-        while (window.isOpen())
-        {
-            while (const std::optional event = window.pollEvent())
-            {
-                if (event->is<sf::Event::Closed>())
-                    window.close();
+    float NewXCor = 10.0f;
+    float NewYCor = 10.0f;
 
-                
-            }
+    Test.MoveEnemy(NewXCor, NewYCor);
+    Test.UpdatePosition(NewXCor, NewYCor);
 
-         
-            window.display();
-        }
-    
+    cout << "X position: " << Test.GetCurXPos() << "Y position: " << Test.GetCurYPos() << endl;
+
+    if (Test.GetCurXPos() == NewXCor && Test.GetCurYPos() == NewYCor) {
+
+        cout << "Sprite (Enemy) has Correctly Moved from (0,0) to (10,10)" << endl;
+    }
+    else {
+
+        cout << "Sprite (Enemy) has moved incorrectly" << endl;
+    }
+
 }

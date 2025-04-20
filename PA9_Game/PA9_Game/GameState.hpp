@@ -39,7 +39,10 @@ private:
     Enemy* mEnemy2;
     Enemy* mEnemy3;
     Enemy* mEnemy4;
+
     Enemy* mEnemy5;
+    Enemy* mEnemy6;
+    Enemy* mEnemy7;
 
     gameWorld worldLayout; 
 

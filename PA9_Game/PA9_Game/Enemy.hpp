@@ -76,6 +76,7 @@ public:
     virtual void UpdatePosition(float x, float y);
     virtual void Update(const float& deltaTime);
     void MoveEnemy(const float x, const float y);
+    
 
 private:
     //Functions to initalize private data members rather than calling this->(set respective)
