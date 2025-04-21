@@ -83,3 +83,8 @@ void Entity::initVariables()
 	mpMovementComponent = nullptr;
 	mpAnimationComponent = nullptr;
 }
+
+sf::Sprite Entity::getmpSprite()
+{
+	return mpSprite;
+}

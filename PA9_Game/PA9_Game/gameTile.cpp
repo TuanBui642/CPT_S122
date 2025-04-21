@@ -1,3 +1,15 @@
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Ashton Palma
+*/
+
 #include "gameTile.hpp"
 
 bool gameTile::collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn)

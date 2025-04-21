@@ -26,6 +26,12 @@ public:
 	//member functions
 	virtual void update(const float& deltaTime);
 
+	//Ashton work
+	HitboxComponent* getHitboxComponent() const;
+	sf::Vector2f& getVelocity();
+	sf::Vector2f getPosition() const;
+	//void setJumpUsed(bool TorF); 
+
 
 private:
 	bool mJumpUsed;

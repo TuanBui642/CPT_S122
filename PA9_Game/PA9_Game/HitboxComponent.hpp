@@ -1,4 +1,17 @@
-#pragma once
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
+#ifndef HITBOX
+#define HITBOX
 
 #include <vector>
 #include <stack>
@@ -19,9 +32,13 @@ public:
     void render(sf::RenderTarget& target);
     bool checkIntersect(const sf::FloatRect& rect);
 
+    sf::RectangleShape getmHitBox();
+
 private:
     sf::RectangleShape mHitbox;
     sf::Sprite& mSprite;
     float mOffsetX,
         mOffsetY;
 };
+
+#endif

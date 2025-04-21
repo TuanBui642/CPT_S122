@@ -1,3 +1,15 @@
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
 #include "Animation.hpp"
 
 Animation::Animation(sf::Sprite& sprite, sf::Texture& textureSheet, int startFrameX, int startFrameY,

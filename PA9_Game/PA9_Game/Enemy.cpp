@@ -12,7 +12,7 @@
 
 #include "Enemy.hpp"
 
-Enemy::Enemy(float x_pos, float y_pos, sf::Texture& CharTexture) : Entity(mpSprite, CharTexture) {
+Enemy::Enemy(float x_pos, float y_pos, sf::Texture& CharTexture) : Entity(mpSprite, CharTexture) { //Constructor
 
 	this->setPosition(x_pos, y_pos);
 	this->setTexture(CharTexture);
@@ -28,7 +28,7 @@ Enemy::Enemy(float x_pos, float y_pos, sf::Texture& CharTexture) : Entity(mpSpri
 
 }
 
-void Enemy::Update(const float& deltaTime) {
+void Enemy::Update(const float& deltaTime) { //Update Movement Animations (Didn't use it at end)
 
 	//mpMovementComponent->update(deltaTime);
 
@@ -38,7 +38,7 @@ void Enemy::Update(const float& deltaTime) {
 
 }
 
-Enemy::Enemy() : Entity(mpSprite, CharTexture){
+Enemy::Enemy() : Entity(mpSprite, CharTexture){ //Constructor
 
 	this->setPosition(0.0f,0.0f);
 	this->SetCurXPos(0.0f);
@@ -47,147 +47,148 @@ Enemy::Enemy() : Entity(mpSprite, CharTexture){
 	this->initVariables();
 }
 
-int Enemy::GetHealth() {
+int Enemy::GetHealth() { //Getter
 
 	return this->health;
 }
 
-int Enemy::GetDamageDelt() {
+int Enemy::GetDamageDelt() { //Getter
 
 	return this->DamageDelt;
 }
 
-bool Enemy::GetStatus() {
+bool Enemy::GetStatus() { //Getter
 
 	return this->Status;
 }
 
-bool Enemy::GetRightMoveStat() {
+bool Enemy::GetRightMoveStat() { //Getter
 
 	return this->MovingRight;
 }
 
-bool Enemy::GetLeftMoveStat() {
+bool Enemy::GetLeftMoveStat() { //Getter
 
 	return this->MovingLeft;
 }
 
-float Enemy::GetRightBound() {
+float Enemy::GetRightBound() { //Getter
 
 	return this->RightBound;
 }
 
-float Enemy::GetLeftBound() {
+float Enemy::GetLeftBound() { //Getter
 
 	return this->LeftBound;
 }
 
-float Enemy::GetCurXPos() {
+float Enemy::GetCurXPos() { //Getter
 
 	return this->CurrXPos;
 }
 
-float Enemy::GetCurYPos() {
+float Enemy::GetCurYPos() { //Getter
 
 	return this->CurrYPos;
 }
 
-sf::Texture Enemy::GetCurTexture() {
+sf::Texture Enemy::GetCurTexture() { //Getter
 
 	return this->CharTexture;
 }
 
-float Enemy::GetUpperBound() {
+float Enemy::GetUpperBound() { //Getter
 
 	return this->UpperBound;
 }
 
-float Enemy::GetLowerBound() {
+float Enemy::GetLowerBound() { //Getter
 
 	return this->LowerBound;
 }
 
-bool Enemy::GetMovingUp() {
+bool Enemy::GetMovingUp() { //Getter
 
 	return this->MovingUp;
 }
 
-bool Enemy::GetMovingDown() {
+bool Enemy::GetMovingDown() { //Getter
 
 	return this->MovingDown;
 }
 
-void Enemy::SetHealth(int NewInt) {
+void Enemy::SetHealth(int NewInt) { //Setter
 
 	this->health = NewInt;
 }
 
-void Enemy::SetDamageDelt(int NewInt) {
+void Enemy::SetDamageDelt(int NewInt) {//Setter
 
 	this->DamageDelt = NewInt;
 }
 
-void Enemy::SetStatus(bool NewBool) {
+void Enemy::SetStatus(bool NewBool) {//Setter
 
 	this->Status = NewBool;
 }
 
-void Enemy::SetRight(bool NewRight) {
+void Enemy::SetRight(bool NewRight) {//Setter
 
 	this->MovingRight = NewRight;
 }
 
-void Enemy::SetLeft(bool NewLeft) {
+void Enemy::SetLeft(bool NewLeft) {//Setter
 
 	this->MovingLeft = NewLeft;
 }
 
-void Enemy::SetRightBound(float NewBound) {
+void Enemy::SetRightBound(float NewBound) {//Setter
 
 	this->RightBound = NewBound;
 }
 
-void Enemy::SetLeftBound(float NewBound) {
+void Enemy::SetLeftBound(float NewBound) {//Setter
 
 	this->LeftBound = NewBound;
 }
 
-void Enemy::SetCurXPos(float NewFloat) {
+void Enemy::SetCurXPos(float NewFloat) {//Setter
 
 	this->CurrXPos = NewFloat;
 }
 
-void Enemy::SetCurYPos(float NewFloat) {
+void Enemy::SetCurYPos(float NewFloat) {//Setter
 
 	this->CurrYPos = NewFloat;
 }
 
-void Enemy::SetCharTexture(sf::Texture Texture) {
+void Enemy::SetCharTexture(sf::Texture Texture) {//Setter
 
 	this->CharTexture = Texture;
+
 }
 
-void Enemy::SetUpperBound(float NewUpper) {
+void Enemy::SetUpperBound(float NewUpper) {//Setter
 
 	this->UpperBound = NewUpper;
 }
 
-void Enemy::SetLowerBound(float NewLower) {
+void Enemy::SetLowerBound(float NewLower) {//Setter
 
 	this->LowerBound = NewLower;
 }
 
-void Enemy::SetMovingUp(bool NewBool) {
+void Enemy::SetMovingUp(bool NewBool) {//Setter
 
 	this->MovingUp = NewBool;
 }
 
-void Enemy::SetMovingDown(bool NewBool) {
+void Enemy::SetMovingDown(bool NewBool) {//Setter
 
 	this->MovingDown = NewBool;
 }
 
-void Enemy::UpdatePosition(float x, float y) {
+void Enemy::UpdatePosition(float x, float y) { //Updates the position after each movement
 
 	float Curx = this->GetCurXPos();
 
@@ -203,7 +204,7 @@ void Enemy::UpdatePosition(float x, float y) {
 
 }
 
-void Enemy::MoveEnemy(const float x, const float y) {
+void Enemy::MoveEnemy(const float x, const float y) { //Moves Enemy in position passed in 
 
 	float CurrentXPos = this->GetCurXPos() + x;
 	float CurrentYPos = this->GetCurYPos() + y;
@@ -211,9 +212,71 @@ void Enemy::MoveEnemy(const float x, const float y) {
 	this->setPosition(CurrentXPos, CurrentYPos);
 }
 
-Enemy::~Enemy() {
+Enemy::~Enemy() { //Destructor
 
 
+}
+
+void Enemy::MoveEnemyHorizontal(const float x, const float y) {
+
+	if (this->GetStatus() != false) { //Toaster Sprite
+
+		if (this->GetLeftMoveStat() == true) {
+
+			this->MoveEnemy(-x, y);
+			this->UpdatePosition(-x, y);
+		}
+		else if (this->GetRightMoveStat() == true) {
+
+			this->MoveEnemy(x, y);
+			this->UpdatePosition(x, y);
+		}
+
+		if (this->GetCurXPos() >= this->GetRightBound()) {
+
+			this->SetRight(false);
+			this->SetLeft(true);
+
+		}
+
+		if (this->GetCurXPos() <= this->GetLeftBound()) {
+
+			this->SetLeft(false);
+			this->SetRight(true);
+
+		}
+	}
+}
+
+void Enemy::MoveEnemyVertically(const float x, const float y) {
+
+	if (this->GetStatus() != false) { //Toaster Sprite
+
+		if (this->GetMovingUp() == true) {
+
+			this->MoveEnemy(x, -y);
+			this->UpdatePosition(x, -y);
+		}
+		else if (this->GetMovingDown() == true) {
+
+			this->MoveEnemy(x, y);
+			this->UpdatePosition(x, y);
+		}
+
+		if (this->GetCurYPos() >= this->GetLowerBound()) {
+
+			this->SetMovingDown(false);
+			this->SetMovingUp(true);
+
+		}
+
+		if (this->GetCurYPos() <= this->GetUpperBound()) {
+
+			this->SetMovingUp(false);
+			this->SetMovingDown(true);
+
+		}
+	}
 }
 
 void Enemy::initVariables() {

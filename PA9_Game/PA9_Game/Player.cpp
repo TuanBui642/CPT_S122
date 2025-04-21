@@ -107,3 +107,18 @@ void Player::initComponents()
 {
 
 }
+
+HitboxComponent* Player::getHitboxComponent() const
+{
+    return this->mpHitboxComponent;
+}
+
+sf::Vector2f& Player::getVelocity()
+{
+    return this->mpMovementComponent->getVelocity();
+}
+
+sf::Vector2f Player::getPosition() const
+{
+    return this->mpSprite.getPosition();
+}

@@ -10,8 +10,8 @@
 *	File Programmer: Ashton Palma
 */
 
-#ifndef GAMETILE
-#define GAMETILE
+#ifndef GAMETILEHPP
+#define GAMETILEHPP
 
 #include "Entity.hpp"
 #include "gameWorld.hpp"

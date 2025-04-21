@@ -76,6 +76,9 @@ public:
     virtual void UpdatePosition(float x, float y);
     virtual void Update(const float& deltaTime);
     void MoveEnemy(const float x, const float y);
+
+    void MoveEnemyHorizontal(const float x, const float y);
+    void MoveEnemyVertically(const float x, const float y);
     
 
 private:

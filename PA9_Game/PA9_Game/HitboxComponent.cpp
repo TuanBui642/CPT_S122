@@ -1,3 +1,15 @@
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
 #include "HitboxComponent.hpp"
 
 HitboxComponent::HitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY, float width,
@@ -32,4 +44,9 @@ bool HitboxComponent::checkIntersect(const sf::FloatRect& rect)
     else {
         return false;
     }
+}
+
+sf::RectangleShape HitboxComponent::getmHitBox()
+{
+    return mHitbox;
 }

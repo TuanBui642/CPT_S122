@@ -1,3 +1,15 @@
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
 #include "MovementComponent.hpp"
 #include <iostream>
 using std::cout;
@@ -18,7 +30,7 @@ MovementComponent::~MovementComponent()
 {
 }
 
-const sf::Vector2f MovementComponent::getVelocity() const
+const sf::Vector2f& MovementComponent::getVelocity() const
 {
 	return mVelocity;
 }
@@ -26,6 +38,11 @@ const sf::Vector2f MovementComponent::getVelocity() const
 bool MovementComponent::getJumpUsed() const
 {
 	return !mOnGround;
+}
+
+sf::Vector2f& MovementComponent::getVelocity()
+{
+	return mVelocity;
 }
 
 bool MovementComponent::getState(const short unsigned state)
