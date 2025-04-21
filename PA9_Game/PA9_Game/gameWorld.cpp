@@ -53,16 +53,44 @@ void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vect
 	}
 }
 
-void gameWorld::checkCollisions(sf::RectangleShape& person, float& velocityY, bool& isJumping)
+void gameWorld::checkCollisions(Player& player)
 {
-	for (int i = 0; i < tiles.size(); i++)
+	for (auto tile : tiles)
 	{
-		if (tiles[i])
+		if (tile)
 		{
-			tiles[i]->collisionStatus(person, velocityY, isJumping, 0);
+			tile->collisionStatus(player, 0);
 		}
 	}
 }
+
+void gameWorld::mapBoundary(sf::Window& window, Player& person)
+{
+	sf::Vector2f pos = person.getPosition();
+	sf::Vector2f size = person.getHitboxComponent()->getmHitBox().getSize();
+
+	if (pos.x + size.x >= window.getSize().x - 32)
+	{
+		person.setPosition(window.getSize().x - size.x - 32, pos.y);
+	}
+
+	if (pos.x <= -30)
+	{
+		person.setPosition(-30.f, pos.y);
+	}
+
+	if (pos.y + size.y >= window.getSize().y)
+	{
+		person.setPosition(pos.x, window.getSize().y - size.y - 30);
+	}
+
+	if (pos.y <= 0)
+	{
+		person.setPosition(pos.x, 0.f);
+	}
+}
+
+
 
 void gameWorld::draw(sf::RenderWindow& window)
 {

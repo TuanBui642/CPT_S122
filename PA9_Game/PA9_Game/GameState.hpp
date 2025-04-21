@@ -41,7 +41,7 @@ private:
     Enemy* mEnemy4;
     Enemy* mEnemy5;
 
-    gameWorld worldLayout; 
+    gameWorld worldLayout;
 
     //Time (real world seconds) usage
     sf::Clock OngoingTime;
@@ -54,7 +54,7 @@ private:
     void initTextures();
     void initPlayers();
     void initEnemies();
-  
+
     //Ashton Work: initiate world's object and collision between player & object
     void initWorld();
 

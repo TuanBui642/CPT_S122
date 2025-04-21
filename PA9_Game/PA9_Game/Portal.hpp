@@ -6,7 +6,7 @@
 *		Ashton Palma
 *		Tyler Simmons
 *		Brandon Weirth
-* 
+*
 *	File Programmer: Ashton Palma
 */
 
@@ -28,6 +28,7 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 using std::stack;
+using sf::CircleShape;
 
 #include <SFML/Graphics.hpp>
 
@@ -38,9 +39,7 @@ private:
 
 public:
 	//constructor 
-	Portal(float const& size, const sf::Vector2f& pos) :
-		sf::CircleShape(size)
-	{
+	Portal(float const& size, const sf::Vector2f& pos) : CircleShape(size) {
 		this->setPosition({ pos });
 		this->setFillColor(sf::Color::Blue);
 		this->setOutlineColor(sf::Color::Magenta);

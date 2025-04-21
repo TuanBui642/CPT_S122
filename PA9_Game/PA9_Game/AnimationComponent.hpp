@@ -10,27 +10,36 @@
 *	File Programmer: Tyler Simmons
 */
 
-#ifndef ANIMATIONCOMPONENT
-#define ANIMATIONCOMPONENT
+#ifndef ANIMATION
+#define ANIMATION
 
-#include "Animation.hpp"
+#include <map>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
-class AnimationComponent {
+class Animation {
 public:
-	//constructor & destructor
-	AnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet);
-	virtual ~AnimationComponent();
+	Animation(sf::Sprite& sprite, sf::Texture& textureSheet, int startFrameX, int startFrameY,
+		int frames_x, int frames_y, int width, int height, float animationTimer);
+	virtual ~Animation();
 
 	//member functions
-	void play(const std::string key, const float& deltaTime);
-	void addAnimation(const std::string key, int startFrameX, int startFrameY, int frames_x,
-		int frames_y, int width, int height, float animationTimer);
+	void reset();
+	void play(const float& deltaTime);
 
 private:
-	std::map<std::string, Animation*> mAnimations;
-	sf::Sprite& mSprite;
+	std::map<std::string, Animation> mAnimations;
 	sf::Texture& mTextureSheet;
-	Animation* mpLastAnimation;
+	float mAnimationTimer;
+	float mTimer;
+	sf::IntRect mStartRect;
+	sf::IntRect mCurrentRect;
+	sf::IntRect mEndRect;
+	int mWidth;
+	int mHeight;
+	sf::Sprite& mSprite;
 };
 
 #endif

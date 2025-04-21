@@ -38,7 +38,7 @@ void Enemy::Update(const float& deltaTime) {
 
 }
 
-Enemy::Enemy() : Entity(mpSprite, CharTexture){
+Enemy::Enemy() : Entity(mpSprite, CharTexture) {
 
 
 
@@ -230,7 +230,7 @@ void Enemy::initVariables() {
 
 }
 
-void Enemy::initComponents(){
+void Enemy::initComponents() {
 
 	this->createMovementComponent(100.0f, 20.0f, 20.0f);
 }

@@ -42,5 +42,6 @@ public:
 	void draw(sf::RenderWindow& window);
 
 
+
 };
 #endif

@@ -17,11 +17,11 @@
 #include "AnimationComponent.hpp"
 #include "HitboxComponent.hpp"
 
-class Entity{
+class Entity {
 
 public:
-   // Entity();
-    //core constructor
+    // Entity();
+     //core constructor
     Entity(sf::Sprite sprite, sf::Texture texture);
     //destructor
     virtual ~Entity();
