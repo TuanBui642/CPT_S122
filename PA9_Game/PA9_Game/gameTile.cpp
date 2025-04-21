@@ -12,60 +12,77 @@
 
 #include "gameTile.hpp"
 
-bool gameTile::collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn)
+bool gameTile::collisionStatus(Player& player, int boundary_or_respawn)
 {
-	if (object.getGlobalBounds().findIntersection(person.getGlobalBounds()))
+
+	sf::FloatRect playerBounds = player.getHitboxComponent()->getmHitBox().getGlobalBounds();
+	sf::FloatRect tileBounds = object.getGlobalBounds();
+	sf::Vector2f playerSize = player.getHitboxComponent()->getmHitBox().getSize();
+
+	if (object.getGlobalBounds().findIntersection(playerBounds))
 	{
-		if (boundary_or_respawn == 0) //0 is for boundary. Meaning that person can't phase through objects
+		if (boundary_or_respawn == 0) // Block the player
 		{
-			if (person.getPosition().y <= this->object.getPosition().y)
+
+			if (player.getPosition().y <= object.getPosition().y)
 			{
-				person.setPosition({ person.getPosition().x, this->object.getPosition().y - person.getSize().y });
-				velocityY = 0;
-				isJumping = false;
+				if (player.getPosition().y <= object.getPosition().y)
+				{
+					player.setPosition(player.getPosition().x, (object.getPosition().y - 22) - playerSize.y);
+					player.getVelocity().y = 0;
+					//player.setJumpUsed(false);
+					return true;
+				}
+
+			}
+			if (player.getPosition().x >= object.getPosition().x || player.getPosition().x <= object.getPosition().x)
+			{
+				if (player.getPosition().y >= object.getPosition().y + this->object.getSize().y) //+ player.getVelocity().y)
+				{
+					player.setPosition(player.getPosition().x, object.getPosition().y + 22);// + this->object.getSize().y);
+					return true;
+				}
+
+				if (player.getPosition().x >= object.getPosition().x)
+				{
+					player.setPosition(object.getPosition().x + 50, player.getPosition().y);
+					return true;
+				}
+				if (player.getPosition().x <= this->object.getPosition().x + this->object.getSize().x)
+				{
+					player.setPosition(this->object.getPosition().x - 30, player.getPosition().y);
+					return true;
+				}
+			}
+
+		}
+		if (boundary_or_respawn == 1)
+		{
+			if (player.getPosition().y <= this->object.getPosition().y)
+			{
+				player.setPosition(10, 10);
+				player.getVelocity().y = 0;
+				//player.setJumpUsed(false);
 				return true;
 			}
-			if (person.getPosition().y >= this->object.getPosition().y + this->object.getSize().y + velocityY)
+			if (player.getPosition().y >= this->object.getPosition().y + this->object.getSize().y + player.getVelocity().y)
 			{
-				person.setPosition({ person.getPosition().x, this->object.getPosition().y + this->object.getSize().y });
+				player.setPosition(10, 10);
 				return true;
 			}
-			if (person.getPosition().x >= this->object.getPosition().x)
+			if (player.getPosition().x >= this->object.getPosition().x)
 			{
-				person.setPosition({ this->object.getPosition().x + this->object.getSize().x, person.getPosition().y });
+				player.setPosition(10, 10);
 				return true;
 			}
-			if (person.getPosition().x <= this->object.getPosition().x + this->object.getSize().x)
+			if (player.getPosition().x <= this->object.getPosition().x + this->object.getSize().x)
 			{
-				person.setPosition({ this->object.getPosition().x - person.getSize().y, person.getPosition().y });
+				player.setPosition(10, 10);
 				return true;
 			}
 		}
-		if (boundary_or_respawn == 1) //1 is for respawn. Meaning that if a person walk through, then he respawn to coordinate (10,10). Trying to create deathzone
-		{
-			if (person.getPosition().y <= this->object.getPosition().y)
-			{
-				person.setPosition({ 10, 10 });
-				velocityY = 0;
-				isJumping = false;
-				return true;
-			}
-			if (person.getPosition().y >= this->object.getPosition().y + this->object.getSize().y + velocityY)
-			{
-				person.setPosition({ 10, 10 });
-				return true;
-			}
-			if (person.getPosition().x >= this->object.getPosition().x)
-			{
-				person.setPosition({ 10, 10 });
-				return true;
-			}
-			if (person.getPosition().x <= this->object.getPosition().x + this->object.getSize().x)
-			{
-				person.setPosition({ 10, 10 });
-				return true;
-			}
-		}
+
+
 	}
 	return false;
-}
+};

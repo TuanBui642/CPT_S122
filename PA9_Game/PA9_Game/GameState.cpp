@@ -165,8 +165,8 @@ void GameState::update(const float& deltaTime)
     mEnemy6->update(deltaTime);
     mEnemy7->update(deltaTime);
 
-    //worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
-    //worldLayout.checkCollisions(*mPlayer);
+    worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
+    worldLayout.checkCollisions(*mPlayer);
 }
 
 void GameState::render(sf::RenderTarget* target)

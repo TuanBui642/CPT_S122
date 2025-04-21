@@ -55,8 +55,9 @@ public:
 		target.draw(object);
 	}
 
-	bool collisionStatus(sf::RectangleShape& person, float& velocityY, bool& isJumping, int boundary_or_respawn);
+	bool collisionStatus(Player& player, int boundary_or_respawn);
 
 };
+
 
 #endif

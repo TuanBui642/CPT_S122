@@ -16,6 +16,8 @@
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "HitBoxComponent.hpp"
+#include "Player.hpp"
 
 class gameTile; //forward-declare
 
@@ -33,9 +35,12 @@ public:
 
 	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
 
-	void checkCollisions(sf::RectangleShape& person, float& velocityY, bool& isJumping);
+	void checkCollisions(Player& player);
+
+	void mapBoundary(sf::Window& window, Player& person);
 
 	void draw(sf::RenderWindow& window);
+
 
 
 };

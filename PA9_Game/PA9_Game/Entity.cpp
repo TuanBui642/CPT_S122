@@ -77,14 +77,14 @@ void Entity::render(sf::RenderTarget& target)
 	}
 }
 
+sf::Sprite Entity::getmpSprite()
+{
+	return mpSprite;
+}
+
 void Entity::initVariables()
 {
 	mpHitboxComponent = nullptr;
 	mpMovementComponent = nullptr;
 	mpAnimationComponent = nullptr;
-}
-
-sf::Sprite Entity::getmpSprite()
-{
-	return mpSprite;
 }
