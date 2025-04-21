@@ -40,6 +40,8 @@ public:
     virtual void update(const float& deltaTime);
     virtual void render(sf::RenderTarget& target);
 
+    sf::Sprite getmpSprite();
+
 protected:
     sf::Sprite mpSprite;
 

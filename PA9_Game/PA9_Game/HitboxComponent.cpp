@@ -33,3 +33,8 @@ bool HitboxComponent::checkIntersect(const sf::FloatRect& rect)
         return false;
     }
 }
+
+sf::RectangleShape HitboxComponent::getmHitBox()
+{
+    return mHitbox;
+}

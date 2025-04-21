@@ -40,8 +40,10 @@ public:
 	virtual ~MovementComponent();
 
 	//getters
-	const sf::Vector2f getVelocity() const;
+	const sf::Vector2f& getVelocity() const;
 	bool getJumpUsed() const;
+
+	sf::Vector2f& getVelocity();
 
 	//member functions
 	bool getState(const short unsigned state);

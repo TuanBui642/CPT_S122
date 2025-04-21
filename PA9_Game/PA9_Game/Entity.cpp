@@ -46,7 +46,7 @@ void Entity::createHitboxComponent(sf::Sprite& sprite, float offsetX, float offs
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration,
 	const float deceleration)
 {
-	mpMovementComponent = new MovementComponent(mpSprite, acceleration,deceleration);
+	mpMovementComponent = new MovementComponent(mpSprite, acceleration, deceleration);
 }
 
 void Entity::createAnimationComponent(sf::Texture& textureSheet)
@@ -75,6 +75,12 @@ void Entity::render(sf::RenderTarget& target)
 	if (mpHitboxComponent) {
 		mpHitboxComponent->render(target);
 	}
+}
+
+
+sf::Sprite Entity::getmpSprite()
+{
+	return mpSprite;
 }
 
 void Entity::initVariables()

@@ -31,6 +31,7 @@ GameState::~GameState()
     delete mEnemy2;
     delete mEnemy3;
     delete mEnemy4;
+
 }
 
 void GameState::updateInput(const float& deltaTime)
@@ -59,7 +60,7 @@ void GameState::updateInput(const float& deltaTime)
 
         mPlayer->move(deltaTime, 0.0f, 0.0f);  //Up is Negative
     }
-    
+
     if (mEnemy4->GetStatus() != false) { //Toaster Sprite
 
         if (mEnemy4->GetLeftMoveStat() == true) {
@@ -115,7 +116,7 @@ void GameState::updateInput(const float& deltaTime)
 
         }
     }
-    
+
     //Move Enemies Back And Forth
     //NEED TO BE POSITIONED/POLISHED WHEN SETTING (Enviroment) IS FINAL
    /* if (mEnemy1->GetStatus() != false) {
@@ -135,7 +136,7 @@ void GameState::updateInput(const float& deltaTime)
 
             mEnemy1->SetRight(false);
             mEnemy1->SetLeft(true);
-            
+
         }
 
         if (mEnemy1->GetCurXPos() <= mEnemy1->GetLeftBound()) {
@@ -146,36 +147,36 @@ void GameState::updateInput(const float& deltaTime)
         }
     }*/
 
-    
-  /*  if (mEnemy2->GetStatus() != false) {
 
-        if (mEnemy2->GetLeftMoveStat() == true) {
+    /*  if (mEnemy2->GetStatus() != false) {
 
-            mEnemy2->move(deltaTime, -5.0f, 0.0f);
-            mEnemy2->UpdatePosition(-5.0f, 0.0f);
-        }
-        else if (mEnemy2->GetRightMoveStat() == true) {
+          if (mEnemy2->GetLeftMoveStat() == true) {
 
-            mEnemy2->move(deltaTime, 5.0f, 0.0f);
-            mEnemy2->UpdatePosition(5.0f, 0.0f);
-        }
+              mEnemy2->move(deltaTime, -5.0f, 0.0f);
+              mEnemy2->UpdatePosition(-5.0f, 0.0f);
+          }
+          else if (mEnemy2->GetRightMoveStat() == true) {
 
-        if (mEnemy2->GetCurXPos() >= mEnemy2->GetRightBound()) {
+              mEnemy2->move(deltaTime, 5.0f, 0.0f);
+              mEnemy2->UpdatePosition(5.0f, 0.0f);
+          }
 
-            mEnemy2->SetRight(false);
-            mEnemy2->SetLeft(true);
+          if (mEnemy2->GetCurXPos() >= mEnemy2->GetRightBound()) {
 
-        }
+              mEnemy2->SetRight(false);
+              mEnemy2->SetLeft(true);
 
-        if (mEnemy2->GetCurXPos() <= mEnemy2->GetLeftBound()) {
+          }
 
-            mEnemy2->SetLeft(false);
-            mEnemy2->SetRight(true);
+          if (mEnemy2->GetCurXPos() <= mEnemy2->GetLeftBound()) {
 
-        }
-    }*/
-   
-    
+              mEnemy2->SetLeft(false);
+              mEnemy2->SetRight(true);
+
+          }
+      }*/
+
+
 }
 
 void GameState::update(const float& deltaTime)
@@ -186,6 +187,9 @@ void GameState::update(const float& deltaTime)
     mEnemy2->update(deltaTime);
     mEnemy3->update(deltaTime);
     mEnemy4->update(deltaTime);
+
+    worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
+    worldLayout.checkCollisions(*mPlayer);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -201,7 +205,7 @@ void GameState::render(sf::RenderTarget* target)
 
     //Ashton work
     auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
-    worldLayout.draw(*window); 
+    worldLayout.draw(*window);
 }
 
 bool GameState::checkJump()
@@ -219,10 +223,10 @@ void GameState::initKeyBindings()
 //Initalizes Textures for Respected Sprites/Classes
 void GameState::initTextures()
 {
-//    sf::Texture temp;
-//    temp.loadFromFile("Sprites/WarriorMan-Sheet.png");//File Input for Sprite Texture
-//
-//    mTextures["PLAYER_IDLE"] = temp;
+    //    sf::Texture temp;
+    //    temp.loadFromFile("Sprites/WarriorMan-Sheet.png");//File Input for Sprite Texture
+    //
+    //    mTextures["PLAYER_IDLE"] = temp;
 
     if (!mTextures["PLAYER_SHEET"].loadFromFile("Sprites/WarriorMan-Sheet.png")) {
         throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
@@ -231,7 +235,7 @@ void GameState::initTextures()
 
     //File Input for Enemy Instances to be imported to game
     sf::Texture tempEnemy1;
-    tempEnemy1.loadFromFile("Sprites/flipper_idle.png"); 
+    tempEnemy1.loadFromFile("Sprites/flipper_idle.png");
 
     mTextures["First Enemy Idle"] = tempEnemy1;
 
@@ -264,12 +268,12 @@ void GameState::initTextures()
 //Initalizes Importing Classes into window
 void GameState::initPlayers()
 {
-    mPlayer = new Player(0.0f, 130.0f, mTextures["PLAYER_SHEET"]);
+    mPlayer = new Player(0.0f, 110.0f, mTextures["PLAYER_SHEET"]);
 }
 
 void GameState::initEnemies() {
 
-                    //Sets Position (0,-500), Set Texture 
+    //Sets Position (0,-500), Set Texture 
     mEnemy4 = new Enemy(600.0f, 535.0f, mTextures["Fourth Enemy Idle"]);  //Toaster 
     mEnemy4->SetLeftBound(150.0f);
     mEnemy4->SetRightBound(2050.0f);
@@ -306,6 +310,7 @@ void GameState::initWorld()
     worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    worldLayout.generateBlock(sf::Vector2f(500, 0), sf::Vector2f(600, 500), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
 
     //level1 platform
     worldLayout.generateBlock(sf::Vector2f(750, 180), sf::Vector2f(860, 190), sf::Vector2f(20, 20), mTextures["Block_Idle"]);

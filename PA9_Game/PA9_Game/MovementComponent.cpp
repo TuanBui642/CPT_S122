@@ -18,7 +18,7 @@ MovementComponent::~MovementComponent()
 {
 }
 
-const sf::Vector2f MovementComponent::getVelocity() const
+const sf::Vector2f& MovementComponent::getVelocity() const
 {
 	return mVelocity;
 }
@@ -26,6 +26,11 @@ const sf::Vector2f MovementComponent::getVelocity() const
 bool MovementComponent::getJumpUsed() const
 {
 	return !mOnGround;
+}
+
+sf::Vector2f& MovementComponent::getVelocity()
+{
+	return mVelocity;
 }
 
 bool MovementComponent::getState(const short unsigned state)

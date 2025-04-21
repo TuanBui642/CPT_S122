@@ -19,6 +19,8 @@ public:
     void render(sf::RenderTarget& target);
     bool checkIntersect(const sf::FloatRect& rect);
 
+    sf::RectangleShape getmHitBox();
+
 private:
     sf::RectangleShape mHitbox;
     sf::Sprite& mSprite;
