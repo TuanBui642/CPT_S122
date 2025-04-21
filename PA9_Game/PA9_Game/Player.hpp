@@ -8,6 +8,8 @@ class Player : public Entity {
 
 		//getters and setters
 		bool getJumpUsed() const;
+		bool getIsAttacking() const;
+
 		//member functions
 		virtual void update(const float& deltaTime);
 		
@@ -15,6 +17,7 @@ class Player : public Entity {
 	private:
 		bool mJumpUsed;
 		bool mIsFalling;
+		bool mIsAttacking;
 
 		//member functions
 		void initVariables();

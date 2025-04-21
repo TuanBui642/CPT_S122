@@ -2,7 +2,7 @@
 #include "AnimationComponent.hpp"
 
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet)
-	: mSprite(sprite), mTextureSheet(textureSheet), mpLastAnimation(nullptr)
+	: mSprite(sprite), mTextureSheet(textureSheet), mpLastAnimation(nullptr), mpPriorityAnimation(nullptr)
 {
 
 }
@@ -14,21 +14,55 @@ AnimationComponent::~AnimationComponent()
 	}
 }
 
-void AnimationComponent::play(const std::string key, const float& deltaTime)
+const bool& AnimationComponent::getDone(const std::string key)
 {
-	//reset previous animation
-	if (mpLastAnimation != mAnimations[key]) {
-		if (mpLastAnimation == nullptr) {
-			mpLastAnimation = mAnimations[key];
-		}
-		else {
-			mpLastAnimation->reset();
-			mpLastAnimation = mAnimations[key];
-		}
+	return mAnimations[key]->getDone();
+}
+
+const bool& AnimationComponent::play(const std::string key, const float& deltaTime, const bool priority)
+{
+	//set priority animation
+	if (priority) {
+		mpPriorityAnimation = mAnimations[key];
 	}
 
-	//play animation
-	mAnimations[key]->play(deltaTime);
+	//play priority animation
+	if (mpPriorityAnimation != nullptr) {
+		if (mpPriorityAnimation == mAnimations[key]) {
+			if (mpLastAnimation != mAnimations[key]) {
+				if (mpLastAnimation == nullptr) {
+					mpLastAnimation = mAnimations[key];
+				}
+				else {
+					mpLastAnimation->reset();
+					mpLastAnimation = mAnimations[key];
+				}
+			}
+
+			//if animation is done remove it
+			if (mAnimations[key]->play(deltaTime)) {
+				mpPriorityAnimation = nullptr;
+			}
+		}
+	}
+	//play non-prioity animations
+	else {
+		//reset previous animation
+		if (mpLastAnimation != mAnimations[key]) {
+			if (mpLastAnimation == nullptr) {
+				mpLastAnimation = mAnimations[key];
+			}
+			else {
+				mpLastAnimation->reset();
+				mpLastAnimation = mAnimations[key];
+			}
+		}
+
+		//play animation
+		mAnimations[key]->play(deltaTime);
+	}
+
+	return mAnimations[key]->getDone();
 }
 
 void AnimationComponent::addAnimation(const std::string key, int startFrameX, int startFrameY, int frames_x, int frames_y, 

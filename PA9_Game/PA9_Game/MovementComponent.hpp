@@ -27,6 +27,7 @@ class MovementComponent {
 		virtual ~MovementComponent();
 
 		//getters
+		const float& getMaxVelocity() const;
 		const sf::Vector2f getVelocity() const;
 		bool getJumpUsed() const;
 

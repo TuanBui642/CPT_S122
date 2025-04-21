@@ -40,10 +40,6 @@ void GameState::updateInput(const float& deltaTime)
 			mJumpUsed = this->checkJump();					//check if apex of jump has happened
 		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-		mPlayer->move(deltaTime, 0.0f, 0.0f);
-	}
 }
 
 void GameState::update(const float& deltaTime)

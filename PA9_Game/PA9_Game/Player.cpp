@@ -11,13 +11,13 @@ Player::Player(float x_pos, float y_pos, sf::Texture& textureSheet) : Entity(mSp
 
 	//need to do this after texture sheet is available
 	this->createHitboxComponent(mSprite, 34.0f, 20.0f, 17.0f, 27.0f);
-	this->createMovementComponent(100.0f, 20.0f, 20.0f);
+	this->createMovementComponent(200.0f, 20.0f, 20.0f);
 	this->createAnimationComponent(textureSheet);
 
 	mpAnimationComponent->addAnimation("IDLE", 0, 0, 7, 0, 80, 64, 12.0f);		//starts at row 1 on sheet
 	mpAnimationComponent->addAnimation("WALK", 0, 2, 7, 2, 80, 64, 12.0f);		//starts at row 3 on sheet
 	mpAnimationComponent->addAnimation("JUMP", 0, 4, 10, 4, 80, 64, 12.0f);		//starts at row 5 on sheet
-	mpAnimationComponent->addAnimation("ATTACK", 0, 5, 5, 5, 80, 64, 12.0f);	//starts at row 6 on sheet
+	mpAnimationComponent->addAnimation("ATTACK", 0, 5, 5, 5, 80, 64, 6.0f);	//starts at row 6 on sheet
 	mpAnimationComponent->addAnimation("RUN", 0, 3, 7, 3, 80, 64, 12.0f);		//starts at row 4 on sheet
 }
 
@@ -38,48 +38,52 @@ void Player::update(const float& deltaTime)
 
 	mJumpUsed = mpMovementComponent->getJumpUsed();
 
-	if (mpMovementComponent->getState(IDLE)) {
-		mpAnimationComponent->play("IDLE", deltaTime);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+		mIsAttacking = true;
 	}
-	else if (mpMovementComponent->getState(WALK_RIGHT)){
+
+	//if attacking, do this:
+	if (mIsAttacking) {
+		//check if done and set mIsAttacking to false
+		if (mpAnimationComponent->play("ATTACK", deltaTime, true)) {
+			mIsAttacking = false;
+		}
+	}
+
+	//otherwise do this stuff:
+	if (mpMovementComponent->getState(IDLE)) {
+		mpAnimationComponent->play("IDLE", deltaTime, false);
+	}
+	else if (mpMovementComponent->getState(WALK_RIGHT)) {
+		mIsAttacking = false;
 		mSprite.setScale(sf::Vector2f(1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
-		mpAnimationComponent->play("WALK", deltaTime);
+		mpAnimationComponent->play("WALK", deltaTime, false);
 	}
 	else if (mpMovementComponent->getState(WALK_LEFT)) {
 		mSprite.setScale(sf::Vector2f(-1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(reverseOffset, 0.0f));
-		mpAnimationComponent->play("WALK", deltaTime);
+		mpAnimationComponent->play("WALK", deltaTime, false);
 	}
 	else if (mpMovementComponent->getState(JUMP_RIGHT)) {
 		mSprite.setScale(sf::Vector2f(1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
-		mpAnimationComponent->play("JUMP", deltaTime);
+		mpAnimationComponent->play("JUMP", deltaTime, false);
 	}
 	else if (mpMovementComponent->getState(JUMP_LEFT)) {
 		mSprite.setScale(sf::Vector2f(-1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(reverseOffset, 0.0f));
-		mpAnimationComponent->play("JUMP", deltaTime);
-	}
-	else if (mpMovementComponent->getState(ATTACK_RIGHT)) {
-		mSprite.setScale(sf::Vector2f(1.0f, 1.0f));
-		mSprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
-		mpAnimationComponent->play("ATTACK", deltaTime);
-	}
-	else if (mpMovementComponent->getState(ATTACK_LEFT)) {
-		mSprite.setScale(sf::Vector2f(-1.0f, 1.0f));
-		mSprite.setOrigin(sf::Vector2f(reverseOffset, 0.0f));
-		mpAnimationComponent->play("ATTACK", deltaTime);
+		mpAnimationComponent->play("JUMP", deltaTime, false);
 	}
 	else if (mpMovementComponent->getState(RUN_RIGHT)) {
 		mSprite.setScale(sf::Vector2f(1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
-		mpAnimationComponent->play("RUN", deltaTime);
+		mpAnimationComponent->play("RUN", deltaTime, false);
 	}
 	else if (mpMovementComponent->getState(RUN_LEFT)) {
 		mSprite.setScale(sf::Vector2f(-1.0f, 1.0f));
 		mSprite.setOrigin(sf::Vector2f(reverseOffset, 0.0f));
-		mpAnimationComponent->play("RUN", deltaTime);
+		mpAnimationComponent->play("RUN", deltaTime, false);
 	}
 
 	//update hitbox component, needs to be done after movement component
@@ -88,6 +92,7 @@ void Player::update(const float& deltaTime)
 
 void Player::initVariables()
 {
+	mIsAttacking = false;
 }
 
 void Player::initComponents()
