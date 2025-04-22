@@ -34,6 +34,15 @@ using std::stack;
 //File Includes Below:
 
 
+//Other Functions Below:
+void printa();
+
+void InstructionsOnGame();
+
+void Settings();
+
+void AdditionalInformation();
+
 //Test Functions Declaration Below:
 void TestEnemyMovement();
 

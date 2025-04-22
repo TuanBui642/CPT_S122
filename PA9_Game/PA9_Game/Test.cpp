@@ -13,8 +13,55 @@
 #include "Test.hpp"
 #include "Game.hpp"
 
-//Test Functions Below:
+void printa() {
+    cout << "\n-Main Menu-\n"
+        << "(1) Play the Game\n"
+        << "(2) Instruction on Game\n"
+        << /*"(3) Settings \n"
+        <<*/ "(3) Test Cases\n"
+        << "(4) Additional Information\n"
+        << "(5) Exit Game\n";
+}
 
+void InstructionsOnGame() {
+
+    cout << "Game Instrutions!" << endl << endl;
+
+    cout << "Due to the incomplete progress of the second floor, the main goal will be to pass the first floor" <<
+        " and enter the blue portal at the end of the first floor, while doing so, your goal will also be to avoid " <<
+        "the enemies present on the first level" << endl;
+    cout << endl << "Configured Controls:\n(D) Move Right\n(A) Move Left\n(Space) Attack [Just animation, no interaction]\n(Shift) Run/Sprint" << endl;
+
+    cout << "Good Luck and have fun! Be aware of the flipper!" << endl;
+
+    system("pause");
+    system("cls");
+
+}
+
+void Settings() {
+
+    cout << "Wasn't able to configure settings for game" << endl;
+
+    system("pause");
+    system("cls");
+}
+
+void AdditionalInformation() {
+
+    cout << "Game/Project Additional Information" << endl << endl;
+
+    cout << "Inspired/Concepted off of a 2d platformer idea" << endl;
+    cout << "Our main idea was to have three level/floors with a portal at the end of each with respected obstacles and enemies on each level" << endl;
+    cout << "At the end, we were unable to configure gravity for player when player interacts with platforms and it would stop the animation of the player" << endl;
+    cout << "So the only complete level currently is the first floor (the floor that the player starts on), where we didn't apply jumping bridges or any obstacle " <<
+        "utilize the jump mechanic" << endl;
+
+    system("pause");
+    system("cls");
+}
+
+//Test Functions Below:
 void TestGameApplication() {
 
     Game TestGame;
@@ -185,18 +232,36 @@ void TestChangePositionViaPortal() {
     
     sf::Sprite sprite(CharTexture);
 
-    sprite.setPosition(sf::Vector2f({ 50,75 }));
+    sprite.setPosition(sf::Vector2f({ 70,100}));
   
     gameWorld TestPortal;
+    TestPortal.generatePortal(sf::Vector2f({ 80,100 }), sf::Vector2f({ 200,200 }));
+
+    // portal1 portal2
+    
 
     const float DeltaTime = 1.0f;
 
     Test.setPosition(100.0f, 100.0f);
-   
+
+    cout << "Sprites Position Before Moving" << sprite.getPosition().x << sprite.getPosition().y << endl;
+
+        sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
+
+        cout << "Sprites Position" << sprite.getPosition().x << sprite.getPosition().y << endl;
+        cout << "Portal Position: " << TestPortal.GetPortal1().getPosition().x << endl;
+     
+        if (sprite.getGlobalBounds().findIntersection(TestPortal.GetPortal1().getGlobalBounds())) {
+
+            cout << "Player Has Interacted with Portal 1 and respawned" << endl;
+           
+        }
+        else {
+            cout << "Player Has not been able to interact with Portal and didn't respawn" << endl;
+        }
+
+  //  TestPortal.GetPortal1().getPosition();
     
-
-
-  
 }
 
 void TestEnemyPlayerInteraction() {
@@ -207,37 +272,40 @@ void TestEnemyPlayerInteraction() {
 
     TestPlayer.SetCurXPos(100.0f);
     TestPlayer.SetCurYPos(100.0f);
-    TestPlayer.MoveByPos(5.0f, 0.0f);
-    
-    
+
+    TestEnemy.SetUpperBound(80.0f);
+    TestEnemy.SetLowerBound(130.0f);
+    TestEnemy.SetMovingDown(true);
+    TestEnemy.SetCurXPos(100.0f);
+    TestEnemy.SetCurYPos(120.0f);
 
     
+    for (int i = 0; i < 4; i++) {
 
-}
+        TestEnemy.MoveEnemyVertically(0.0f, 10.0f);
 
-/*
+        cout << "Enemy Position: " << TestEnemy.GetCurXPos() << TestEnemy.GetCurYPos() << endl;
 
+        if (TestEnemy.GetCurXPos() == TestPlayer.GetCurXPos() && TestEnemy.GetCurYPos() == TestPlayer.GetCurYPos()) {
 
-    sf::RenderWindow window(sf::VideoMode({ 1500, 1000 }), "Test Window");
-    Test.setPosition(100.0f, 100.0f);
+            cout << "Test Player Has been able to Interact with portal" << endl;
 
+            TestPlayer.setPosition(0.0f, 130.0f);
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
+            if (TestPlayer.getPosition().x == 0.0 && TestPlayer.getPosition().y == 130) {
 
+                cout << "Test Player has respawned at Correct Position (0.0,130.0)" << endl;
+            }
+            else {
 
+                cout << "Test Player has incorrectly respawned at Position: (" << TestPlayer.getPosition().x << 
+                    TestPlayer.getPosition().y << ")" << endl;
+            }
+        }
+        else {
+
+            cout << "Either\n1: Yet to Interact\n2: Didn't Or Can't Iteract" << endl;
         }
 
-        sprite.move(sf::Vector2f({ .1,0 }));
-
-        window.clear();
-        window.draw(TestPortal);
-        window.draw(sprite);
-        window.display();
     }
-
-*/
+}

@@ -50,6 +50,7 @@ private:
     //Time (real world seconds) usage
     sf::Clock OngoingTime;
     sf::Time Time;
+    sf::View mFocus; // Added for focusing 
 
 
     //member functions

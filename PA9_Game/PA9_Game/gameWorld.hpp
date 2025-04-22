@@ -10,8 +10,9 @@
 *	File Programmer: Ashton Palma
 */
 
-#ifndef GAMEWORLD_H
-#define GAMEWORLD_H
+
+#ifndef GAMEWORLDHEADER
+#define GAMEWORLDHEADER
 
 #include <vector>
 #include <string>
@@ -63,6 +64,9 @@ public:
 
 	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
 
+	Portal GetPortal1();
+	Portal GetPortal2();
 
 };
+
 #endif

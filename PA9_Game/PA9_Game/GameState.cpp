@@ -22,6 +22,9 @@ GameState::GameState(sf::RenderWindow* window) : State(window)
     this->initPlayers();
     this->initEnemies();
     this->initWorld();
+
+    mFocus.setSize(sf::Vector2f( mStateWindow->getSize().x, mStateWindow->getSize().y ));
+    mFocus.zoom(0.75f);
 }
 
 GameState::~GameState()
@@ -52,12 +55,13 @@ void GameState::updateInput(const float& deltaTime)
         mPlayer->move(deltaTime, 5.0f, 0.0f);
     }
 
-    if (!mJumpUsed) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {	//jump
-            mPlayer->move(deltaTime, 0.0f, -20.0f);			//up is negative
-            mJumpUsed = this->checkJump();					//check if apex of jump has happened
-        }
-    }
+    //Bugs out animation if used (commented out to prevent such case)
+    //if (!mJumpUsed) {
+    //    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {	//jump
+    //        mPlayer->move(deltaTime, 0.0f, -20.0f);			//up is negative
+    //        mJumpUsed = this->checkJump();					//check if apex of jump has happened
+    //    }
+    //}
 
 
 
@@ -175,6 +179,8 @@ void GameState::update(const float& deltaTime)
     //worldLayout.checkCollisions(*mPlayer);
 
     worldLayout.updateCollision(mPlayer, mStateWindow->getSize());
+
+    mFocus.setCenter(mPlayer->getPosition());
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -196,6 +202,8 @@ void GameState::render(sf::RenderTarget* target)
     this->worldLayout.render(*target);
     //auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
     //worldLayout.draw(*window); 
+
+    target->setView(mFocus);
 }
 
 bool GameState::checkJump()

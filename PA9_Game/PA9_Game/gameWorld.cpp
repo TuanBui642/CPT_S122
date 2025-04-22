@@ -219,3 +219,13 @@ void gameWorld::generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vec
 		}
 	}
 }
+
+Portal gameWorld::GetPortal1() {
+
+	return this->portal1;
+}
+
+Portal gameWorld::GetPortal2() {
+
+	return this->portal2;
+}
