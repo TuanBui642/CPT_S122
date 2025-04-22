@@ -6,6 +6,17 @@ Lab Sections: 1: Lab 11 (Eleven) -Tuan Bui -Ashton Palma -Tyler Simmons 2: Lab 8
 
 Game Description:
 
+  -The game was inspired or built off of the concept of a 2d platformer game such as Hollow Knight, where we aimed to produce aspects such as levels, platforms, enemies, hazard areas, and portals.
+   Although, we were not able to build multiple levels and more freedom with platforms due to the not being able to figure out gravity for player and platforms, (such that the player can jump and will 
+   land on the platform below it), instread we ran into a problem where the jumping aspect caused bugs/glitches within animation for the protagonist Character, with that limitation, we had to shift focus
+   to having a flat platform where the player may go forward and backwards but never jumping as that'll create bugs within the application. Due to those limitations, we were only able to create the first 
+   floor or level that is functional. Causing limitations of using things such as jumping platforms or jumping over hazard floors that'll send you back to respawn. 
+   
+  -Game Instructions
+        the main goal of the game will be to pass the first floor (Top Floor of screen), in which is filled with enemies moving in either a vertical motion or horizontal motion. If you interact with them 
+        by allowing you or the enemy sprites to touch you, then you will be respawned to the point of where you started off, after all the enemies, there will be a portal (blue color) that'll lead you to 
+        the second level (incomplete).
+        
 Additional Notes:
 
   -Couldn't Get SFML to automatically work within main for all of us as a group collectively, so Tuan had main branch, Tyler had dev_tyler, Ashton had dev_Ashton, and Brandon had dev_Brandon that way 
