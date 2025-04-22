@@ -71,8 +71,6 @@ void GameState::updateInput(const float& deltaTime)
     mEnemy5->MoveEnemyVertically(0.0f,2.5f);
     mEnemy6->MoveEnemyVertically(0.0f,2.5f);
 
-    //mEnemy1->GetEnemyShape().get
-
     if (mEnemy1->GetStatus() != false) {
 
         if (mEnemy1->GetLeftMoveStat() == true) {
@@ -89,21 +87,22 @@ void GameState::updateInput(const float& deltaTime)
         }
     }
 
-    if (mEnemy2->GetStatus() != false) {
+    //Saw Sprite
+    //if (mEnemy2->GetStatus() != false) {
 
-        if (mEnemy2->GetLeftMoveStat() == true) {
+    //    if (mEnemy2->GetLeftMoveStat() == true) {
 
-            mEnemy2->MoveEnemy(-2.0f, 0.0f);
-            mEnemy2->UpdatePosition(-2.0f, 0.0f);
-        }
+    //        mEnemy2->MoveEnemy(-2.0f, 0.0f);
+    //        mEnemy2->UpdatePosition(-2.0f, 0.0f);
+    //    }
 
-        if (mEnemy2->GetCurXPos() == -10.0f) {
+    //    if (mEnemy2->GetCurXPos() == -10.0f) {
 
-            //500.0f, 120.0f
-            mEnemy2->SetCurXPos(500.0f);
-            mEnemy2->SetCurYPos(120.0f);
-        }
-    }
+    //        //500.0f, 120.0f
+    //        mEnemy2->SetCurXPos(500.0f);
+    //        mEnemy2->SetCurYPos(120.0f);
+    //    }
+    //}
 
     if (mEnemy7->GetStatus() != false) { //Toaster Sprite
 
@@ -145,6 +144,16 @@ void GameState::updateInput(const float& deltaTime)
             mTextures["Seventh Enemy Idle"] = NewTexture;
 
         }
+    }
+
+    if (mPlayer->getGlobalBounds().findIntersection(mEnemy3->getGlobalBounds()) || 
+        mPlayer->getGlobalBounds().findIntersection(mEnemy5->getGlobalBounds()) ||
+        mPlayer->getGlobalBounds().findIntersection(mEnemy6->getGlobalBounds()) ||
+        mPlayer->getGlobalBounds().findIntersection(mEnemy7->getGlobalBounds()) ||
+        mPlayer->getGlobalBounds().findIntersection(mEnemy1->getGlobalBounds()) ||
+        mPlayer->getGlobalBounds().findIntersection(mEnemy4->getGlobalBounds())) {
+
+        mPlayer->setPosition(0.0f, 130.0f);
     }
 
 }
@@ -216,7 +225,7 @@ void GameState::initTextures()
     mTextures["First Enemy Idle"] = tempEnemy1;
 
     sf::Texture tempEnemy2;
-    tempEnemy2.loadFromFile("Sprites/saw_enemy_idle.png");
+    tempEnemy2.loadFromFile("Sprites/protag_.png");
 
     mTextures["Second Enemy Idle"] = tempEnemy2;
 
@@ -275,7 +284,7 @@ void GameState::initEnemies() {
     mEnemy3->SetLowerBound(250.0f);
     mEnemy3->SetMovingUp(true);
 
-    mEnemy2 = new Enemy(500.0f, 120.0f, mTextures["Second Enemy Idle"]); //Saw
+    mEnemy2 = new Enemy(500.0f, 145.0f, mTextures["Second Enemy Idle"]); //Saw
     mEnemy2->SetLeftBound(0.0f);
     mEnemy2->SetRightBound(520.0f);
     mEnemy2->SetLeft(true);

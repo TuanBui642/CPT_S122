@@ -17,9 +17,10 @@
 
 int main(void) {
 
+	TestChangePositionViaPortal();
 
-	Game thisGame;
-	thisGame.run();
+	//Game thisGame;
+	//thisGame.run();
 
 	return 0;
 }

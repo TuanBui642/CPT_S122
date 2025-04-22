@@ -20,6 +20,7 @@ class Player : public Entity {
 public:
 	Player(float x_pos, float y_pos, sf::Texture& textureSheet);
 	virtual ~Player();
+	Player(sf::Texture CharTexture);
 
 	//getters and setters
 	bool getJumpUsed() const;
@@ -32,11 +33,23 @@ public:
 	const sf::Vector2f& getPosition() const override;
 	//void setJumpUsed(bool TorF); 
 
+	//Tuan Work For Test Cases
+	float GetCurXPos();
+	float GetCurYPos();
+
+	void SetCurXPos(float NewFloat);
+	void SetCurYPos(float NewFloat);
+
+	void MoveByPos(float const x, float const y);
+
 
 private:
 	bool mJumpUsed;
 	bool mIsFalling;
 	bool mIsAttacking;
+
+	float CurXPos;
+	float CurYPos;
 
 	//member functions
 	void initVariables();

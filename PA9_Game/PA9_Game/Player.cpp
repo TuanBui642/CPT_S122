@@ -33,6 +33,12 @@ Player::Player(float x_pos, float y_pos, sf::Texture& textureSheet) : Entity(mpS
 	mpAnimationComponent->addAnimation("RUN", 0, 3, 7, 3, 80, 64, 12.0f);		//starts at row 4 on sheet
 }
 
+Player::Player(sf::Texture CharTexture) : Entity(mpSprite, CharTexture){ //Test usage constructor
+
+	this->initVariables();
+
+}
+
 Player::~Player()
 {
 
@@ -124,4 +130,37 @@ sf::Vector2f& Player::getVelocity()
 const sf::Vector2f& Player::getPosition() const
 {
 	return this->mpSprite.getPosition();
+}
+
+float Player::GetCurXPos() {
+
+	return this->CurXPos;
+}
+
+float Player::GetCurYPos() {
+
+	return this->CurYPos;
+}
+
+void Player::SetCurXPos(float NewFloat) {
+
+	this->CurXPos = NewFloat;
+}
+
+void Player::SetCurYPos(float NewFloat) {
+
+	this->CurYPos = NewFloat;
+}
+
+void Player::MoveByPos(float const x, float const y) {
+
+	float CurX = this->GetCurXPos();
+	float CurY = this->GetCurYPos();
+
+	CurX += x;
+	CurY += y;
+
+	this->SetCurXPos(CurX);
+	this->SetCurYPos(CurY);
+
 }

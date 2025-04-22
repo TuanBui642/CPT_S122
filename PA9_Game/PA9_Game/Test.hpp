@@ -10,8 +10,8 @@
 *   File Programmer: Tuan Bui
 */
 
-#ifndef TEST
-#define TEST
+#ifndef TESTHEADERFILE
+#define TESTHEADERFILE
 
 #include <iostream>
 #include <string>
@@ -40,5 +40,11 @@ void TestEnemyMovement();
 void TestMovementBackNForthVerticallyNHorizontally();
 
 void TestMovementBounds();
+
+void TestChangePositionViaPortal();
+
+void TestEnemyPlayerInteraction();
+
+void TestGameApplication();
 
 #endif

@@ -15,6 +15,13 @@
 
 //Test Functions Below:
 
+void TestGameApplication() {
+
+    Game TestGame;
+
+    TestGame.run();
+}
+
 void TestEnemyMovement() {
 
     Enemy Test; //Default constructor sets it to (0.0,0.0) position
@@ -163,3 +170,74 @@ void TestMovementBounds() {
     system("pause");
     system("cls");
 }
+
+
+
+void TestChangePositionViaPortal() {
+
+    sf::Texture CharTexture;
+    CharTexture.loadFromFile("Sprites/Protag_.png");
+
+    Player Test(CharTexture);
+
+    Test.SetCurXPos(100.0f);
+    Test.SetCurYPos(100.0f);
+    
+    sf::Sprite sprite(CharTexture);
+
+    sprite.setPosition(sf::Vector2f({ 50,75 }));
+  
+    gameWorld TestPortal;
+
+    const float DeltaTime = 1.0f;
+
+    Test.setPosition(100.0f, 100.0f);
+   
+    
+
+
+  
+}
+
+void TestEnemyPlayerInteraction() {
+
+    sf::Texture CharTexture;
+    Player TestPlayer(CharTexture);
+    Enemy TestEnemy;
+
+    TestPlayer.SetCurXPos(100.0f);
+    TestPlayer.SetCurYPos(100.0f);
+    TestPlayer.MoveByPos(5.0f, 0.0f);
+    
+    
+
+    
+
+}
+
+/*
+
+
+    sf::RenderWindow window(sf::VideoMode({ 1500, 1000 }), "Test Window");
+    Test.setPosition(100.0f, 100.0f);
+
+
+    while (window.isOpen())
+    {
+        while (const std::optional event = window.pollEvent())
+        {
+            if (event->is<sf::Event::Closed>())
+                window.close();
+
+
+        }
+
+        sprite.move(sf::Vector2f({ .1,0 }));
+
+        window.clear();
+        window.draw(TestPortal);
+        window.draw(sprite);
+        window.display();
+    }
+
+*/
