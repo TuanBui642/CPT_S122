@@ -28,6 +28,12 @@ Additional Notes:
     git repository, for example SFML3.0.0 graphics library might be found on one of the groupmates local desktop and wouldn't compile since it's looking for an SFML library that in one of our laptops
     Used this video to configure SFML: https://www.youtube.com/watch?v=qvg8BXXWpCE
       
+  -Group Roles
+    Tuan Bui: Enemies/Git "manager"/Test Cases
+    Ashton Palma: Platform/Gravity(tried)/Portal
+    Tyler Simmons: Player/HitBox/Movement/Animation/Game CLasses/Video
+    Brandon Weirth: Settings/Camera Following Player
+
 
 Video URL (if have at end):
   
