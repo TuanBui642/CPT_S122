@@ -32,13 +32,23 @@ public:
     void render(sf::RenderTarget& target);
     bool checkIntersect(const sf::FloatRect& rect);
 
+    //Ashton's Work
     sf::RectangleShape getmHitBox();
+    const sf::Vector2f& getPosition() const;
+    const sf::FloatRect getGlobalBounds() const;
+    const sf::FloatRect& getNextPosition(const sf::Vector2f& velocity);
+    /////////////
 
 private:
     sf::RectangleShape mHitbox;
     sf::Sprite& mSprite;
     float mOffsetX,
         mOffsetY;
+
+    //Ashton work
+    sf::FloatRect nextPosition;
+    ////////////
+
 };
 
 #endif

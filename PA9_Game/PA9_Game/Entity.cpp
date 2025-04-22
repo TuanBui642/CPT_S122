@@ -88,3 +88,47 @@ void Entity::initVariables()
 	mpMovementComponent = nullptr;
 	mpAnimationComponent = nullptr;
 }
+
+const sf::Vector2f& Entity::getPosition() const
+{
+	if (mpHitboxComponent)
+	{
+		return mpHitboxComponent->getPosition();
+	}
+
+	return this->mpSprite.getPosition();
+}
+
+const sf::FloatRect Entity::getGlobalBounds() const
+{
+	if (mpHitboxComponent)
+	{
+		return mpHitboxComponent->getGlobalBounds();
+	}
+
+	return this->mpSprite.getGlobalBounds();
+}
+
+void Entity::stopVelocity()
+{
+	if (mpMovementComponent)
+	{
+		mpMovementComponent->stopVelocity();
+	}
+}
+
+void Entity::stopVelocityY()
+{
+	if (mpMovementComponent)
+	{
+		mpMovementComponent->stopVelocityY();
+	}
+}
+
+void Entity::stopVelocityX()
+{
+	if (mpMovementComponent)
+	{
+		mpMovementComponent->stopVelocityX();
+	}
+}

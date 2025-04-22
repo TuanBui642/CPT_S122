@@ -45,10 +45,31 @@ sf::Vector2f& MovementComponent::getVelocity()
 	return mVelocity;
 }
 
-const float& MovementComponent::getMaxVelocity() const
+//Ashton work/////////////////////////
+void MovementComponent::stopVelocity()
+{
+	//reset the velocity to 0
+	this->mVelocity.x = 0.f;
+	this->mVelocity.y = 0.f;
+
+}
+
+void MovementComponent::stopVelocityY()
+{
+	this->mVelocity.y = 0.f;
+}
+
+void MovementComponent::stopVelocityX()
+{
+	this->mVelocity.x = 0.f;
+}
+
+const float& MovementComponent::getMaxVelocity()
 {
 	return mMaxVelocity;
 }
+
+//////////////////////////////////////
 
 bool MovementComponent::getState(const short unsigned state)
 {

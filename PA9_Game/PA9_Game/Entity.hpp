@@ -42,6 +42,12 @@ public:
 
     sf::Sprite getmpSprite();
 
+    virtual const sf::Vector2f& getPosition()const;
+    virtual const sf::FloatRect getGlobalBounds()const;
+    virtual void stopVelocity();
+    virtual void stopVelocityY();
+    virtual void stopVelocityX();
+
 protected:
     sf::Sprite mpSprite;
 

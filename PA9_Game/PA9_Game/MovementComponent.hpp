@@ -42,8 +42,14 @@ public:
 	//getters
 	const sf::Vector2f& getVelocity() const;
 	bool getJumpUsed() const;
+
+	//Ashton's Work
 	sf::Vector2f& getVelocity();
-	const float& getMaxVelocity() const;
+	const float& getMaxVelocity();
+	void stopVelocity();
+	void stopVelocityY();
+	void stopVelocityX();
+	/////////////////////
 
 	//member functions
 	bool getState(const short unsigned state);

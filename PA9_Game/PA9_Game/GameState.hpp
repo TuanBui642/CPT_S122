@@ -18,6 +18,7 @@ using std::cout;
 using std::endl;
 #include "State.hpp"	//this is a derived class of State
 #include "Enemy.hpp"
+#include "gameWorld.hpp"
 
 class GameState : public State {
 public:
@@ -58,7 +59,7 @@ private:
     void initPlayers();
     void initEnemies();
   
-    //Ashton Work: initiate world's object and collision between player & object
+    //Ashton Work:initiate world's object and environment
     void initWorld();
 
 };
