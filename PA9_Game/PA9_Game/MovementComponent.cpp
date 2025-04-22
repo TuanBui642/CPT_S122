@@ -45,6 +45,11 @@ sf::Vector2f& MovementComponent::getVelocity()
 	return mVelocity;
 }
 
+const float& MovementComponent::getMaxVelocity() const
+{
+	return mMaxVelocity;
+}
+
 bool MovementComponent::getState(const short unsigned state)
 {
 	switch (state) {
@@ -133,11 +138,11 @@ void MovementComponent::update(const float& deltaTime)
 	//deceleration
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
-		mMaxVelocity = 300.0f;
+		mMaxVelocity = 400.0f;
 	}
 
 	else {
-		mMaxVelocity = 100.0f;
+		mMaxVelocity = 200.0f;
 	}
 	//speed cap x
 	if (mVelocity.x > 0.0f) {

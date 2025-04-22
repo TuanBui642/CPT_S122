@@ -36,6 +36,7 @@ public:
 private:
 	bool mJumpUsed;
 	bool mIsFalling;
+	bool mIsAttacking;
 
 	//member functions
 	void initVariables();

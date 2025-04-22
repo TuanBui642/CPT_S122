@@ -14,9 +14,9 @@
 
 Animation::Animation(sf::Sprite& sprite, sf::Texture& textureSheet, int startFrameX, int startFrameY,
 	int frames_x, int frames_y, int width, int height, float animationTimer)
-	: mSprite(sprite), mTextureSheet(textureSheet), mAnimationTimer(animationTimer), mWidth(width), mHeight(height)
+	: mSprite(sprite), mTextureSheet(textureSheet), mAnimationTimer(animationTimer), mWidth(width), mHeight(height),
+	mTimer(0.0f), mDone(false)
 {
-	mTimer = 0.0f;
 	//these rectangles will be used to cut sprites from a sprite sheet which
 	//is going to be useful for animating
 	mStartRect = sf::IntRect(sf::Vector2i(startFrameX * width, startFrameY * height),
@@ -42,8 +42,15 @@ void Animation::reset()
 	mCurrentRect = mStartRect;
 }
 
-void Animation::play(const float& deltaTime)
+const bool& Animation::getDone() const
 {
+	return mDone;
+}
+
+const bool& Animation::play(const float& deltaTime)
+{
+	//update timer
+	mDone = false;
 	mTimer += 100.0f * deltaTime;
 
 	if (mTimer >= mAnimationTimer) {
@@ -57,9 +64,12 @@ void Animation::play(const float& deltaTime)
 
 		//reset
 		else {
+			mDone = true;
 			mCurrentRect.position = mStartRect.position;
 		}
 
 		mSprite.setTextureRect(mCurrentRect);
 	}
+
+	return mDone;
 }

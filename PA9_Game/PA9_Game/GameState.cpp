@@ -59,10 +59,6 @@ void GameState::updateInput(const float& deltaTime)
         }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) { //Jump
-
-        mPlayer->move(deltaTime, 0.0f, 0.0f);  //Up is Negative
-    }
 
 
     //Move Enemies Back And Forth
@@ -74,6 +70,8 @@ void GameState::updateInput(const float& deltaTime)
     mEnemy3->MoveEnemyVertically(0.0f, 2.5f);
     mEnemy5->MoveEnemyVertically(0.0f,2.5f);
     mEnemy6->MoveEnemyVertically(0.0f,2.5f);
+
+    //mEnemy1->GetEnemyShape().get
 
     if (mEnemy1->GetStatus() != false) {
 
@@ -90,7 +88,6 @@ void GameState::updateInput(const float& deltaTime)
             mEnemy1->SetCurYPos(150.0f);
         }
     }
-
 
     if (mEnemy2->GetStatus() != false) {
 

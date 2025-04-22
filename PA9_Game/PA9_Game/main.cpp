@@ -17,12 +17,7 @@
 
 int main(void) {
 
-	/*	Test Functions
-	
-		TestEnemyMovement();
 
-	*/
-	
 	Game thisGame;
 	thisGame.run();
 

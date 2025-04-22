@@ -25,9 +25,11 @@ public:
 		int frames_x, int frames_y, int width, int height, float animationTimer);
 	virtual ~Animation();
 
+	const bool& getDone() const;
+
 	//member functions
 	void reset();
-	void play(const float& deltaTime);
+	const bool& play(const float& deltaTime);
 
 private:
 	std::map<std::string, Animation> mAnimations;
@@ -40,6 +42,8 @@ private:
 	int mWidth;
 	int mHeight;
 	sf::Sprite& mSprite;
+
+	bool mDone;
 };
 
 #endif

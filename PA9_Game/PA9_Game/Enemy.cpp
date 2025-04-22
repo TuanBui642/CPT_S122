@@ -279,6 +279,11 @@ void Enemy::MoveEnemyVertically(const float x, const float y) {
 	}
 }
 
+sf::RectangleShape Enemy::GetEnemyShape() {
+
+	return this->CharShape;
+}
+
 void Enemy::initVariables() {
 
 	bool Stat = true;

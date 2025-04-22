@@ -55,6 +55,7 @@ public:
     float GetLowerBound();
     bool GetMovingUp();
     bool GetMovingDown();
+    sf::RectangleShape GetEnemyShape();
 
     //Setters
     void SetHealth(int NewInt);
@@ -79,6 +80,7 @@ public:
 
     void MoveEnemyHorizontal(const float x, const float y);
     void MoveEnemyVertically(const float x, const float y);
+
     
 
 private:
@@ -109,6 +111,8 @@ private:
     //False = No their not moving in that direction, True = Yes they are moving in that direction
     bool MovingUp;
     bool MovingDown;
+
+    sf::RectangleShape CharShape;
 
     sf::Texture CharTexture;
 

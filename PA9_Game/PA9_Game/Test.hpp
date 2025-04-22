@@ -7,6 +7,7 @@
 *		Tyler Simmons
 *		Brandon Weirth
 *
+*   File Programmer: Tuan Bui
 */
 
 #ifndef TEST
@@ -36,5 +37,8 @@ using std::stack;
 //Test Functions Declaration Below:
 void TestEnemyMovement();
 
+void TestMovementBackNForthVerticallyNHorizontally();
+
+void TestMovementBounds();
 
 #endif

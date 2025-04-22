@@ -43,6 +43,7 @@ public:
 	const sf::Vector2f& getVelocity() const;
 	bool getJumpUsed() const;
 	sf::Vector2f& getVelocity();
+	const float& getMaxVelocity() const;
 
 	//member functions
 	bool getState(const short unsigned state);
