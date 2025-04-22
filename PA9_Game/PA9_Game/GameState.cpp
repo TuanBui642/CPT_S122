@@ -13,7 +13,8 @@
 #pragma once
 #include "GameState.hpp"
 
-GameState::GameState(sf::RenderWindow* window) : State(window), worldLayout(window->getSize().x, window->getSize().y)
+
+GameState::GameState(sf::RenderWindow* window) : State(window)
 {
     mJumpUsed = false;
 
@@ -188,8 +189,11 @@ void GameState::update(const float& deltaTime)
     mEnemy3->update(deltaTime);
     mEnemy4->update(deltaTime);
 
-    worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
-    worldLayout.checkCollisions(*mPlayer);
+
+    worldLayout.updateCollision(mPlayer, mStateWindow->getSize());
+
+    /*  worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
+      worldLayout.checkCollisions(*mPlayer); */
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -204,8 +208,9 @@ void GameState::render(sf::RenderTarget* target)
     mEnemy4->render(*target);
 
     //Ashton work
-    auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
-    worldLayout.draw(*window);
+    this->worldLayout.render(*target);
+    //auto* window = static_cast<sf::RenderWindow*>(mStateWindow);
+    //worldLayout.draw(*window); 
 }
 
 bool GameState::checkJump()
@@ -302,6 +307,7 @@ void GameState::initEnemies() {
 
 void GameState::initWorld()
 {
+    this->worldLayout.setPlayerReference(this->mPlayer);
     //level 1 floor
    //parameter (strtPt, endPt, size)
 
@@ -310,15 +316,15 @@ void GameState::initWorld()
     worldLayout.generateBlock(sf::Vector2f(1320, 180), sf::Vector2f(1400, 240), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(1300, 180), sf::Vector2f(1320, 220), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(550, 180), sf::Vector2f(580, 235), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
-    worldLayout.generateBlock(sf::Vector2f(500, 0), sf::Vector2f(600, 500), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    //worldLayout.generateBlock(sf::Vector2f(500,0), sf::Vector2f(600,500), sf::Vector2f(20,20), mTextures["Block_Idle"]);
 
-    //level1 platform
-    worldLayout.generateBlock(sf::Vector2f(750, 180), sf::Vector2f(860, 190), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
+    ////level1 platform
+    worldLayout.generateBlock(sf::Vector2f(585, 180), sf::Vector2f(1400, 180), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(1040, 180), sf::Vector2f(1170, 190), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
-    //deathzone
-    //traps.generateBlock(sf::Vector2f(550, 250), sf::Vector2f(1350, 270), sf::Vector2f(5, 5));
+    ////deathzone
+    worldLayout.generateHazard(sf::Vector2f(550, 250), sf::Vector2f(1380, 260), sf::Vector2f(5, 5));
 
-    //level2 platform
+    ////level2 platform
     worldLayout.generateBlock(sf::Vector2f(1400, 500), sf::Vector2f(1500, 640), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(1300, 525), sf::Vector2f(1400, 640), sf::Vector2f(22.5, 22.5), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(1150, 550), sf::Vector2f(1300, 640), sf::Vector2f(22, 22), mTextures["Block_Idle"]);
@@ -330,6 +336,7 @@ void GameState::initWorld()
     worldLayout.generateBlock(sf::Vector2f(300, 270), sf::Vector2f(430, 300), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(0, 330), sf::Vector2f(90, 380), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(0, 380), sf::Vector2f(40, 870), sf::Vector2f(15, 15), mTextures["Block_Idle"]);
-    worldLayout.generateBlock(sf::Vector2f(180, 525), sf::Vector2f(200, 630), sf::Vector2f(10, 10), mTextures["Block_Idle"]);
+
+    worldLayout.generateHazard(sf::Vector2f(45, 500), sf::Vector2f(185, 600), sf::Vector2f(20, 20));
 
 }

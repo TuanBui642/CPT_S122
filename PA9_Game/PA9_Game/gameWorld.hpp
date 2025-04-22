@@ -18,29 +18,49 @@
 #include <SFML/Graphics.hpp>
 #include "HitBoxComponent.hpp"
 #include "Player.hpp"
-
-class gameTile; //forward-declare
+#include "gameTile.hpp"
+#include "Portal.hpp"
+#include "Hazard.hpp"
 
 class gameWorld
 {
 private:
-	std::vector <gameTile*> tiles; //converts tiles to a vector type (shortcut)
-	int windowWidth;
-	int windowHeight;
+	//Attempted to create map base on tutorial
+	float gridSizeF;
+	unsigned gridSizeU;
+	sf::Vector2u maxSize;
+	unsigned layers;
+	std::vector< std::vector< std::vector<gameTile > > > map;
+
+	std::vector<gameTile> tiles;
+
+	//Portal
+	Portal portal1;
+	Portal portal2;
+	Portal exit;
+	bool justTeleported;
+	Entity* playerRef;
+
+	//Hazard
+	std::vector<Hazard> deadZone;
 
 public:
-	gameWorld(const int width, const int height);
-	~gameWorld();
+	gameWorld();
+	virtual ~gameWorld() {};
 
+	void update();
+	void render(sf::RenderTarget& target);
+
+	void updateCollision(Entity* entity, const sf::Vector2u& window);
 
 	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
 
-	void checkCollisions(Player& player);
+	void setPlayerReference(Entity* player);
 
-	void mapBoundary(sf::Window& window, Player& person);
+	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2);
 
-	void draw(sf::RenderWindow& window);
 
+	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
 
 
 };

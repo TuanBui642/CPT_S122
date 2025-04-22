@@ -13,51 +13,38 @@
 #ifndef GAMETILE
 #define GAMETILE
 
-#include "Entity.hpp"
-#include "gameWorld.hpp"
-#include <string>
-#include "HitBoxComponent.hpp"
+#include<iostream>
+#include<ctime>
+#include<cstdlib>
+#include<fstream>
+#include<sstream>
+#include<vector>
 
-class gameTile : public Entity {
+#include "SFML\System.hpp"
+#include "SFML\Window.hpp"
+#include "SFML\Graphics.hpp"
+
+class gameTile
+{
 private:
-	sf::RectangleShape object;
-	std::string objectType;
+
+
+protected:
+	sf::RectangleShape shape;
 
 public:
-	//constructor
-	gameTile(std::string ObjectName, const sf::Vector2f& size, const sf::Vector2f& pos, sf::Sprite& sprite, sf::Texture& texture)
-		: Entity(sprite, texture)
-	{
-		object.setSize(size);
-		object.setPosition(pos);
-		//object.setFillColor(sf::Color::White);
-		object.setTexture(&texture);
+	gameTile();
+	gameTile(float x, float y, float gridSizeF);
+	virtual ~gameTile() {};
 
-	}
+	void update();
+	void render(sf::RenderTarget& target);
 
-	//destructor
-	~gameTile() override {};
 
-	//setter
-	void setPosition(float x, float y) override
-	{
-		object.setPosition({ x, y });
-	}
-
-	//getters
-	//globalbound
-	sf::FloatRect getGlobalBound() const
-	{
-		return object.getGlobalBounds();
-	}
-
-	void render(sf::RenderTarget& target) override
-	{
-		target.draw(object);
-	}
-
-	bool collisionStatus(Player& player, int boundary_or_respawn);
+	//not part of tutor
+	sf::RectangleShape& getShape();
 
 };
+
 
 #endif

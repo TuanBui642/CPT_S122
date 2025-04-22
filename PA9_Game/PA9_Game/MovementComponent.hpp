@@ -43,7 +43,13 @@ public:
 	const sf::Vector2f& getVelocity() const;
 	bool getJumpUsed() const;
 
+	//Ashton work/////////
+	const float& getMaxVelocity();
 	sf::Vector2f& getVelocity();
+	void stopVelocity();
+	void stopVelocityY();
+	void stopVelocityX();
+	/////////////////////
 
 	//member functions
 	bool getState(const short unsigned state);
@@ -60,6 +66,8 @@ private:
 	float mOnGround;
 	bool mFaceLeft,
 		mFaceRight;
+
+
 };
 
 #endif

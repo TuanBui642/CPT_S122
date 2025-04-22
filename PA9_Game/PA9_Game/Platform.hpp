@@ -28,18 +28,17 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 using std::stack;
+using sf::RectangleShape;
 
 #include <SFML/Graphics.hpp>
 
-class Platform : public sf::RectangleShape
+class Platform : public RectangleShape
 {
 private:
 
 public:
 	//constructor 
-	Platform(const sf::Vector2f& size, const sf::Vector2f& pos) :
-		sf::RectangleShape(size)
-	{
+	Platform(const sf::Vector2f& size, const sf::Vector2f& pos) : RectangleShape(size) {
 		this->setFillColor(sf::Color::Green);
 		this->setPosition(pos);
 	}

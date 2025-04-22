@@ -19,7 +19,6 @@ class AnimationComponent {
 public:
 	//constructor & destructor
 	AnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet);
-	
 	virtual ~AnimationComponent();
 
 	//member functions

@@ -36,17 +36,20 @@ class Portal : public sf::CircleShape
 {
 private:
 
-
 public:
+	//default constructor
+	Portal() : Portal(25.f, sf::Vector2f(0.f, 0.f)) {}
+
 	//constructor 
-	Portal(float const& size, const sf::Vector2f& pos) : CircleShape(size) {
-		this->setPosition({ pos });
+	Portal(float size, const sf::Vector2f& pos) : CircleShape(size) {
+		this->setPosition(pos);
 		this->setFillColor(sf::Color::Blue);
 		this->setOutlineColor(sf::Color::Magenta);
 		this->setPointCount(6);
 		this->setOrigin(this->getGeometricCenter());
 	}
 
+	~Portal() {};
 
 };
 #endif

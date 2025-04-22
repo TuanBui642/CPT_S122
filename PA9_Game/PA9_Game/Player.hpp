@@ -29,7 +29,7 @@ public:
 	//Ashton work
 	HitboxComponent* getHitboxComponent() const;
 	sf::Vector2f& getVelocity();
-	sf::Vector2f getPosition() const;
+	const sf::Vector2f& getPosition() const override;
 	//void setJumpUsed(bool TorF); 
 
 private:
