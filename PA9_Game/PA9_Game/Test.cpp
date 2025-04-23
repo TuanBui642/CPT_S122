@@ -27,12 +27,12 @@ void InstructionsOnGame() {
 
     cout << "Game Instrutions!" << endl << endl;
 
-    cout << "Due to the incomplete progress of the second floor, the main goal will be to pass the first floor" <<
+    cout << "Due to the incomplete progress of the full level, the main goal will be to pass the first floor" <<
         " and enter the blue portal at the end of the first floor, while doing so, your goal will also be to avoid " <<
-        "the enemies present on the first level" << endl;
-    cout << endl << "Configured Controls:\n(D) Move Right\n(A) Move Left\n(Space) Attack [Just animation, no interaction]\n(Shift) Run/Sprint" << endl;
+        "the enemies present on the first level, while at the second level you must reach the next blue portal while trying to avoid the enemy present on the second floor." << endl;
+    cout << endl << "Configured Controls:\n(D) Move Right\n(A) Move Left\n(Space) Attack [Just animation, no interaction/functionality]\n(Shift) Run/Sprint" << endl;
 
-    cout << "Good Luck and have fun! Be aware of the flipper!" << endl;
+    cout << "Good Luck and have fun! Be aware of the enemy sprites!" << endl;
 
     system("pause");
     system("cls");
@@ -54,7 +54,7 @@ void AdditionalInformation() {
     cout << "Inspired/Concepted off of a 2d platformer idea" << endl;
     cout << "Our main idea was to have three level/floors with a portal at the end of each with respected obstacles and enemies on each level" << endl;
     cout << "At the end, we were unable to configure gravity for player when player interacts with platforms and it would stop the animation of the player" << endl;
-    cout << "So the only complete level currently is the first floor (the floor that the player starts on), where we didn't apply jumping bridges or any obstacle " <<
+    cout << "So the only complete level currently is the first & second floor (the floor that the player starts & below), where we didn't apply jumping bridges or any obstacle " <<
         "utilize the jump mechanic" << endl;
 
     system("pause");
@@ -177,7 +177,7 @@ void TestMovementBounds() {
 
         if (Test.GetCurXPos() > 200.0f) {
             cout << "Has Broken Out of Upper Bound" << endl;
-        }
+        }s
         if (Test.GetCurXPos() < 0.0f) {
 
             cout << "Has Broken Out of Lower Bound" << endl;
