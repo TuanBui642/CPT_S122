@@ -31,17 +31,18 @@ using std::stack;
 using sf::RectangleShape;
 
 #include <SFML/Graphics.hpp>
+using sf::RectangleShape;
 
 class Platform : public RectangleShape
 {
 private:
 
 public:
-	//constructor 
-	Platform(const sf::Vector2f& size, const sf::Vector2f& pos) : RectangleShape(size) {
-		this->setFillColor(sf::Color::Green);
-		this->setPosition(pos);
-	}
+    //constructor 
+    Platform(const sf::Vector2f& size, const sf::Vector2f& pos) : RectangleShape(size) {
+        this->setFillColor(sf::Color::Green);
+        this->setPosition(pos);
+    }
 
 };
 

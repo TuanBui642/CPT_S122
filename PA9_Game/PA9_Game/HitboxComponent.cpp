@@ -1,3 +1,15 @@
+/*
+*	Program: PA9 (Group Game Project)
+*	Date: 4/12/25
+*	Group:
+*		Tuan Bui
+*		Ashton Palma
+*		Tyler Simmons
+*		Brandon Weirth
+*
+*	File Programmer: Tyler Simmons
+*/
+
 #include "HitboxComponent.hpp"
 
 HitboxComponent::HitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY, float width,
@@ -15,6 +27,22 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite, float offsetX, float offset
     this->nextPosition.size.x = width;
     this->nextPosition.size.y = height;
     //////////////////
+}
+
+const sf::Vector2f& HitboxComponent::getPosition() const
+{
+    return mHitbox.getPosition();
+}
+const sf::FloatRect HitboxComponent::getGlobalBounds() const
+{
+    return mHitbox.getGlobalBounds();
+}
+const sf::FloatRect& HitboxComponent::getNextPosition(const sf::Vector2f& velocity)
+{
+    this->nextPosition.position.x = this->mHitbox.getPosition().x + velocity.x;
+    this->nextPosition.position.y = this->mHitbox.getPosition().y + velocity.y;
+
+    return nextPosition;
 }
 
 HitboxComponent::~HitboxComponent()
@@ -41,27 +69,7 @@ bool HitboxComponent::checkIntersect(const sf::FloatRect& rect)
     }
 }
 
-
-///Ashton work/////////////////
 sf::RectangleShape HitboxComponent::getmHitBox()
 {
     return mHitbox;
 }
-
-const sf::Vector2f& HitboxComponent::getPosition() const
-{
-    return mHitbox.getPosition();
-}
-const sf::FloatRect HitboxComponent::getGlobalBounds() const
-{
-    return mHitbox.getGlobalBounds();
-}
-const sf::FloatRect& HitboxComponent::getNextPosition(const sf::Vector2f& velocity)
-{
-    this->nextPosition.position.x = this->mHitbox.getPosition().x + velocity.x;
-    this->nextPosition.position.y = this->mHitbox.getPosition().y + velocity.y;
-
-    return nextPosition;
-}
-////////////////////////////////
-

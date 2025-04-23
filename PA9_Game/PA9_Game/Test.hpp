@@ -7,10 +7,11 @@
 *		Tyler Simmons
 *		Brandon Weirth
 *
+*   File Programmer: Tuan Bui
 */
 
-#ifndef TEST
-#define TEST
+#ifndef TESTHEADERFILE
+#define TESTHEADERFILE
 
 #include <iostream>
 #include <string>
@@ -33,8 +34,26 @@ using std::stack;
 //File Includes Below:
 
 
+//Other Functions Below:
+void printa();
+
+void InstructionsOnGame();
+
+void Settings();
+
+void AdditionalInformation();
+
 //Test Functions Declaration Below:
 void TestEnemyMovement();
 
+void TestMovementBackNForthVerticallyNHorizontally();
+
+void TestMovementBounds();
+
+void TestChangePositionViaPortal();
+
+void TestEnemyPlayerInteraction();
+
+void TestGameApplication();
 
 #endif

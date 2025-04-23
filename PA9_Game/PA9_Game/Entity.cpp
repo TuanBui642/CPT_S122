@@ -77,10 +77,16 @@ void Entity::render(sf::RenderTarget& target)
 	}
 }
 
-///Ashton work///////////////////////////
 sf::Sprite Entity::getmpSprite()
 {
 	return mpSprite;
+}
+
+void Entity::initVariables()
+{
+	mpHitboxComponent = nullptr;
+	mpMovementComponent = nullptr;
+	mpAnimationComponent = nullptr;
 }
 
 const sf::Vector2f& Entity::getPosition() const
@@ -125,12 +131,4 @@ void Entity::stopVelocityX()
 	{
 		mpMovementComponent->stopVelocityX();
 	}
-}
-////////////////////////////////////////////////
-
-void Entity::initVariables()
-{
-	mpHitboxComponent = nullptr;
-	mpMovementComponent = nullptr;
-	mpAnimationComponent = nullptr;
 }

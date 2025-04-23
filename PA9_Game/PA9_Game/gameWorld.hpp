@@ -10,12 +10,14 @@
 *	File Programmer: Ashton Palma
 */
 
-#ifndef GAMEWORLD_H
-#define GAMEWORLD_H
+
+#ifndef GAMEWORLDHEADER
+#define GAMEWORLDHEADER
 
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
+
 #include "HitBoxComponent.hpp"
 #include "Player.hpp"
 #include "gameTile.hpp"
@@ -25,7 +27,7 @@
 class gameWorld
 {
 private:
-	//Attempted to create map base on tutorial
+
 	float gridSizeF;
 	unsigned gridSizeU;
 	sf::Vector2u maxSize;
@@ -45,23 +47,24 @@ private:
 	std::vector<Hazard> deadZone;
 
 public:
+	//Constructor
 	gameWorld();
+	//Destructor
 	virtual ~gameWorld() {};
 
+	//Memberfunction
 	void update();
 	void render(sf::RenderTarget& target);
 
-	void updateCollision(Entity* entity, const sf::Vector2u& window);
-
+	void updateCollision(Entity* entity, const sf::Vector2u& window, sf::RenderWindow* rwindow);
 	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
-
 	void setPlayerReference(Entity* player);
-
-	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2);
-
-
+	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2, sf::Vector2f pos3);
 	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
-
+	Portal getPortal1();
+	Portal getPortal2();
+	Portal getExit();
 
 };
+
 #endif

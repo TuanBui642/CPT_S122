@@ -10,8 +10,8 @@
 *	File Programmer: Ashton Palma
 */
 
-#ifndef GAMETILE
-#define GAMETILE
+#ifndef GAMETILEHPP
+#define GAMETILEHPP
 
 #include<iostream>
 #include<ctime>
@@ -24,17 +24,20 @@
 #include "SFML\Window.hpp"
 #include "SFML\Graphics.hpp"
 
-class gameTile
-{
+class gameTile {
 private:
-
+	sf::RectangleShape object;
+	std::string objectType;
 
 protected:
 	sf::RectangleShape shape;
 
 public:
+	//constructor 
 	gameTile();
+	//copy constructor
 	gameTile(float x, float y, float gridSizeF);
+	//destructor
 	virtual ~gameTile() {};
 
 	void update();

@@ -148,6 +148,7 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Portal.hpp" />
     <ClInclude Include="State.hpp" />
+    <ClInclude Include="Test.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\Sprites\Player\test.png" />
