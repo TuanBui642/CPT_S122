@@ -177,7 +177,7 @@ void TestMovementBounds() {
 
         if (Test.GetCurXPos() > 200.0f) {
             cout << "Has Broken Out of Upper Bound" << endl;
-        }s
+        }
         if (Test.GetCurXPos() < 0.0f) {
 
             cout << "Has Broken Out of Lower Bound" << endl;
