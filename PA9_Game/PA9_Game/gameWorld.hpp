@@ -27,7 +27,6 @@
 class gameWorld
 {
 private:
-	//Attempted to create map base on tutorial
 	float gridSizeF;
 	unsigned gridSizeU;
 	sf::Vector2u maxSize;
@@ -47,9 +46,12 @@ private:
 	std::vector<Hazard> deadZone;
 
 public:
+	//Constructor
 	gameWorld();
+	//Destructor
 	virtual ~gameWorld() {};
 
+	//Member Functions Below:
 	void update();
 	void render(sf::RenderTarget& target);
 
@@ -59,13 +61,13 @@ public:
 
 	void setPlayerReference(Entity* player);
 
-	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2);
-
+	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2, sf::Vector2f pos3);
 
 	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
 
 	Portal GetPortal1();
 	Portal GetPortal2();
+	Portal getExit();
 
 };
 

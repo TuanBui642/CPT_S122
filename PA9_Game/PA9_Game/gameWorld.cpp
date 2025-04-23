@@ -5,7 +5,9 @@
 
 gameWorld::gameWorld()
 {
-	//Attempted map base on tutorial
+	//Constrctor
+	//An attempt to create a map. Discarded this idea
+
 	//this->gridSizeF = 50.f;
 	//this->gridSizeU = static_cast<unsigned>(this->gridSizeF);
 	//this->maxSize.x = 10;
@@ -28,6 +30,7 @@ gameWorld::gameWorld()
 	//	}
 	//}
 
+	//Construct Portal Location in Map
 	portal1 = Portal(25.f, sf::Vector2f(1400, 150));
 	portal2 = Portal(25.f, sf::Vector2f(1450, 470));
 	exit = Portal(25.f, sf::Vector2f(260, 470));
@@ -40,6 +43,7 @@ void gameWorld::update()
 {
 }
 
+//Render draw and draw map layout
 void gameWorld::render(sf::RenderTarget& target)
 {
 	for (auto& x : this->map)
@@ -93,6 +97,8 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 	}
 
 	//Block collision logic
+	//Attempted to create collision logic between player and types of platform
+	//Didn't went well. There were visible bouncing in player and adding collision between left and right wall cause player to move on its own
 	for (auto& tile : tiles)
 	{
 		if (entity->getGlobalBounds().findIntersection(tile.getShape().getGlobalBounds()))
@@ -181,8 +187,7 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 
 }
 
-
-//not part of tutor
+//Function that generate blocks for the map environment
 void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture)
 {
 	for (float y = posStr.y; y <= posEnd.y; y += tileSize.y)
@@ -196,17 +201,21 @@ void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vect
 	}
 }
 
-void gameWorld::generatePortal(sf::Vector2f pos1, sf::Vector2f pos2)
+//Function sets portal posiiton
+void gameWorld::generatePortal(sf::Vector2f pos1, sf::Vector2f pos2, sf::Vector2f pos3)
 {
 	portal1.setPosition(pos1);
 	portal2.setPosition(pos2);
+	exit.setPosition(pos3);
 }
 
+//Function reference any entity such as player. Use for updateCollision logic
 void gameWorld::setPlayerReference(Entity* player)
 {
 	playerRef = player;
 }
 
+//Function generate hazardous environment. Only have 1 so far which is deadzone.
 void gameWorld::generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize)
 {
 	for (float y = posStr.y; y <= posEnd.y; y += tileSize.y)
@@ -228,4 +237,9 @@ Portal gameWorld::GetPortal1() {
 Portal gameWorld::GetPortal2() {
 
 	return this->portal2;
+}
+
+Portal gameWorld::getExit()
+{
+	return this->exit;
 }

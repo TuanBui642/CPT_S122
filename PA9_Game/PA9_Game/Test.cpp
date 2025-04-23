@@ -231,16 +231,16 @@ void TestChangePositionViaPortal() {
 
     Test.SetCurXPos(100.0f);
     Test.SetCurYPos(100.0f);
-    
+
     sf::Sprite sprite(CharTexture);
 
-    sprite.setPosition(sf::Vector2f({ 70,100}));
-  
+    sprite.setPosition(sf::Vector2f({ 70,100 }));
+
     gameWorld TestPortal;
-    TestPortal.generatePortal(sf::Vector2f({ 80,100 }), sf::Vector2f({ 200,200 }));
+    TestPortal.generatePortal(sf::Vector2f({ 80,100 }), sf::Vector2f({ 200,200 }), sf::Vector2f({ 1,1 }));
 
     // portal1 portal2
-    
+
 
     const float DeltaTime = 1.0f;
 
@@ -248,23 +248,24 @@ void TestChangePositionViaPortal() {
 
     cout << "Sprites Position Before Moving" << sprite.getPosition().x << sprite.getPosition().y << endl;
 
-         sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
+    sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
 
-        cout << "Sprites Position" << sprite.getPosition().x << sprite.getPosition().y << endl;
-        cout << "Portal Position: " << TestPortal.GetPortal1().getPosition().x << endl;
-     
-        if (sprite.getGlobalBounds().findIntersection(TestPortal.GetPortal1().getGlobalBounds())) {
+    cout << "Sprites Position" << sprite.getPosition().x << sprite.getPosition().y << endl;
+    cout << "Portal Position: " << TestPortal.GetPortal1().getPosition().x << endl;
 
-            cout << "Player Has Interacted with Portal 1 and respawned" << endl;
-           
-        }
-        else {
-            cout << "Player Has not been able to interact with Portal and didn't respawn" << endl;
-        }
+    if (sprite.getGlobalBounds().findIntersection(TestPortal.GetPortal1().getGlobalBounds())) {
 
-  //  TestPortal.GetPortal1().getPosition();
-    
-        system("pause");
+        cout << "Player Has Interacted with Portal 1 and respawned" << endl;
+
+    }
+    else {
+        cout << "Player Has not been able to interact with Portal and didn't respawn" << endl;
+    }
+
+    //  TestPortal.GetPortal1().getPosition();
+
+    system("pause");
+
 }
 
 void TestEnemyPlayerInteraction() {

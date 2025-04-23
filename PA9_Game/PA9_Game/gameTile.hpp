@@ -33,10 +33,14 @@ protected:
 	sf::RectangleShape shape;
 
 public:
+	//Constructor
 	gameTile();
+	//Copy Constructor
 	gameTile(float x, float y, float gridSizeF);
+	//Destructor
 	virtual ~gameTile() {};
 
+	//Member Functions
 	void update();
 	void render(sf::RenderTarget& target);
 
