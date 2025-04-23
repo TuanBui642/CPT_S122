@@ -9,13 +9,12 @@ Game Description:
   -The game was inspired or built off of the concept of a 2d platformer game such as Hollow Knight, where we aimed to produce aspects such as levels, platforms, enemies, hazard areas, and portals.
    Although, we were not able to build multiple levels and more freedom with platforms due to the not being able to figure out gravity for player and platforms, (such that the player can jump and will 
    land on the platform below it), instread we ran into a problem where the jumping aspect caused bugs/glitches within animation for the protagonist Character, with that limitation, we had to shift focus
-   to having a flat platform where the player may go forward and backwards but never jumping as that'll create bugs within the application. Due to those limitations, we were only able to create the first 
-   floor or level that is functional. Causing limitations of using things such as jumping platforms or jumping over hazard floors that'll send you back to respawn. 
+   to having a flat platform where the player may go forward and backwards but never jumping as that'll create bugs within the application. Due to those limitations, we were only able to create the flat platforms    for the first and second level. Causing limitations of using things such as jumping platforms or jumping over hazard floors that'll send you back to respawn. 
    
   -Game Instructions
         the main goal of the game will be to pass the first floor (Top Floor of screen), in which is filled with enemies moving in either a vertical motion or horizontal motion. If you interact with them 
         by allowing you or the enemy sprites to touch you, then you will be respawned to the point of where you started off, after all the enemies, there will be a portal (blue color) that'll lead you to 
-        the second level (incomplete).
+        the second level, where in the second level you'd have to out run the enemy present in the second level with timing while trying to get to the end portal at the end of the second level.
         
 Additional Notes:
 
@@ -35,5 +34,5 @@ Additional Notes:
     Brandon Weirth: Settings/Camera Following Player
 
 
-Video URL (if have at end):
+Video URL:
   
