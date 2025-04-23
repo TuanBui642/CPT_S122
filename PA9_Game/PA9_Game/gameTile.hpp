@@ -24,7 +24,7 @@
 #include "SFML\Window.hpp"
 #include "SFML\Graphics.hpp"
 
-class gameTile{
+class gameTile {
 private:
 	sf::RectangleShape object;
 	std::string objectType;
@@ -33,14 +33,10 @@ protected:
 	sf::RectangleShape shape;
 
 public:
-	//Constructor
 	gameTile();
-	//Copy Constructor
 	gameTile(float x, float y, float gridSizeF);
-	//Destructor
 	virtual ~gameTile() {};
 
-	//Member Functions
 	void update();
 	void render(sf::RenderTarget& target);
 

@@ -74,7 +74,7 @@ void TestGameApplication() {
 void TestEnemyMovement() {
 
     Enemy Test; //Default constructor sets it to (0.0,0.0) position
-    
+
     float NewXCor = 10.0f;
     float NewYCor = 10.0f;
 
@@ -135,7 +135,7 @@ void TestMovementBackNForthVerticallyNHorizontally() {
         cout << "Has Incorrectly Moved Horizontally: " << Speed << "Going Up" << endl;
     }
 
-    
+
     system("pause");
 }
 
@@ -156,7 +156,7 @@ void TestMovementBounds() {
 
     //Constant Speed Initalization
     float Speed = 5.0f;
-     
+
     for (int i = 0; i < 50; i++) { //Loops 50 times to see if it'll function movement wise and too see if it'll go outside of bounds
 
         Test.MoveEnemyHorizontal(Speed, 0.0f);
@@ -174,7 +174,7 @@ void TestMovementBounds() {
 
             cout << "Has Hit Lower x bound" << endl;
         }
-        
+
         if (Test.GetCurXPos() > 200.0f) {
             cout << "Has Broken Out of Upper Bound" << endl;
         }
@@ -251,9 +251,9 @@ void TestChangePositionViaPortal() {
     sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
 
     cout << "Sprites Position" << sprite.getPosition().x << sprite.getPosition().y << endl;
-    cout << "Portal Position: " << TestPortal.GetPortal1().getPosition().x << endl;
+    cout << "Portal Position: " << TestPortal.getPortal1().getPosition().x << endl;
 
-    if (sprite.getGlobalBounds().findIntersection(TestPortal.GetPortal1().getGlobalBounds())) {
+    if (sprite.getGlobalBounds().findIntersection(TestPortal.getPortal1().getGlobalBounds())) {
 
         cout << "Player Has Interacted with Portal 1 and respawned" << endl;
 
@@ -283,7 +283,7 @@ void TestEnemyPlayerInteraction() {
     TestEnemy.SetCurXPos(100.0f);
     TestEnemy.SetCurYPos(120.0f);
 
-    
+
     for (int i = 0; i < 4; i++) {
 
         TestEnemy.MoveEnemyVertically(0.0f, 10.0f);
@@ -302,7 +302,7 @@ void TestEnemyPlayerInteraction() {
             }
             else {
 
-                cout << "Test Player has incorrectly respawned at Position: (" << TestPlayer.getPosition().x << 
+                cout << "Test Player has incorrectly respawned at Position: (" << TestPlayer.getPosition().x <<
                     TestPlayer.getPosition().y << ")" << endl;
             }
         }

@@ -23,7 +23,7 @@ GameState::GameState(sf::RenderWindow* window) : State(window)
     this->initEnemies();
     this->initWorld();
 
-    mFocus.setSize(sf::Vector2f( mStateWindow->getSize().x, mStateWindow->getSize().y ));
+    mFocus.setSize(sf::Vector2f(mStateWindow->getSize().x, mStateWindow->getSize().y));
     mFocus.zoom(0.75f);
 }
 
@@ -72,8 +72,8 @@ void GameState::updateInput(const float& deltaTime)
     mEnemy4->MoveEnemyHorizontal(3.0f, 0.0f);
     //mEnemy2->MoveEnemyHorizontal(2.0f,0.0f);
     mEnemy3->MoveEnemyVertically(0.0f, 2.5f);
-    mEnemy5->MoveEnemyVertically(0.0f,2.5f);
-    mEnemy6->MoveEnemyVertically(0.0f,2.5f);
+    mEnemy5->MoveEnemyVertically(0.0f, 2.5f);
+    mEnemy6->MoveEnemyVertically(0.0f, 2.5f);
 
     if (mEnemy1->GetStatus() != false) {
 
@@ -129,7 +129,7 @@ void GameState::updateInput(const float& deltaTime)
             sf::Texture NewTexture;
             NewTexture.loadFromFile("Sprites/timer_enemy_Left.png");
 
-           /* mEnemy7->setTexture(NewTexture);*/
+            /* mEnemy7->setTexture(NewTexture);*/
 
             mTextures["Seventh Enemy Idle"] = NewTexture;
 
@@ -150,7 +150,7 @@ void GameState::updateInput(const float& deltaTime)
         }
     }
 
-    if (mPlayer->getGlobalBounds().findIntersection(mEnemy3->getGlobalBounds()) || 
+    if (mPlayer->getGlobalBounds().findIntersection(mEnemy3->getGlobalBounds()) ||
         mPlayer->getGlobalBounds().findIntersection(mEnemy5->getGlobalBounds()) ||
         mPlayer->getGlobalBounds().findIntersection(mEnemy6->getGlobalBounds()) ||
         mPlayer->getGlobalBounds().findIntersection(mEnemy7->getGlobalBounds()) ||
@@ -178,7 +178,7 @@ void GameState::update(const float& deltaTime)
     //worldLayout.mapBoundary(*this->mStateWindow, *mPlayer);
     //worldLayout.checkCollisions(*mPlayer);
 
-    worldLayout.updateCollision(mPlayer, mStateWindow->getSize());
+    worldLayout.updateCollision(mPlayer, mStateWindow->getSize(), this->mStateWindow);
 
     mFocus.setCenter(mPlayer->getPosition());
 }
@@ -228,7 +228,7 @@ void GameState::initTextures()
 
     //File Input for Enemy Instances to be imported to game
     sf::Texture tempEnemy1;
-    tempEnemy1.loadFromFile("Sprites/flipper_idle.png"); 
+    tempEnemy1.loadFromFile("Sprites/flipper_idle.png");
 
     mTextures["First Enemy Idle"] = tempEnemy1;
 
@@ -352,7 +352,6 @@ void GameState::initWorld()
     worldLayout.generateBlock(sf::Vector2f(300, 270), sf::Vector2f(430, 300), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(0, 330), sf::Vector2f(90, 380), sf::Vector2f(20, 20), mTextures["Block_Idle"]);
     worldLayout.generateBlock(sf::Vector2f(0, 380), sf::Vector2f(40, 870), sf::Vector2f(15, 15), mTextures["Block_Idle"]);
-    //worldLayout.generateBlock(sf::Vector2f(180, 525), sf::Vector2f(200, 630), sf::Vector2f(10, 10), mTextures["Block_Idle"]);
 
     worldLayout.generateHazard(sf::Vector2f(45, 500), sf::Vector2f(185, 600), sf::Vector2f(20, 20));
 

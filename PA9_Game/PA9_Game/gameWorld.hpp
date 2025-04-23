@@ -27,6 +27,7 @@
 class gameWorld
 {
 private:
+
 	float gridSizeF;
 	unsigned gridSizeU;
 	sf::Vector2u maxSize;
@@ -51,22 +52,17 @@ public:
 	//Destructor
 	virtual ~gameWorld() {};
 
-	//Member Functions Below:
+	//Memberfunction
 	void update();
 	void render(sf::RenderTarget& target);
 
-	void updateCollision(Entity* entity, const sf::Vector2u& window);
-
+	void updateCollision(Entity* entity, const sf::Vector2u& window, sf::RenderWindow* rwindow);
 	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
-
 	void setPlayerReference(Entity* player);
-
 	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2, sf::Vector2f pos3);
-
 	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
-
-	Portal GetPortal1();
-	Portal GetPortal2();
+	Portal getPortal1();
+	Portal getPortal2();
 	Portal getExit();
 
 };

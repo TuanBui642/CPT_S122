@@ -38,7 +38,7 @@ class Platform : public RectangleShape
 private:
 
 public:
-	//constructor 
+    //constructor 
     Platform(const sf::Vector2f& size, const sf::Vector2f& pos) : RectangleShape(size) {
         this->setFillColor(sf::Color::Green);
         this->setPosition(pos);

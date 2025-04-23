@@ -6,7 +6,7 @@
 *		Ashton Palma
 *		Tyler Simmons
 *		Brandon Weirth
-* 
+*
 *	File Programmer: Ashton Palma
 */
 
@@ -38,10 +38,10 @@ private:
 
 
 public:
-	//default constructor
-	Portal() : Portal(25.f, sf::Vector2f(0.f, 0.f)) {}
+    //default constructor
+    Portal() : Portal(25.f, sf::Vector2f(0.f, 0.f)) {}
 
-	//constructor 
+    //constructor 
     Portal(float size, const sf::Vector2f& pos) : CircleShape(size) {
         this->setPosition(pos);
         this->setFillColor(sf::Color::Blue);

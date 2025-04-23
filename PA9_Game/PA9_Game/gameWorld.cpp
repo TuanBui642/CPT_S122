@@ -30,7 +30,7 @@ gameWorld::gameWorld()
 	//	}
 	//}
 
-	//Construct Portal Location in Map
+	//Construt portal location in map
 	portal1 = Portal(25.f, sf::Vector2f(1400, 150));
 	portal2 = Portal(25.f, sf::Vector2f(1450, 470));
 	exit = Portal(25.f, sf::Vector2f(260, 470));
@@ -72,7 +72,7 @@ void gameWorld::render(sf::RenderTarget& target)
 	target.draw(exit);
 }
 
-void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
+void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window, sf::RenderWindow* rwindow)
 {
 	//window collision logic
 	if (entity->getPosition().x < -20)
@@ -80,9 +80,9 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 		entity->setPosition(-20.f, entity->getPosition().y);
 		entity->stopVelocityX();
 	}
-	else if (entity->getPosition().x  /*+ entity->getGlobalBounds().*/ > (window.x - 50))
+	else if (entity->getPosition().x > (window.x - 50))
 	{
-		entity->setPosition(window.x - 50 /*- entity->getGlobalBounds().size.x*/, entity->getPosition().y);
+		entity->setPosition(window.x - 50, entity->getPosition().y);
 		entity->stopVelocityX();
 	}
 	if (entity->getPosition().y < 0.f)
@@ -163,6 +163,11 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 				playerRef->setPosition(portal1.getPosition().x - 100, portal1.getPosition().y);
 				justTeleported = true;
 			}
+			if (playerBounds.findIntersection(exit.getGlobalBounds()))
+			{
+				rwindow->close();
+				cout << "You win";
+			}
 		}
 		else
 		{
@@ -171,6 +176,7 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 				justTeleported = false;
 			}
 		}
+
 
 		for (auto& hazard : deadZone)
 		{
@@ -187,6 +193,7 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window)
 
 }
 
+
 //Function that generate blocks for the map environment
 void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture)
 {
@@ -194,8 +201,8 @@ void gameWorld::generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vect
 	{
 		for (float x = posStr.x; x <= posEnd.x; x += tileSize.x)
 		{
-			gameTile tile(x, y, tileSize.x); // Assuming square tiles
-			tile.getShape().setTexture(&texture); // Apply texture
+			gameTile tile(x, y, tileSize.x);
+			tile.getShape().setTexture(&texture);
 			this->tiles.push_back(tile);
 		}
 	}
@@ -229,17 +236,17 @@ void gameWorld::generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vec
 	}
 }
 
-Portal gameWorld::GetPortal1() {
+Portal gameWorld::getExit()
+{
+	return this->exit;
+}
+
+Portal gameWorld::getPortal1() {
 
 	return this->portal1;
 }
 
-Portal gameWorld::GetPortal2() {
+Portal gameWorld::getPortal2() {
 
 	return this->portal2;
-}
-
-Portal gameWorld::getExit()
-{
-	return this->exit;
 }
