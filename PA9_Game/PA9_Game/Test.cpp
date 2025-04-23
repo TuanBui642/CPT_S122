@@ -67,6 +67,8 @@ void TestGameApplication() {
     Game TestGame;
 
     TestGame.run();
+
+    system("pause");
 }
 
 void TestEnemyMovement() {
@@ -89,7 +91,7 @@ void TestEnemyMovement() {
 
         cout << "Sprite (Enemy) has moved incorrectly" << endl;
     }
-
+    system("pause");
 }
 
 void TestMovementBackNForthVerticallyNHorizontally() {
@@ -134,7 +136,7 @@ void TestMovementBackNForthVerticallyNHorizontally() {
     }
 
     
-
+    system("pause");
 }
 
 void TestMovementBounds() {
@@ -246,7 +248,7 @@ void TestChangePositionViaPortal() {
 
     cout << "Sprites Position Before Moving" << sprite.getPosition().x << sprite.getPosition().y << endl;
 
-        sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
+         sprite.move(sf::Vector2f({ 10,0 })); //Moves ten x coordinates to Right to portal to test interaction
 
         cout << "Sprites Position" << sprite.getPosition().x << sprite.getPosition().y << endl;
         cout << "Portal Position: " << TestPortal.GetPortal1().getPosition().x << endl;
@@ -262,6 +264,7 @@ void TestChangePositionViaPortal() {
 
   //  TestPortal.GetPortal1().getPosition();
     
+        system("pause");
 }
 
 void TestEnemyPlayerInteraction() {
@@ -308,4 +311,6 @@ void TestEnemyPlayerInteraction() {
         }
 
     }
+
+    system("pause");
 }
