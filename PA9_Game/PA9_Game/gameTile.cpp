@@ -1,5 +1,7 @@
 #include "gameTile.hpp"
-//
+
+//Below is an attempted work for collision logic. Doesn't work 
+
 //bool gameTile::collisionStatus(Player& player, int boundary_or_respawn)
 //{
 //    
@@ -77,7 +79,6 @@
 
 gameTile::gameTile()
 {
-
 }
 
 gameTile::gameTile(float x, float y, float gridSizeF)
@@ -87,10 +88,8 @@ gameTile::gameTile(float x, float y, float gridSizeF)
 	this->shape.setPosition({ x, y });
 }
 
-
 void gameTile::update()
 {
-
 }
 
 void gameTile::render(sf::RenderTarget& target)
@@ -98,8 +97,6 @@ void gameTile::render(sf::RenderTarget& target)
 	target.draw(this->shape);
 }
 
-
-//not part of tutor
 sf::RectangleShape& gameTile::getShape()
 {
 	return this->shape;

@@ -8,6 +8,7 @@
 *		Brandon Weirth
 *
 *	File Programmer: Ashton Palma
+*	Purpose: Calls in classes from gameTile, Portal and Hazard. This class has member functions containing instruction to create the game layout and environment
 */
 
 
@@ -55,12 +56,13 @@ public:
 	//Memberfunction
 	void update();
 	void render(sf::RenderTarget& target);
-
 	void updateCollision(Entity* entity, const sf::Vector2u& window, sf::RenderWindow* rwindow);
 	void generateBlock(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize, sf::Texture& texture);
 	void setPlayerReference(Entity* player);
 	void generatePortal(sf::Vector2f pos1, sf::Vector2f pos2, sf::Vector2f pos3);
 	void generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vector2f tileSize);
+
+	//getters
 	Portal getPortal1();
 	Portal getPortal2();
 	Portal getExit();

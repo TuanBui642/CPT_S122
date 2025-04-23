@@ -8,6 +8,7 @@
 *		Brandon Weirth
 *
 *	File Programmer: Ashton Palma
+*   Purpose: Contains all necessary attributes to create an object called portal. Will be called in gameWorld. 
 */
 
 #ifndef PORTALS
@@ -50,6 +51,7 @@ public:
         this->setOrigin(this->getGeometricCenter());
     }
 
+    //destructor
     ~Portal() {};
 
 };

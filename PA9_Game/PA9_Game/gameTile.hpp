@@ -8,6 +8,7 @@
 *		Brandon Weirth
 *
 *	File Programmer: Ashton Palma
+*	Purpose: Contains all necessary attributes to create a tile that'll be use to generate all type of objects. Will be called in gameWorld
 */
 
 #ifndef GAMETILEHPP
@@ -33,15 +34,18 @@ protected:
 	sf::RectangleShape shape;
 
 public:
+	//constructor
 	gameTile();
+	//copy constructor
 	gameTile(float x, float y, float gridSizeF);
+	//destructor
 	virtual ~gameTile() {};
 
+	//member function
 	void update();
 	void render(sf::RenderTarget& target);
 
-
-	//not part of tutor
+	//getters
 	sf::RectangleShape& getShape();
 
 };

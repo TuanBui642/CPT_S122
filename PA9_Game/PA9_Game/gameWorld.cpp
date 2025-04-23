@@ -5,7 +5,7 @@
 
 gameWorld::gameWorld()
 {
-	//Constrctor
+	//Constructor
 	//An attempt to create a map. Discarded this idea
 
 	//this->gridSizeF = 50.f;
@@ -30,7 +30,7 @@ gameWorld::gameWorld()
 	//	}
 	//}
 
-	//Construt portal location in map
+	//Construct portal location in map and it's attribute
 	portal1 = Portal(25.f, sf::Vector2f(1400, 150));
 	portal2 = Portal(25.f, sf::Vector2f(1450, 470));
 	exit = Portal(25.f, sf::Vector2f(260, 470));
@@ -43,7 +43,7 @@ void gameWorld::update()
 {
 }
 
-//Render draw and draw map layout
+//Render and draw map layout
 void gameWorld::render(sf::RenderTarget& target)
 {
 	for (auto& x : this->map)
@@ -72,6 +72,7 @@ void gameWorld::render(sf::RenderTarget& target)
 	target.draw(exit);
 }
 
+//updates the entity and object interaction and logic
 void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window, sf::RenderWindow* rwindow)
 {
 	//window collision logic
@@ -97,7 +98,7 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window, sf::
 	}
 
 	//Block collision logic
-	//Attempted to create collision logic between player and types of platform
+	//Attempted to create collision logic between player and platforms.
 	//Didn't went well. There were visible bouncing in player and adding collision between left and right wall cause player to move on its own
 	for (auto& tile : tiles)
 	{
@@ -145,6 +146,7 @@ void gameWorld::updateCollision(Entity* entity, const sf::Vector2u& window, sf::
 			}*/
 		}
 	}
+
 
 	//Portal logic & Hazard logic
 	if (playerRef)
@@ -236,6 +238,7 @@ void gameWorld::generateHazard(sf::Vector2f posStr, sf::Vector2f posEnd, sf::Vec
 	}
 }
 
+//Gets gameWorld attributes
 Portal gameWorld::getExit()
 {
 	return this->exit;
