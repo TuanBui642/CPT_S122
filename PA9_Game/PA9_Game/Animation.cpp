@@ -36,17 +36,20 @@ Animation::~Animation()
 {
 }
 
+//reset timer and put Current rect back to start
 void Animation::reset()
 {
 	mTimer = 0.0f;
 	mCurrentRect = mStartRect;
 }
 
+//return if animation is done or not
 const bool& Animation::getDone() const
 {
 	return mDone;
 }
 
+//play animation
 const bool& Animation::play(const float& deltaTime)
 {
 	//update timer
@@ -68,6 +71,7 @@ const bool& Animation::play(const float& deltaTime)
 			mCurrentRect.position = mStartRect.position;
 		}
 
+		//update sprite texture on texture sheet
 		mSprite.setTextureRect(mCurrentRect);
 	}
 

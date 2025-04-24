@@ -32,13 +32,22 @@ public:
 	const bool& play(const float& deltaTime);
 
 private:
+	//map string to a certain animation
 	std::map<std::string, Animation> mAnimations;
+
+	//texture sheet for animation
 	sf::Texture& mTextureSheet;
+
+	//timers for animation
 	float mAnimationTimer;
 	float mTimer;
+
+	//rectangles for cutting out sprites from sheet
 	sf::IntRect mStartRect;
 	sf::IntRect mCurrentRect;
 	sf::IntRect mEndRect;
+
+	//sprite parameters
 	int mWidth;
 	int mHeight;
 	sf::Sprite& mSprite;

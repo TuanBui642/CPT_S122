@@ -36,10 +36,12 @@ public:
         float width, float height);
     void createAnimationComponent(sf::Texture& textureSheet);
 
+    //Move,update status, or render activity
     virtual void move(const float deltaTime, const float dir_x, const float dir_y);
     virtual void update(const float& deltaTime);
     virtual void render(sf::RenderTarget& target);
 
+    //More accessors
     sf::Sprite getmpSprite();
 
     virtual const sf::Vector2f& getPosition()const;
@@ -49,6 +51,7 @@ public:
     virtual void stopVelocityX();
 
 protected:
+    //Protected data members
     sf::Sprite mpSprite;
 
     HitboxComponent* mpHitboxComponent;

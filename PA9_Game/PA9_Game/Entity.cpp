@@ -27,33 +27,39 @@ Entity::~Entity()
 	delete mpAnimationComponent;
 }
 
+//set position of entity
 void Entity::setPosition(const float x_pos, const float y_pos)
 {
 	mpSprite.setPosition(sf::Vector2f(x_pos, y_pos));
 }
 
+//set texture of entity
 void Entity::setTexture(sf::Texture& texture)
 {
 	mpSprite.setTexture(texture);
 }
 
+//create a hitbox for the entity
 void Entity::createHitboxComponent(sf::Sprite& sprite, float offsetX, float offsetY,
 	float width, float height)
 {
 	mpHitboxComponent = new HitboxComponent(sprite, offsetX, offsetY, width, height);
 }
 
+//create a movement component for the entity
 void Entity::createMovementComponent(const float maxVelocity, const float acceleration,
 	const float deceleration)
 {
 	mpMovementComponent = new MovementComponent(mpSprite, acceleration,deceleration);
 }
 
+//create an animation component for the entity
 void Entity::createAnimationComponent(sf::Texture& textureSheet)
 {
 	mpAnimationComponent = new AnimationComponent(mpSprite, textureSheet);
 }
 
+//move the entity
 void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
 {
 	if (mpMovementComponent != nullptr) {
@@ -61,6 +67,7 @@ void Entity::move(const float deltaTime, const float dir_x, const float dir_y)
 	}
 }
 
+//update the entity
 void Entity::update(const float& deltaTime)
 {
 	if (mpMovementComponent != nullptr) {
@@ -68,6 +75,7 @@ void Entity::update(const float& deltaTime)
 	}
 }
 
+//render the entity
 void Entity::render(sf::RenderTarget& target)
 {
 	target.draw(mpSprite);
@@ -77,11 +85,13 @@ void Entity::render(sf::RenderTarget& target)
 	}
 }
 
+//return sprite pointer for entity
 sf::Sprite Entity::getmpSprite()
 {
 	return mpSprite;
 }
 
+//initialize entity variables
 void Entity::initVariables()
 {
 	mpHitboxComponent = nullptr;
@@ -89,6 +99,7 @@ void Entity::initVariables()
 	mpAnimationComponent = nullptr;
 }
 
+//get the position of the entity
 const sf::Vector2f& Entity::getPosition() const
 {
 	if (mpHitboxComponent)
@@ -99,6 +110,7 @@ const sf::Vector2f& Entity::getPosition() const
 	return this->mpSprite.getPosition();
 }
 
+//get the global bounds of the entity
 const sf::FloatRect Entity::getGlobalBounds() const
 {
 	if (mpHitboxComponent)
@@ -109,6 +121,7 @@ const sf::FloatRect Entity::getGlobalBounds() const
 	return this->mpSprite.getGlobalBounds();
 }
 
+//Stops Respected Velocity of X,Y, or Velocity
 void Entity::stopVelocity()
 {
 	if (mpMovementComponent)

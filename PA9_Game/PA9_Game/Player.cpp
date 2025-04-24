@@ -117,41 +117,49 @@ void Player::initComponents()
 
 }
 
+//Getters
 HitboxComponent* Player::getHitboxComponent() const
 {
     return this->mpHitboxComponent;
 }
 
+//Getters
 sf::Vector2f& Player::getVelocity()
 {
     return this->mpMovementComponent->getVelocity();
 }
 
+//Getters
 const sf::Vector2f& Player::getPosition() const
 {
 	return this->mpSprite.getPosition();
 }
 
+//Getters
 float Player::GetCurXPos() {
 
 	return this->CurXPos;
 }
 
+//Getters
 float Player::GetCurYPos() {
 
 	return this->CurYPos;
 }
 
+//Setters
 void Player::SetCurXPos(float NewFloat) {
 
 	this->CurXPos = NewFloat;
 }
 
+//Setters
 void Player::SetCurYPos(float NewFloat) {
 
 	this->CurYPos = NewFloat;
 }
 
+//Move Player my coordinates
 void Player::MoveByPos(float const x, float const y) {
 
 	float CurX = this->GetCurXPos();

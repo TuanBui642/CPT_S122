@@ -13,6 +13,7 @@
 #pragma once
 #include "Game.hpp"
 
+//initialize everything
 Game::Game()
 {
     this->initWindow();
@@ -30,6 +31,7 @@ Game::~Game()
     }
 }
 
+//setup window
 void Game::initWindow()
 {
     unsigned int width = 1500;
@@ -40,6 +42,7 @@ void Game::initWindow()
     mWindow->setFramerateLimit(60);	//set frame rate cap to 60 fps
 }
 
+//this is for future testing of key rebinding
 void Game::initKeys()
 {
     /*mSupportedKeys.emplace("Escape", sf::Keyboard::Key::Escape);
@@ -48,11 +51,13 @@ void Game::initKeys()
     //mSupportedKeys.emplace(" ", sf::Keyboard::Key::Space);
 }
 
+//manage states with a stack, set the first State to a GameState
 void Game::initStates()
 {
     mStates.push(new GameState(mWindow));
 }
 
+//end the application
 void Game::endApp()
 {
     cout << "Ending game." << endl;
@@ -60,8 +65,10 @@ void Game::endApp()
 
 void Game::update()
 {
+    //mainly see if the window is closed or needs to close
     this->updateSFMLEvents();
 
+    //is the state stack empty? If not update the state and if the state wants to end, end it and delete the state, then pop the stack
     if (!mStates.empty()) {
         mStates.top()->update(mDeltaTime);
 
@@ -79,6 +86,7 @@ void Game::update()
     }
 }
 
+//see if window is closed
 void Game::updateSFMLEvents()
 {
     while (const std::optional event = mWindow->pollEvent())
@@ -88,6 +96,7 @@ void Game::updateSFMLEvents()
     }
 }
 
+//restart the delta time clock
 void Game::updateDeltaTime()
 {
     mDeltaTime = mDTClock.restart().asSeconds();
@@ -108,9 +117,11 @@ void Game::render()
 void Game::run()
 {
     while (mWindow->isOpen()) {
-
+        //restart the delta time clock
         this->updateDeltaTime();
+        //update everything
         this->update();
+        //draw everything
         this->render();
     }
 }

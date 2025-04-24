@@ -20,11 +20,13 @@ State::State(sf::RenderWindow* window)
     //mSupportedKeys = supportedKeys;
 }
 
+//return if the state wants to quit
 const bool& State::getQuit() const
 {
     return mQuit;
 }
 
+//set if the state wants to quit
 void State::endState()
 {
     mQuit = true;

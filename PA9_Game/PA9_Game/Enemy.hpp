@@ -74,10 +74,20 @@ public:
     void SetMovingDown(bool NewBool);
 
     //Member Functions Below
+
+    //Updates the Position of the Respected Sprite Based on passed in position, would typically use RIGHT AFTER .move() function to 
+    // update it's position each loop when moving
     virtual void UpdatePosition(float x, float y);
+
+    //Update DeltaTime for Enemy (ENDED UP NOT USING)
     virtual void Update(const float& deltaTime);
+
+    //Moves enemy in a certain way
     void MoveEnemy(const float x, const float y);
 
+    //Functions that'll move the enemy back and forth depending on set position, and the bounds passed in
+    //Horizontal would have a right and left bound
+    //Vertical would have a Upper and Lower Bound
     void MoveEnemyHorizontal(const float x, const float y);
     void MoveEnemyVertically(const float x, const float y);
 
@@ -112,6 +122,9 @@ private:
     bool MovingUp;
     bool MovingDown;
 
+    //Utilizing this allows the use of using getGlobalBounds and other member functions of 
+    //RectangleShape for each respected sprite, used to determine if enemy/player interacted
+    //with one another to respawn player
     sf::RectangleShape CharShape;
 
     sf::Texture CharTexture;

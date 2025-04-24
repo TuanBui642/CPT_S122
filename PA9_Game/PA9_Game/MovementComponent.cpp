@@ -73,6 +73,7 @@ const float& MovementComponent::getMaxVelocity()
 
 bool MovementComponent::getState(const short unsigned state)
 {
+	//returns states to Player class so it knows which sprite to use for animation
 	switch (state) {
 	case IDLE:
 		if (mVelocity.x == 0.0f && mVelocity.y == 0.0f) {
@@ -195,15 +196,17 @@ void MovementComponent::update(const float& deltaTime)
 		}
 	}
 
-	//speed cap y
+	//if on the ground, there is zero vertical velocity
 	if (mOnGround) {
 		mGravity = 0.0f;
 	}
 
+	//if not on the ground, and the velocity from the jump is still going, apply this gravity
 	if (!mOnGround && mVelocity.y < 0.0f) {
 		mGravity = 100.0f;
 	}
 
+	//always decelerate by gravity
 	mVelocity.y += mGravity;
 
 	//final move

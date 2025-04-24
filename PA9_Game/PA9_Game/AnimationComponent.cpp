@@ -26,11 +26,13 @@ AnimationComponent::~AnimationComponent()
 	}
 }
 
+//return if animation is done
 const bool& AnimationComponent::getDone(const std::string key)
 {
 	return mAnimations[key]->getDone();
 }
 
+//play animation and play priority animations before switching to new animations
 const bool& AnimationComponent::play(const std::string key, const float& deltaTime, const bool priority)
 {
     //set priority animation

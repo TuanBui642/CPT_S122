@@ -44,9 +44,10 @@ public:
     void drawMenu();
 
 private:
-    sf::RenderWindow* mWindow;
-    float mDeltaTime;
-    sf::Clock mDTClock;
+    //data members
+    sf::RenderWindow* mWindow;	//this is a pointer to the main window
+    float mDeltaTime;			//the time it takes to run through one game loop
+    sf::Clock mDTClock;			//the clock that is needed to keep track of the gameloop time
     std::stack<State*> mStates;	//stack of states, keeps track of different types of states game gets in
     //std::map<std::string, int> mSupportedKeys;	//an array-like structure of supported keys
 

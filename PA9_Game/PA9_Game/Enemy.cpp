@@ -214,12 +214,13 @@ void Enemy::MoveEnemy(const float x, const float y) { //Moves Enemy in position 
 
 Enemy::~Enemy() { //Destructor
 
-
+	delete this;
 }
 
+//Moves an Enemy Sprite Horizontally dependent on setPosition, and setting Right/Left bounds for it to move back and forth of those bounds
 void Enemy::MoveEnemyHorizontal(const float x, const float y) {
 
-	if (this->GetStatus() != false) { //Toaster Sprite
+	if (this->GetStatus() != false) { //Conditions to check if the enemhy sprite is alive before it may move
 
 		if (this->GetLeftMoveStat() == true) {
 
@@ -248,9 +249,10 @@ void Enemy::MoveEnemyHorizontal(const float x, const float y) {
 	}
 }
 
-void Enemy::MoveEnemyVertically(const float x, const float y) {
+//Moves an Enemy Sprite Vertically dependent on setPosition, and setting upper/lower bounds for it to move back and forth of those bounds
+void Enemy::MoveEnemyVertically(const float x, const float y) { 
 
-	if (this->GetStatus() != false) { //Toaster Sprite
+	if (this->GetStatus() != false) { //Conditions to check if the enemhy sprite is alive before it may move
 
 		if (this->GetMovingUp() == true) {
 
@@ -279,11 +281,12 @@ void Enemy::MoveEnemyVertically(const float x, const float y) {
 	}
 }
 
-sf::RectangleShape Enemy::GetEnemyShape() {
+sf::RectangleShape Enemy::GetEnemyShape() { //Getter
 
 	return this->CharShape;
 }
 
+//Initializes attributes of Enemy
 void Enemy::initVariables() {
 
 	bool Stat = true;
@@ -300,6 +303,7 @@ void Enemy::initVariables() {
 
 }
 
+//Initializes components of attributes of Enemy such as it's movement component
 void Enemy::initComponents(){
 
 	this->createMovementComponent(100.0f, 20.0f, 20.0f);

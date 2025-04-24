@@ -36,7 +36,9 @@ enum movementStates {
 
 class MovementComponent {
 public:
+	//Constructor
 	MovementComponent(sf::Sprite& sprite, float acceleration, float deceleration);
+	//Destructor
 	virtual ~MovementComponent();
 
 	//getters
@@ -57,6 +59,7 @@ public:
 	void update(const float& deltaTime);
 
 private:
+	//Attributes of Class
 	float mMaxVelocity;
 	sf::Sprite& mSprite;
 	sf::Vector2f mVelocity;
