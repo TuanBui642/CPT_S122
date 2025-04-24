@@ -36,4 +36,10 @@ Additional Notes:
 
 Video URL:
 https://www.youtube.com/watch?v=64HzdKFvTAQ
+
+Sprite Development
+  -Connin Molo
+    Enemy Sprites
+  -Itch.io/https://dreamir.itch.io/characters-pack
+    PLayer Sprites
   
